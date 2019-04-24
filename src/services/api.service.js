@@ -2,12 +2,11 @@ import axios from 'axios'
 
 export default class ApiService {
   constructor(resource = '/') {
-    this.address = resource
+    this.address = `http://localhost:3000/${resource}/`
   }
 
   /**
    * Send a get request
-   * 
    * @param {String} uri 
    * @param {Object} query
    * @returns {Promise} 
@@ -18,7 +17,6 @@ export default class ApiService {
 
   /**
    * Send a post request
-   * 
    * @param {String} uri 
    * @param {Object} data 
    */
@@ -28,7 +26,6 @@ export default class ApiService {
 
   /**
    * Send a patch request
-   * 
    * @param {String} uri 
    * @param {Object} data 
    */
@@ -38,7 +35,6 @@ export default class ApiService {
 
   /**
    * Send a delete request
-   * 
    * @param {String} uri 
    * @param {Object} query 
    */
