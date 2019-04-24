@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import store from '@/store'
+import store from '@/store/store'
 
 import Home from '@/pages/PageHome'
 import User from '@/pages/PageUser'
@@ -22,7 +22,7 @@ const router = new Router({
       path: '/logout',
       name: 'logout',
       beforeEnter(to, from, next) {
-        store.dispatch('logout')
+        store.dispatch('auth/logout')
         next({name: 'login', params: { alert: {message: 'You were logged out successfully', variant: 'success' } }})
       }
     },
@@ -61,11 +61,11 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (store.getters.isLoggedIn) {
+    if (store.getters['auth/isLoggedIn']) {
       next()
       return
     }
-    next('/login')
+    next({name: 'login'})
   } else {
     next()
   }
