@@ -16,7 +16,7 @@
         <IosPeopleIcon class="d-inline-block align-top"/>
         Users
       </b-nav-item>
-      <b-nav-item :to="{ name: 'bikes' }">
+      <b-nav-item :to="{ name: 'bookings' }">
         <IosCalendarIcon class="d-inline-block align-top"/>
         Bookings
       </b-nav-item>
