@@ -1,34 +1,32 @@
 <template>
   <b-navbar type="light" variant="white">
-    <b-container>
-      <b-navbar-nav>
-        <!-- <b-nav-item to="login">
-          Login
-        </b-nav-item> -->
-        <b-nav-item :to="{ name: 'home' }">
-          <IosHomeIcon class="d-inline-block align-top"/>
-          Home
-        </b-nav-item>
-        <b-nav-item :to="{ name: 'bikes' }">
-          <IosBicycleIcon class="d-inline-block align-top"/>
-          Bikes
-        </b-nav-item>
-        <b-nav-item :to="{ name: 'users' }">
-          <IosPeopleIcon class="d-inline-block align-top"/>
-          Users
-        </b-nav-item>
-        <b-nav-item :to="{ name: 'bikes' }">
-          <IosCalendarIcon class="d-inline-block align-top"/>
-          Bookings
-        </b-nav-item>
-      </b-navbar-nav>
-      <b-navbar-nav class="ml-auto">
-        <b-nav-item :to="{ name: 'logout' }">
-          <IosLogOutIcon class="d-inline-block align-top"/>
-          Log out
-        </b-nav-item>
-      </b-navbar-nav>
-    </b-container>
+    <b-navbar-nav>
+      <!-- <b-nav-item to="login">
+        Login
+      </b-nav-item> -->
+      <b-nav-item :to="{ name: 'home' }">
+        <IosHomeIcon class="d-inline-block align-top"/>
+        Home
+      </b-nav-item>
+      <b-nav-item :to="{ name: 'bikes' }">
+        <IosBicycleIcon class="d-inline-block align-top"/>
+        Bikes
+      </b-nav-item>
+      <b-nav-item :to="{ name: 'users' }">
+        <IosPeopleIcon class="d-inline-block align-top"/>
+        Users
+      </b-nav-item>
+      <b-nav-item :to="{ name: 'bikes' }">
+        <IosCalendarIcon class="d-inline-block align-top"/>
+        Bookings
+      </b-nav-item>
+    </b-navbar-nav>
+    <b-navbar-nav class="ml-auto">
+      <b-nav-item :to="{ name: 'logout' }">
+        <IosLogOutIcon class="d-inline-block align-top"/>
+        Log out
+      </b-nav-item>
+    </b-navbar-nav>
   </b-navbar>
 </template>
 

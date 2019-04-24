@@ -1,7 +1,5 @@
 <template>
-<div>
   <LoginForm :alert="alert"/>
-</div>
 </template>
 
 <script>
