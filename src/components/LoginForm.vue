@@ -1,5 +1,7 @@
 <template>
-  <b-form @submit="onSubmit" v-if="show" id="form">
+  <b-form @submit.prevent="onSubmit" v-if="show" id="form">
+    <h3>Log in</h3>
+    <b-alert v-if="alert" show dismissible fade :variant="alert.variant">{{ alert.message }}</b-alert>
     <!-- Email -->
     <b-form-group
       id="input-group-email"
@@ -8,6 +10,8 @@
     >
       <b-form-input
         id="input-email"
+        type="email"
+        title="Please enter a valid email"
         v-model="form.email"
         required
         placeholder="Enter email"
@@ -35,6 +39,9 @@
 </template>
 
 <script>
+// import axios from 'axios'
+// import store from '@/store'
+
 export default {
   name: 'LoginForm',
 
@@ -44,22 +51,28 @@ export default {
         email: '',
         password: ''
       },
+      url: 'http://localhost:3000/tokens/session',
       show: true
     }
   },
+
   methods: {
-    onSubmit(evt) {
-      evt.preventDefault()
-      alert(JSON.stringify(this.form))
-    }
+    onSubmit() {
+      // event.preventDefault() ... Replaces with .prevent event modifier on v-on
+
+      const {email, password} = this.form
+      this.$store.dispatch('login', {email, password})
+        .then(() => this.$router.push('/'))
+        // eslint-disable-next-line
+        .catch(error => console.log(error))
+    },
   },
+
   props: {
-    // msg: String
+    alert: {
+      type: Object,
+      required: false
+    },
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="sass" scoped>
-
-</style>
