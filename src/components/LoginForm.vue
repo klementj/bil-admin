@@ -39,8 +39,6 @@
 </template>
 
 <script>
-// import axios from 'axios'
-// import store from '@/store'
 
 export default {
   name: 'LoginForm',
@@ -51,20 +49,14 @@ export default {
         email: '',
         password: ''
       },
-      url: 'http://localhost:3000/tokens/session',
       show: true
     }
   },
 
   methods: {
     onSubmit() {
-      // event.preventDefault() ... Replaces with .prevent event modifier on v-on
-
       const {email, password} = this.form
-      this.$store.dispatch('login', {email, password})
-        .then(() => this.$router.push('/'))
-        // eslint-disable-next-line
-        .catch(error => console.log(error))
+      this.$store.dispatch('auth/login', {email, password})
     },
   },
 

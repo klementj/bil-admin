@@ -1,10 +1,10 @@
 <template>
-<div>
-  <TabBar />
-  <b-container class="mt-5">
-    <router-view></router-view>
+<!-- <div id="app-container"> -->
+  <b-container id="app-container" class="pb-5">
+    <TabBar class="pt-3"/>
+    <router-view class="my-5"></router-view>
   </b-container>
-</div>
+<!-- </div> -->
 </template>
 
 <script>
@@ -19,16 +19,18 @@ export default {
 </script>
 
 <style>
-
-#form {
-  margin: 5rem auto;
-  padding: 2rem;
-  max-width: 400px;
+#app-container{
+  margin-top: 2rem;
+  /* padding: 2rem; */
+  /* height: 80vh; */
   border: 0;
   border-radius: .3rem;
   background-color: white;
   box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
-  /* border: 1px solid #ddd; */
-  /* box-shadow: 1px 1px 10px #ddd; */
+}
+
+#form {
+  margin: 0 auto;
+  max-width: 350px;
 }
 </style>
