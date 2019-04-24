@@ -1,9 +1,14 @@
 // Variable overwriting
 
 // Import bootstrap and bootstrap vue
-@import '../node_modules/bootstrap/scss/bootstrap.scss';
-@import '../node_modules/bootstrap-vue/src/index.scss';
+@import '~bootstrap/scss/bootstrap.scss';
+@import '~bootstrap-vue/src/index.scss';
 
-// body{
-//   background: goldenrod;
-// }
+// Import vue-ionicons
+// @import('no')
+@import '~vue-ionicons/ionicons.scss';
+
+body{
+  background: #007bff;
+  background: linear-gradient(to right, #0062E6, #33AEFF);
+}
