@@ -3,7 +3,9 @@ import Router from 'vue-router'
 import store from '@/store/store'
 
 import Home from '@/pages/PageHome'
+import Bikes from '@/pages/PageBikes'
 import User from '@/pages/PageUser'
+import Bookings from '@/pages/PageBookings'
 import Login from '@/pages/PageLogin'
 import NotFound from '@/pages/PageNotFound'
 
@@ -37,15 +39,23 @@ const router = new Router({
     {
       path: '/bikes',
       name: 'bikes',
-      component: Home,
+      component: Bikes,
       meta: {
         requiresAuth: true
       }
     },
     {
-      path: '/users',
+      path: '/user',
       name: 'users',
       component: User,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/bookings',
+      name: 'bookings',
+      component: Bookings,
       meta: {
         requiresAuth: true
       }
