@@ -21,7 +21,7 @@ export default class CrudService {
    * @param {number} id
    * @returns {Promise} 
    */
-  read(id) {
+  fetch(id) {
     return this.api.get(id)
   }
 
