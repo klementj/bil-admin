@@ -1,4 +1,29 @@
 // Variable overwriting
+$body-bg: #43464f;
+$body-color: #333;
+$theme-colors: (
+  "primary": #0074d9,
+  "secondary": goldenrod,
+  "success": goldenrod,
+  "info": goldenrod,
+  "warning": goldenrod,
+  "danger": #ff4136,
+  "light": goldenrod,
+  "dark": goldenrod
+);
+
+// $enable-shadows: true;
+// $enable-gradients: true;
+$enable-responsive-font-sizes: true; //default false
+$enable-rounded: false; //default true
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 456px,
+  md: 789px,
+  lg: 999px,
+  xl: 1234px
+);
 
 // Import bootstrap and bootstrap vue
 @import '~bootstrap/scss/bootstrap.scss';
@@ -10,5 +35,5 @@
 
 body{
   background: #007bff;
-  background: linear-gradient(to right, #0062E6, #33AEFF);
+  background: linear-gradient(to right,#f7f0f0, #ebe5e5);
 }
