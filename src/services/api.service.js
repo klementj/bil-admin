@@ -42,7 +42,7 @@ export default class ApiService {
     return this._send(uri, 'delete', query)
   }
 
-  _send(uri, method, data) {
+  _send(uri = '', method, data) {
     let params = {}
 
     if (method === 'get' || method === 'delete') {
@@ -56,5 +56,10 @@ export default class ApiService {
       data,
       params,
     })
+      .catch(error => {
+        // eslint-disable-next-line
+        console.log(error)
+        throw error
+      })
   }
 }
