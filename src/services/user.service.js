@@ -5,7 +5,7 @@ export default class UserService extends CrudService {
     super('users')
   }
 
-  fetchCurrentUser() {
-    
+  fetchCurrentUser(id) {
+    return this.fetch(id)
   }
 }
