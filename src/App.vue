@@ -1,10 +1,10 @@
 <template>
-<!-- <div id="app-container"> -->
+<div>
+  <TabBar/>
   <b-container id="app-container" class="pb-5">
-    <TabBar class="pt-3"/>
-    <router-view class="my-5"></router-view>
+    <router-view></router-view>
   </b-container>
-<!-- </div> -->
+</div>
 </template>
 
 <script>
@@ -20,13 +20,17 @@ export default {
 
 <style>
 #app-container{
-  margin-top: 2rem;
-  /* padding: 2rem; */
-  /* height: 80vh; */
-  border: 0;
-  border-radius: .3rem;
+  /* margin-top: 2rem; */
+  /* border: 0; */
+  /* border-radius: .3rem; */
   background-color: white;
-  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+  padding: 3rem 2rem 2rem;
+}
+
+.navbar, .container{
+  box-shadow: 0 0.1rem 4px 0 rgba(0, 0, 0, 0.1);
+  
 }
 
 #form {
