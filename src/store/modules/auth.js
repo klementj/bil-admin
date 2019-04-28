@@ -1,6 +1,6 @@
 import router from '@/router.js'
 import AuthService from '@/services/auth.service.js'
-// import moduleName from '@/services/user.service.js'
+import axios from 'axios'
 
 const authService = new AuthService()
 
@@ -30,9 +30,13 @@ export const actions = {
       .then(response => {
         const token = response.data.data
         commit('AUTHENTICATE_USER', token)
+        
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+
         localStorage.setItem('token', token)
-        localStorage.setItem('user', '...')
+        localStorage.setItem('user', '5caf58cbdae9733668b9881c')
         router.push({ name: 'home'})
+        // router.go(1)
       })
       .catch(error => {
         throw error
@@ -46,7 +50,7 @@ export const actions = {
   },
 
   tryAutoLogin({ commit }) {
-    const token = localStorage.getItem('NEW_TOKEN')
+    const token = localStorage.getItem('token')
     if (!token) {
       return
     }
