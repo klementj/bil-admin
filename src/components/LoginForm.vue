@@ -34,7 +34,7 @@
     </b-form-group>
 
     <!-- Submit button -->
-    <b-button type="submit" variant="primary">Submit</b-button>
+    <b-button type="submit" variant="primary">Log in</b-button>
   </b-form>
 </template>
 
