@@ -1,15 +1,15 @@
 // Variable overwriting
-$body-bg: #43464f;
-$body-color: #333;
+$body-bg: #17212e;
+$body-color: #f0f1f1;
 $theme-colors: (
-  "primary": #0074d9,
+  "primary": #7a65f1,
   "secondary": goldenrod,
   "success": goldenrod,
   "info": goldenrod,
   "warning": goldenrod,
   "danger": #ff4136,
   "light": goldenrod,
-  "dark": goldenrod
+  "dark": #1e2938
 );
 
 // $enable-shadows: true;
@@ -34,6 +34,19 @@ $grid-breakpoints: (
 @import '~vue-ionicons/ionicons.scss';
 
 body{
-  background: #007bff;
-  background: linear-gradient(to right,#f7f0f0, #ebe5e5);
+  // background: #007bff;
+  // background: linear-gradient(to right,#f7f0f0, #ebe5e5);
+}
+
+.form-control {
+  background-color: #212d40;
+  border: 1px solid #2b394c;
+}
+
+pre{
+  color: white;
+}
+
+.router-link-exact-active{
+  border-bottom: 2px solid var(--primary)
 }

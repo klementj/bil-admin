@@ -1,8 +1,8 @@
 <template>
 <div>
-  <h1>PageBikes</h1>
-  <AddBike />
-  <b-card class="mt-3" header="All bikes">
+  <!-- <h1>PageBikes</h1> -->
+  <AddBike class="custom-card my-3"/>
+  <b-card bg-variant="dark" text-variant="white" class="custom-card my-3" header="All bikes">
     <pre class="m-0">{{ allBikes }}</pre>
   </b-card>
   <b-table responsive hover :items="allBikes" :fields="fields"></b-table>

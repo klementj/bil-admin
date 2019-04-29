@@ -1,5 +1,5 @@
 <template>
-  <b-navbar variant="white">
+  <b-navbar type="dark">
     <b-navbar-nav>
       <!-- <b-nav-item to="login">
         Login
