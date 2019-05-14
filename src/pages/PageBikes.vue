@@ -5,7 +5,7 @@
   <b-card bg-variant="dark" text-variant="white" class="custom-card my-3" header="All bikes">
     <pre class="m-0">{{ allBikes }}</pre>
   </b-card>
-  <b-table responsive hover :items="allBikes" :fields="fields"></b-table>
+  <b-table class="custom-card my-3" responsive hover :items="allBikes" :fields="fields"></b-table>
 </div>
 </template>
 
