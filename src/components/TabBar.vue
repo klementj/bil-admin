@@ -1,13 +1,20 @@
 <template>
   <b-navbar type="dark">
     <b-navbar-nav>
-      <!-- <b-nav-item to="login">
-        Login
-      </b-nav-item> -->
       <b-nav-item :to="{ name: 'home' }">
         <IosHomeIcon class="d-inline-block align-top"/>
-        Home
+        Overview
       </b-nav-item>
+    </b-navbar-nav>
+    
+    <b-navbar-nav class="ml-5">
+      <b-nav-item :to="{ name: 'bookings' }">
+        <IosCalendarIcon class="d-inline-block align-top"/>
+        Bookings
+      </b-nav-item>
+    </b-navbar-nav>
+    
+    <b-navbar-nav class="ml-5">
       <b-nav-item :to="{ name: 'bikes' }">
         <IosBicycleIcon class="d-inline-block align-top"/>
         Bikes
@@ -16,11 +23,15 @@
         <IosPeopleIcon class="d-inline-block align-top"/>
         Users
       </b-nav-item>
+    </b-navbar-nav>
+    
+    <b-navbar-nav class="ml-5">
       <b-nav-item :to="{ name: 'bookings' }">
         <IosCalendarIcon class="d-inline-block align-top"/>
-        Bookings
+        Projects
       </b-nav-item>
     </b-navbar-nav>
+
     <b-navbar-nav class="ml-auto">
       <b-nav-item :to="{ name: 'logout' }">
         <IosLogOutIcon class="d-inline-block align-top"/>
