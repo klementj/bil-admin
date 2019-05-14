@@ -53,6 +53,10 @@ export default {
     }
   },
 
+  mounted(){
+    this.$store.dispatch('auth/tryAutoLogin')
+  },
+
   methods: {
     onSubmit() {
       const {email, password} = this.form
