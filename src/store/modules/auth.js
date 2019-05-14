@@ -15,6 +15,8 @@ export const mutations = {
   AUTHENTICATE_USER(state, payload) {
     state.apiToken = payload
     state.signedIn = true
+    router.push({ name: 'home'})
+
   },
   CLEAR_AUTH_DATA(state) {
     state.apiToken = null
@@ -29,17 +31,20 @@ export const actions = {
     authService.login(payload)
       .then(response => {
         const token = response.data.data
+        // console.log(response.data);
+        
         commit('AUTHENTICATE_USER', token)
         
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
         localStorage.setItem('token', token)
         localStorage.setItem('user', '5caf58cbdae9733668b9881c')
-        router.push({ name: 'home'})
         // router.go(1)
       })
       .catch(error => {
-        throw error
+        console.log('FUCK der er en fejl', error);
+        
+        // throw error
       })
   },
 
