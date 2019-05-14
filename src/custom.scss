@@ -41,6 +41,11 @@ body{
 .form-control {
   background-color: #212d40;
   border: 1px solid #2b394c;
+  
+  &:focus{
+    background-color: inherit;
+    border: inherit;
+  }
 }
 
 pre{
@@ -49,4 +54,13 @@ pre{
 
 .router-link-exact-active{
   border-bottom: 2px solid var(--primary)
+}
+
+// TEMPORARY
+.table thead th {
+  border-bottom-color: #293443;
+}
+
+.table th, .table td {
+  border-top-color: #293443;
 }
