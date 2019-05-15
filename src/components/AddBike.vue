@@ -4,7 +4,7 @@
     <!-- Title -->
     <b-form-group
       id="input-group-title"
-      label="Title"
+      label="Name"
       label-for="input-title"
     >
       <b-form-input
