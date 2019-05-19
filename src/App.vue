@@ -1,40 +1,35 @@
 <template>
-<div>
-  <TabBar/>
-  <b-container id="app-container" class="pb-5">
-    <router-view></router-view>
-  </b-container>
-</div>
+  <v-app>
+    <Navigation />
+
+    <v-toolbar color="primary" dark fixed app>
+      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <v-toolbar-title>Bicycle Library</v-toolbar-title>
+    </v-toolbar>
+
+    <v-content fill-height>
+      <router-view></router-view>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
-import TabBar from './components/TabBar'
+import Navigation from './components/Navigation'
+// import LoginForm from '@/components/LoginForm'
 
 export default {
   name: 'app',
   components: {
-    TabBar
+    Navigation,
+  },
+  data() {
+    return {
+      drawer: null
+    }
   }
 }
 </script>
 
 <style>
-#app-container, .custom-card{
-  /* margin-top: 2rem; */
-  /* border: 0; */
-  /* border-radius: .3rem; */
-  margin-top: 2rem;
-}
 
-.navbar, .custom-card{
-  padding: 2rem;
-  /* background-color: linear-gradient(top left, #3a4251, #202942); */
-  background-color: #1e2938;
-  box-shadow: 0 0.1rem 5px 0 rgba(0, 0, 0, 0.1); 
-}
-
-#form {
-  margin: 0 auto;
-  max-width: 350px;
-}
 </style>

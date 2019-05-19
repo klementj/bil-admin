@@ -1,55 +1,42 @@
 <template>
-  <b-form @submit.prevent="onSubmit" v-if="show" id="form_bike">
-    <h2>Add bike</h2>
-    <!-- Title -->
-    <b-form-group
-      id="input-group-title"
-      label="Title"
-      label-for="input-title"
-    >
-      <b-form-input
-        required
-        id="input-title"
-        type="text"
-        title="Please enter a name for the bike"
-        v-model="form.title"
-        placeholder="Enter name of bike"
-      ></b-form-input>
-    </b-form-group>
-    
-    <!-- Description -->
-    <b-form-group
-      id="input-group-description"
-      label="Description"
-      label-for="input-description"
-    >
-      <b-form-textarea
-        required
-        id="input-description"
-        type="text"
-        v-model="form.description"
-        placeholder="Enter description..."
-      ></b-form-textarea>
-    </b-form-group>
+  <v-card>
+    <v-toolbar flat>
+      <v-toolbar-title>Add bike</v-toolbar-title>
+    </v-toolbar>
+    <v-card-text>
+      <v-form>
+        <!-- Title -->
+        <v-text-field
+          v-model="form.title"
+          name="title"
+          label="Name of bike"
+          type="text"
+        ></v-text-field>
 
-    <!-- Price -->
-    <b-form-group
-      id="input-group-price"
-      label="Price"
-      label-for="input-price"
-    >
-      <b-form-input
-        required
-        id="input-price"
-        type="number"
-        v-model="form.price"
-        placeholder="Enter price"
-      ></b-form-input>
-    </b-form-group>
+        <!-- Description -->
+        <v-textarea
+          v-model="form.description"
+          name="description"
+          label="Description of bike"
+          type="text"
+        ></v-textarea>
 
-    <!-- Submit button -->
-    <b-button type="submit" variant="primary">Add bike</b-button>
-  </b-form>
+        <!-- Price -->
+        <v-text-field
+          v-model="form.price"
+          name="title"
+          label="Price of bike"
+          type="number"
+        ></v-text-field>
+
+      </v-form>
+    </v-card-text>
+    <v-card-actions>
+      <v-spacer></v-spacer>
+      <v-btn color="primary" @click="onSubmit">Add bike</v-btn>
+    </v-card-actions>
+
+  </v-card>
 </template>
 
 <script>
