@@ -58,7 +58,7 @@ export default class ApiService {
     })
       .catch(error => {
         // eslint-disable-next-line
-        console.log(error)
+        console.error('API.SERVICE.JS', error)
         throw error
       })
   }

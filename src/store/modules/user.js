@@ -22,7 +22,8 @@ export const mutations = {
 
 export const actions = {
   fetchCurrentUser({ commit }) {
-    const user = localStorage.getItem('user')
+    // const user = localStorage.getItem('user')
+    const user = 'me'
     userService.fetchCurrentUser(user)
       .then(response => {
         commit('SET_CURRENT_USER', response.data.data)
