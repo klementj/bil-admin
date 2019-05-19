@@ -1,41 +1,23 @@
 <template>
-  <b-form @submit.prevent="onSubmit" v-if="show" id="form">
-    <h3>Log in</h3>
-    <b-alert v-if="alert" show dismissible fade :variant="alert.variant">{{ alert.message }}</b-alert>
-    <!-- Email -->
-    <b-form-group
-      id="input-group-email"
-      label="Email"
-      label-for="input-email"
-    >
-      <b-form-input
-        id="input-email"
-        type="email"
-        title="Please enter a valid email"
-        v-model="form.email"
-        required
-        placeholder="Enter email"
-      ></b-form-input>
-    </b-form-group>
-    
-    <!-- Password -->
-    <b-form-group
-      id="input-group-password"
-      label="Password"
-      label-for="input-password"
-    >
-      <b-form-input
-        id="input-password"
-        type="password"
-        v-model="form.password"
-        required
-        placeholder="Enter password"
-      ></b-form-input>
-    </b-form-group>
-
-    <!-- Submit button -->
-    <b-button type="submit" variant="primary">Log in</b-button>
-  </b-form>
+  <v-layout align-center justify-center>
+    <v-flex xs12 sm8 md4>
+      <v-card>
+        <v-toolbar flat>
+          <v-toolbar-title>Login</v-toolbar-title>
+        </v-toolbar>
+        <v-card-text>
+          <v-form>
+            <v-text-field v-model="form.email" prepend-icon="mdi-account" name="email" label="Enter email" type="email"></v-text-field>
+            <v-text-field v-model="form.password" prepend-icon="mdi-lock" name="password" label="Enter password" type="password"></v-text-field>
+          </v-form>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="primary" @click="onSubmit">Log in</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
@@ -48,8 +30,7 @@ export default {
       form: {
         email: '',
         password: ''
-      },
-      show: true
+      }
     }
   },
 
@@ -57,13 +38,6 @@ export default {
     onSubmit() {
       const {email, password} = this.form
       this.$store.dispatch('auth/login', {email, password})
-    },
-  },
-
-  props: {
-    alert: {
-      type: Object,
-      required: false
     },
   }
 }
