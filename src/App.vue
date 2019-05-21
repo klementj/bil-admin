@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <NotificationSnackbar />
     <Navigation />
 
     <v-toolbar color="primary" dark fixed app>
@@ -14,13 +15,14 @@
 </template>
 
 <script>
-import Navigation from './components/Navigation'
-// import LoginForm from '@/components/LoginForm'
+import Navigation from '@/components/Navigation'
+import NotificationSnackbar from '@/components/notification/NotificationSnackbar'
 
 export default {
   name: 'app',
   components: {
     Navigation,
+    NotificationSnackbar
   },
   data() {
     return {
