@@ -8,6 +8,7 @@ import User from '@/pages/PageUser'
 import Bookings from '@/pages/PageBookings'
 import Login from '@/pages/PageLogin'
 import NotFound from '@/pages/PageNotFound'
+import Main from '@/pages/PageMain'
 
 Vue.use(Router)
 
@@ -29,7 +30,7 @@ const router = new Router({
       }
     },
     {
-      path: '/',
+      path: '/home',
       name: 'home',
       component: Home,
       meta: {
