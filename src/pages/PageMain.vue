@@ -7,9 +7,9 @@
             <v-toolbar-title>Bicycle Library</v-toolbar-title>
         </v-toolbar>
 
-        <vcontent fill-height>
+        <v-content fill-height>
             <router-view></router-view>
-        </vcontent>
+        </v-content>
     </v-app>
 </template>
 
