@@ -1,7 +1,6 @@
 <template>
   <v-app>
     <Navigation />
-
     <v-toolbar color="primary" dark fixed app>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title>Bicycle Library</v-toolbar-title>
