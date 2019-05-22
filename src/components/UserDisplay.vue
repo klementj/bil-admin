@@ -1,33 +1,35 @@
 <template>
-    <v-container>
-      <v-layout>
-        <v-flex :shrink="true">
-          <v-avatar :tile="tile" color="grey lighten-4">
-            <img src="https://vuetifyjs.com/apple-touch-icon-180x180.png" alt="avatar">
-          </v-avatar>
-        </v-flex>
-        <v-flex>   
-          <p>{{this.getName()}}</p>
-        </v-flex>
-      </v-layout>
-    </v-container>
+  <v-toolbar flat class="transparent">
+    <v-list class="pa-0">
+      <v-list-tile avatar>
+        <v-list-tile-avatar>
+          <img src="https://vuetifyjs.com/apple-touch-icon-180x180.png" alt="avatar">
+        </v-list-tile-avatar>
+
+        <v-list-tile-content>
+          <v-list-tile-title>{{this.getName()}}</v-list-tile-title>
+        </v-list-tile-content>
+      </v-list-tile>
+    </v-list>
+  </v-toolbar>
 </template>
 
 <script>
-export default {           
+export default {
+  name: 'UserDisplay',          
     data() {
         return{
-        name: this.$store.state,
-        lastName: ""
+        user: this.$store.state.user.currentUser,
         }
     },
   methods: {
     getName(){
-      if(!this.name || !this.lastName || this.name === "" || this.lastName === ""){
+      console.log(this.user)
+      if(!this.user.firstName || !this.user.lastName || this.user.firstName === "" || this.user.lastName === ""){
         return "Placeholder Holdersen Place"
       }
       else{
-        return this.name + " " +  this.lastName
+        return this.user.firstName + " " +  this.user.lastName
       }
     }
   } 

@@ -34,6 +34,8 @@ export const actions = {
         // console.log(response.data);
         
         commit('AUTHENTICATE_USER', token)
+
+        //det er her jeg skal sætte vores currentUser i vores user module til den user som er logget ind
         
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
