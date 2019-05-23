@@ -8,7 +8,6 @@ import User from '@/pages/PageUser'
 import Bookings from '@/pages/PageBookings'
 import Login from '@/pages/PageLogin'
 import NotFound from '@/pages/PageNotFound'
-import Main from '@/pages/PageMain'
 
 Vue.use(Router)
 
