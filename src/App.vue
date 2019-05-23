@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <NotificationSnackbar />
     <template v-if="!authenticated">
         <Login />
     </template>
@@ -12,18 +13,22 @@
 <script>
 import Main from '@/pages/PageMain.vue'
 import Login from '@/pages/PageLogin.vue'
+import NotificationSnackbar from '@/components/notification/NotificationSnackbar'
 
 export default {
   name: 'app',
   components: {
+    NotificationSnackbar,
     Login,
     Main
   },
+  
   data() {
     return {
       drawer: null
     }
   },
+  
   computed: {
     authenticated(){
       return this.$store.state.auth.signedIn
@@ -31,7 +36,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>
