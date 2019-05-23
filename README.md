@@ -1,4 +1,4 @@
-# bil-admin
+# admin-app
 
 ## Project setup
 ```
