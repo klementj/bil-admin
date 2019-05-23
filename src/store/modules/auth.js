@@ -1,6 +1,7 @@
 import router from '@/router.js'
 import AuthService from '@/services/auth.service.js'
 import axios from 'axios'
+import { dispatch } from 'rxjs/internal/observable/pairs';
 
 const authService = new AuthService()
 
@@ -27,17 +28,19 @@ export const mutations = {
 export const actions = {
   // signup({ commit, dispatch }, payload){ ... }
   
-  login({ commit }, payload) {
+  login({ commit, dispatch }, payload) {
     authService.login(payload)
       .then(response => {
         const token = response.data.data
-        // console.log(response.data);
-        
+
         commit('AUTHENTICATE_USER', token)
 
         //det er her jeg skal sætte vores currentUser i vores user module til den user som er logget ind
+
         
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+
+        dispatch('user/fetchCurrentUser', null, {root: true})
 
         localStorage.setItem('token', token)
         localStorage.setItem('user', '5caf58cbdae9733668b9881c')

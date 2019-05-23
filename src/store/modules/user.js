@@ -12,7 +12,7 @@ export const state = {
 export const mutations = {
   SET_CURRENT_USER(state, currentUser) {
     // console.log(state, currentUser)
-    state.currentUser = currentUser
+    state.currentUser =currentUser
   },
 
   SET_USERS(state, users){
@@ -22,6 +22,7 @@ export const mutations = {
 
 export const actions = {
   fetchCurrentUser({ commit }) {
+
     // const user = localStorage.getItem('user')
     const user = 'me'
     userService.fetchCurrentUser(user)
