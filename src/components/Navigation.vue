@@ -41,7 +41,7 @@
         </v-list-tile>
 
 
-        <v-list-tile :to="{ name: 'home'}">
+        <v-list-tile :to="{ name: 'projects'}">
           <v-list-tile-action>
             <v-icon>mdi-sunglasses</v-icon>
           </v-list-tile-action>
