@@ -12,7 +12,7 @@ export const state = {
 export const mutations = {
   SET_CURRENT_USER(state, currentUser) {
     // console.log(state, currentUser)
-    state.currentUser =currentUser
+    state.currentUser = currentUser
   },
 
   SET_USERS(state, users){
