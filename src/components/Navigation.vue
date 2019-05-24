@@ -1,7 +1,7 @@
 <template>
   <v-navigation-drawer v-model="drawer" fixed app>
       <UserDisplay />
-      <v-list>
+      <v-list class="pt-0">
         <v-divider></v-divider>
 
         <v-list-tile :to="{ name: 'home'}">
