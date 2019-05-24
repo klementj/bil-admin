@@ -1,6 +1,6 @@
 <template>
   <v-navigation-drawer v-model="drawer" fixed app>
-      <UserDisplay :v-if='this.$store.state.user.currentUser.firstName == "admin" '    />
+      <UserDisplay />
       <v-list>
         <v-divider></v-divider>
 

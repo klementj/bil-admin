@@ -1,7 +1,6 @@
 import router from '@/router.js'
 import AuthService from '@/services/auth.service.js'
 import axios from 'axios'
-import { dispatch } from 'rxjs/internal/observable/pairs';
 
 const authService = new AuthService()
 
