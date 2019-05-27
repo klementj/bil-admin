@@ -17,6 +17,10 @@ export const mutations = {
 
   SET_USERS(state, users){
     state.users = users
+  },
+
+  CREATE_USER(state, user) {
+    state.users.push(user)
   }
 }
 
@@ -42,6 +46,15 @@ export const actions = {
       })
       .catch(error => {
         throw error
+      })
+  },
+
+  createUser({ commit }, payload) {
+    bikeService.create(payload)
+      .then(response => {
+        if(response.data.code === 200) {
+          commit('CREATE_USER', response.data.data)
+        }
       })
   }
 }
