@@ -1,20 +1,23 @@
 <template>
 <div>
   <AddBike/>
-  <pre>
+  <!-- <pre>
   {{allBikes}}
-  </pre>
+  </pre> -->
+  <DataTable :bikes="allBikes" ></DataTable>
 </div>
 </template>
 
 <script>
 import AddBike from '@/components/AddBike'
+import DataTable from '@/components/DataTable'
 
 export default {
   name: 'PageBikes',
 
   components: {
-    AddBike
+    AddBike,
+    DataTable
   },
 
   data() {
@@ -30,6 +33,7 @@ export default {
   computed: {
     allBikes() {
       return this.$store.getters['bike/allBikes']
+      console.log("allbikes",this.$store.getters['bike/allBikes'])
     }
   }
 }
