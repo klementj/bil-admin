@@ -23,7 +23,7 @@ export default {
       this.selectedFile = event.target.files[0]
     },
     uploadFile() {
-      if(this.selectedFile === null) {
+      if (this.selectedFile === null) {
         return
       }
       
@@ -39,8 +39,8 @@ export default {
         success(result){
           const formData = new FormData()
           formData.append('file', result, result.name)
-          formData.append('title', 'En titel til billedet')
-          formData.append('alt', 'En titel til billedet')
+          formData.set('title', 'En titel til billedet')
+          formData.set('alt', 'En titel til billedet')
 
           imageService.create(formData)
             .then(() => {
