@@ -50,11 +50,13 @@ export const actions = {
   },
 
   createUser({ commit }, payload) {
-    bikeService.create(payload)
+    userService.create(payload)
       .then(response => {
         if(response.data.code === 200) {
           commit('CREATE_USER', response.data.data)
         }
+      }).catch(error => {
+        throw error;
       })
   }
 }

@@ -1,5 +1,5 @@
 <template>
-    <v-card>
+  <v-card>
     <v-toolbar flat>
       <v-toolbar-title>Create New User</v-toolbar-title>
     </v-toolbar>
@@ -7,16 +7,16 @@
       <v-form>
         <!-- Firstname -->
         <v-text-field
-          v-model="form.firstname"
-          name="fistname"
+          v-model="form.first_name"
+          name="first_name"
           label="Fornavn"
           type="text"
         ></v-text-field>
 
         <!-- Lastname -->
         <v-text-field
-          v-model="form.lastname"
-          name="lastname"
+          v-model="form.last_name"
+          name="last_name"
           label="Efternavn"
           type="text"
         ></v-text-field>
@@ -47,11 +47,11 @@
 
         <!-- Roles -->
         <v-select
-            v-model="form.role"
-            :items="Roles"
-            name="role"
-            label="Rolle"
-            type="text"
+          v-model="form.role"
+          :items="Roles"
+          name="role"
+          label="Rolle"
+          type="text"
         ></v-select>
 
       </v-form>
@@ -64,31 +64,29 @@
   </v-card>
 </template>
 
- <script>
- export default {
-    name: "CreateUser",
-    data() {
-        return {
-            form: {
-                firstname: "",
-                lastlane: "",
-                password: "",
-                email: "",
-                phone: "",
-                role: null
-            },
-            //Hard coded roles
-            Roles: ["user","management","admin"],
-            show: true
-        }
+<script>
+export default {
+ name: "CreateUser",
+ data() {
+  return {
+    form: {
+      first_name: "",
+      last_name: "",
+      password: "",
+      email: "",
+      phone: "",
+      role: null
     },
-    methodes: {
-        onSubmit() {
-            return false;
-        }
-    },
-    computed: {
-    },
- }
- </script>
+    //Hard coded roles
+    Roles: ["user","management","admin"],
+    show: true
+  }
+},
+methods: {
+  onSubmit() {
+    return this.$store.dispatch('user/createUser', this.form);
+  }
+}
+}
+</script>
  
