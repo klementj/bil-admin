@@ -46,9 +46,7 @@ export const actions = {
         // router.go(1)
       })
       .catch(error => {
-        console.log('FUCK der er en fejl', error);
-        
-        // throw error
+        throw error
       })
   },
 
