@@ -4,7 +4,7 @@
 
     <v-toolbar color="primary" dark fixed app>
       <v-toolbar-side-icon @click.stop="toggleDrawer"></v-toolbar-side-icon>
-      <v-toolbar-title>Bicycle Library</v-toolbar-title>
+      <v-toolbar-title>{{ $route.meta.title }}</v-toolbar-title>
     </v-toolbar>
 
     <v-content fill-height>
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import Navigation from '../components/Navigation.vue'
+import Navigation from '@/components/Navigation.vue'
 
 export default {
   name: 'Main',
