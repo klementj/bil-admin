@@ -11,8 +11,10 @@ export const state = {
 
 export const mutations = {
   SET_CURRENT_USER(state, currentUser) {
-    // console.log(state, currentUser)
     state.currentUser = currentUser
+    
+    // Needs changing to currentUSers real id
+    localStorage.setItem('user', '5caf58cbdae9733668b9881c')
   },
 
   SET_USERS(state, users){

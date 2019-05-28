@@ -42,6 +42,10 @@ export default class ApiService {
     return this._send(uri, 'delete', query)
   }
 
+  setHeaders(token){
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+  }
+
   _send(uri = '', method, data) {
     let params = {}
 
