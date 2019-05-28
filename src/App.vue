@@ -1,35 +1,38 @@
 <template>
   <v-app>
-    <Navigation />
-
-    <v-toolbar color="primary" dark fixed app>
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title>Bicycle Library</v-toolbar-title>
-    </v-toolbar>
-
-    <v-content fill-height>
-      <router-view></router-view>
-    </v-content>
+    <NotificationSnackbar />
+    <template v-if="!authenticated">
+        <Login />
+    </template>
+    <template v-if="authenticated">
+      <Main />
+    </template>
   </v-app>
 </template>
 
 <script>
-import Navigation from './components/Navigation'
-// import LoginForm from '@/components/LoginForm'
+import Main from '@/pages/PageMain.vue'
+import Login from '@/pages/PageLogin.vue'
+import NotificationSnackbar from '@/components/notification/NotificationSnackbar'
 
 export default {
   name: 'app',
   components: {
-    Navigation,
+    NotificationSnackbar,
+    Login,
+    Main
   },
+  
   data() {
     return {
       drawer: null
     }
+  },
+  
+  computed: {
+    authenticated(){
+      return this.$store.state.auth.signedIn
+    }
   }
 }
 </script>
-
-<style>
-
-</style>

@@ -1,6 +1,9 @@
 <template>
   <v-navigation-drawer v-model="drawer" fixed app>
-      <v-list >
+      <UserDisplay />
+      <v-list class="pt-0">
+        <v-divider></v-divider>
+
         <v-list-tile :to="{ name: 'home'}">
           <v-list-tile-action>
             <v-icon>mdi-view-dashboard</v-icon>
@@ -38,7 +41,7 @@
         </v-list-tile>
 
 
-        <v-list-tile :to="{ name: 'home'}">
+        <v-list-tile :to="{ name: 'projects'}">
           <v-list-tile-action>
             <v-icon>mdi-sunglasses</v-icon>
           </v-list-tile-action>
@@ -60,9 +63,13 @@
 </template>
 
 <script>
+import UserDisplay from './UserDisplay'
 
 export default {
   name: 'Navigation',
+  components: {
+    UserDisplay
+  },
 
   data() {
     return {

@@ -31,7 +31,7 @@ export const actions = {
   addBike({ commit }, payload) {
     bikeService.create(payload)
       .then(response => {
-        if(response.data.code === 200) {
+        if(response.status === 201) {
           commit('ADD_BIKE_TO_STORE', response.data.data)
         }
       })

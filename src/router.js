@@ -6,6 +6,7 @@ import Home from '@/pages/PageHome'
 import Bikes from '@/pages/PageBikes'
 import User from '@/pages/PageUser'
 import Bookings from '@/pages/PageBookings'
+import Projects from '@/pages/PageProjects'
 import Login from '@/pages/PageLogin'
 import NotFound from '@/pages/PageNotFound'
 
@@ -29,7 +30,7 @@ const router = new Router({
       }
     },
     {
-      path: '/',
+      path: '/home',
       name: 'home',
       component: Home,
       meta: {
@@ -56,6 +57,14 @@ const router = new Router({
       path: '/bookings',
       name: 'bookings',
       component: Bookings,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/projects ',
+      name: 'projects',
+      component: Projects,
       meta: {
         requiresAuth: true
       }
