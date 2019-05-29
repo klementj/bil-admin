@@ -1,15 +1,16 @@
 <template>
   <div>
-      <h1 class="ml-1">Users</h1>
-      <UsersList />
-      <DataTableUser :user="allUsers" ></DataTableUser>
-      <!-- <UserEdit /> -->
+    <CreateUser />
+    <UsersList />    
+    <DataTableUser :user="allUsers" ></DataTableUser>
+    <!-- <UserEdit /> -->
   </div>
 </template>
 
 <script>
 // import UserEdit from '@/components/UserEdit'
 import UsersList from '@/components/UsersList'
+import CreateUser from '../components/CreateUser.vue'
 import DataTableUser from '@/components/DataTableUser'
 
 export default {
@@ -18,6 +19,7 @@ export default {
   components: {
     // UserEdit,
     UsersList,
+    CreateUser,
     DataTableUser
   },
 
@@ -25,6 +27,7 @@ export default {
     allUsers() {            
       return this.$store.getters['user/allUsers']      
     }
+
   }
 }
 </script>
