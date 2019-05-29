@@ -78,7 +78,7 @@ export default {
       role: null
     },
     //Hard coded roles
-    Roles: ["user","management","admin"],
+    roles: ["user","management","admin"],
     show: true
   }
   },
