@@ -12,16 +12,16 @@
         </v-card-title>    
         <v-data-table
         :headers="header"
-        :items="user"
+        :items="users"
         :search="search"
         >
-            <template v-slot:items="user">
-                <td class="text-xs-left">{{user.item.firstName}}</td>
-                <td class="text-xs-right">{{user.item.lastName}}</td>
-                <td class="text-xs-right">{{user.item.email}}</td>
-                <td class="text-xs-right">{{user.item.phone}}</td>
-                <td class="text-xs-right">{{user.item.bookings}}</td>
-                <td class="text-xs-right">{{user.item.role}}</td>
+            <template v-slot:items="users">
+                <td class="text-xs-left">{{users.item.firstName}}</td>
+                <td class="text-xs-right">{{users.item.lastName}}</td>
+                <td class="text-xs-right">{{users.item.email}}</td>
+                <td class="text-xs-right">{{users.item.phone}}</td>
+                <td class="text-xs-right">{{users.item.bookings}}</td>
+                <td class="text-xs-right">{{users.item.role}}</td>
             </template>
             <template v-slot:no-results>
                 <v-alert :value="true" color="error" icon="warning">

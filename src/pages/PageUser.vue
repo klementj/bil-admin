@@ -11,8 +11,6 @@
 // import UserEdit from '@/components/UserEdit'
 import UsersList from '@/components/UsersList'
 import DataTableUser from '@/components/DataTableUser'
-import { promises } from 'fs';
-import { Promise } from 'q';
 
 export default {
   name: 'PageUser',
@@ -23,16 +21,9 @@ export default {
     DataTableUser
   },
 
-  methods: {
-    getUsers(){
-
-    }
-  },
-
   computed: {    
-    allUsers() {
-      const users =  Promise.resolve(this.$store.dispatch('user/fetchAllUsers'))
-      return users
+    allUsers() {            
+      return this.$store.getters['user/allUsers']      
     }
   }
 }
