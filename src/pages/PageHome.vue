@@ -9,7 +9,7 @@
 <script>
 export default {
   name: 'PageHome',
-
+  
   methods: {
     testNotification(payload) {
       this.$store.dispatch('notification/notify', payload)
