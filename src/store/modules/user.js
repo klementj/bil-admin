@@ -52,7 +52,7 @@ export const actions = {
   createUser({ commit }, payload) {
     userService.create(payload)
       .then(response => {
-        if(response.data.code === 200) {
+        if(response.status === 201) {
           commit('CREATE_USER', response.data.data)
         }
       }).catch(error => {
