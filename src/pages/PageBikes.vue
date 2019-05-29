@@ -1,11 +1,8 @@
 <template>
-<div>
-  <AddBike/>
-  <!-- <pre>
-  {{allBikes}}
-  </pre> -->
-  <DataTable :bikes="allBikes" ></DataTable>
-</div>
+  <div>
+    <AddBike/>
+    <DataTable :bikes="allBikes" ></DataTable>
+  </div>
 </template>
 
 <script>
@@ -32,8 +29,8 @@ export default {
 
   computed: {
     allBikes() {
+      
       return this.$store.getters['bike/allBikes']
-      console.log("allbikes",this.$store.getters['bike/allBikes'])
     }
   }
 }
