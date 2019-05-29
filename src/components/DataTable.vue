@@ -10,7 +10,7 @@
         hide-details
         ></v-text-field>
     </v-card-title>    
-      <v-data-table
+    <v-data-table
     :headers="header"
     :items="bikes"
     :search="search"
@@ -24,8 +24,8 @@
       <td class="text-xs-right">{{bikes.item.images}}</td>
     </template>
     <template v-slot:no-results>
-        <v-alert :value="true" color="error" icon="warning">
-          Your search for "{{ search }}" found no results.
+      <v-alert :value="true" color="error" icon="warning">
+          Din søgning efter "{{ search }}" gav intet resultat.
         </v-alert>
       </template>
   </v-data-table>
@@ -44,7 +44,6 @@ export default {
       return{
         search: '',
         header:[ 
-          
           
           { text: 'Navn', align: 'left', value: 'title' },
           { text: 'Pris', align: 'right' , value: 'price'},

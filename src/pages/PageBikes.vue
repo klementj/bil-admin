@@ -1,8 +1,15 @@
 <template>
+<<<<<<< HEAD
   <div>
     <AddBike/>
     <DataTable :bikes="allBikes" ></DataTable>
   </div>
+=======
+<div>
+  <AddBike/>
+  <DataTable :bikes="allBikes" ></DataTable>
+</div>
+>>>>>>> development
 </template>
 
 <script>
