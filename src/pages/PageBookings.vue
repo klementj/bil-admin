@@ -1,5 +1,4 @@
 <template>
-  <h1>PageBookings</h1>
 </template>
 
 <script>

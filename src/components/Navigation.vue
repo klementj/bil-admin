@@ -1,6 +1,7 @@
 <template>
   <v-navigation-drawer v-model="drawer" fixed app>
     <v-layout justify-space-between column fill-height>
+      <!-- Dispay current users profile picture and name -->
       <UserDisplay />
       <v-list class="pt-0">
         <v-divider></v-divider>
@@ -63,15 +64,20 @@ import UserDisplay from './UserDisplay'
 
 export default {
   name: 'Navigation',
+
   components: {
     UserDisplay
   },
-
-  data() {
-    return {
-      drawer: null
+  
+  computed: {
+    drawer: {
+      get () {
+        return this.$store.state.ui.drawer
+      },
+      set (val) {
+        this.$store.commit('ui/SET_DRAWER', val)
+      }
     }
   }
-
 }
 </script>

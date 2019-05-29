@@ -1,9 +1,8 @@
 <template>
   <div>
     <CreateUser />
-      <h1 class="ml-1">Users</h1>
-      <UsersList />
-      <!-- <UserEdit /> -->
+    <UsersList />
+    <!-- <UserEdit /> -->
   </div>
 </template>
 
