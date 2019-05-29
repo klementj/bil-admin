@@ -1,6 +1,5 @@
 import router from '@/router.js'
 import AuthService from '@/services/auth.service.js'
-import axios from 'axios'
 
 const authService = new AuthService()
 
@@ -12,12 +11,13 @@ export const state = {
 }
 
 export const mutations = {
-  AUTHENTICATE_USER(state, payload) {
-    state.apiToken = payload
+  AUTHENTICATE_USER(state, token) {
+    state.apiToken = token
     state.signedIn = true
     router.push({ name: 'home'})
-
+    localStorage.setItem('token', token)
   },
+
   CLEAR_AUTH_DATA(state) {
     state.apiToken = null
     state.signedIn = false
@@ -31,24 +31,12 @@ export const actions = {
     authService.login(payload)
       .then(response => {
         const token = response.data.data
-
+        authService.setAxiosAuthHeaders(token)
         commit('AUTHENTICATE_USER', token)
-
-        //det er her jeg skal sætte vores currentUser i vores user module til den user som er logget ind
-
-        
-        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-
         dispatch('user/fetchCurrentUser', null, {root: true})
-
-        localStorage.setItem('token', token)
-        localStorage.setItem('user', '5caf58cbdae9733668b9881c')
-        // router.go(1)
       })
       .catch(error => {
-        console.log('FUCK der er en fejl', error);
-        
-        // throw error
+        throw error
       })
   },
 
@@ -58,12 +46,14 @@ export const actions = {
     localStorage.removeItem('user')
   },
 
-  tryAutoLogin({ commit }) {
+  tryAutoLogin({ commit, dispatch }) {
     const token = localStorage.getItem('token')
     if (!token) {
       return
     }
+    authService.setAxiosAuthHeaders(token)
     commit('AUTHENTICATE_USER', token)
+    dispatch('user/fetchCurrentUser', null, {root: true})
   }
 }
 

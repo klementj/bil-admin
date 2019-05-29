@@ -34,6 +34,7 @@ const router = new Router({
       name: 'home',
       component: Home,
       meta: {
+        title: 'Dashboard',
         requiresAuth: true
       }
     },
@@ -42,6 +43,7 @@ const router = new Router({
       name: 'bikes',
       component: Bikes,
       meta: {
+        title: 'Bikes',
         requiresAuth: true
       }
     },
@@ -50,6 +52,7 @@ const router = new Router({
       name: 'users',
       component: User,
       meta: {
+        title: 'Users',
         requiresAuth: true
       }
     },
@@ -58,6 +61,7 @@ const router = new Router({
       name: 'bookings',
       component: Bookings,
       meta: {
+        title: 'Bookings',
         requiresAuth: true
       }
     },
@@ -66,6 +70,7 @@ const router = new Router({
       name: 'projects',
       component: Projects,
       meta: {
+        title: 'Projects',
         requiresAuth: true
       }
     },
