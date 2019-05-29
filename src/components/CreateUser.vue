@@ -33,7 +33,7 @@
         <v-text-field
           v-model="form.phone"
           name="phonenumber"
-          label="Tlf."
+          label="Telefonnummer"
           type="number"
         ></v-text-field>
 
