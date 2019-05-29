@@ -37,7 +37,7 @@ export default {
     name: "DataTableUser",
     
     props: {
-        user: Array
+        users: Array
     },
 
     data() {

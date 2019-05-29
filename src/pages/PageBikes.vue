@@ -17,12 +17,6 @@ export default {
     DataTable
   },
 
-  data() {
-    return {
-      bikes: []
-    }
-  },
-
   created: function() {
     this.$store.dispatch('bike/fetchAllBikes')
   },
