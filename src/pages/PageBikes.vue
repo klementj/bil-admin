@@ -30,7 +30,6 @@ export default {
   computed: {
     allBikes() {
       return this.$store.getters['bike/allBikes']
-      console.log("allbikes",this.$store.getters['bike/allBikes'])
     }
   }
 }
