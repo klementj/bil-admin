@@ -8,9 +8,9 @@
     </v-toolbar>
 
     <v-content fill-height>
-        <v-container>
-            <router-view></router-view>
-        </v-container>
+      <v-container>
+          <router-view></router-view>
+      </v-container>
     </v-content>
   </v-app>
 </template>

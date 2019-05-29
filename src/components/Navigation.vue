@@ -5,7 +5,7 @@
       <UserDisplay />
       <v-list class="pt-0">
         <v-divider></v-divider>
-        
+
         <v-list-tile :to="{ name: 'home'}">
           <v-list-tile-action>
             <v-icon>mdi-view-dashboard</v-icon>
@@ -30,6 +30,15 @@
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-title>Bikes</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+
+        <v-list-tile :to="{ name: 'users'}">
+          <v-list-tile-action>
+            <v-icon>mdi-account-group</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Users</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
 
