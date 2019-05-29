@@ -1,7 +1,6 @@
 <template>
 <div>
   <AddBike/>
-  {{allBikes}}
   </pre> -->
   <DataTable :bikes="allBikes" ></DataTable>
 </div>
