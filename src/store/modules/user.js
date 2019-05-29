@@ -12,9 +12,6 @@ export const state = {
 export const mutations = {
   SET_CURRENT_USER(state, currentUser) {
     state.currentUser = currentUser
-    
-    // Needs changing to currentUSers real id
-    localStorage.setItem('user', '5caf58cbdae9733668b9881c')
   },
 
   SET_USERS(state, users){
@@ -28,8 +25,6 @@ export const mutations = {
 
 export const actions = {
   fetchCurrentUser({ commit }) {
-
-    // const user = localStorage.getItem('user')
     const user = 'me'
     userService.fetchCurrentUser(user)
       .then(response => {
@@ -43,7 +38,6 @@ export const actions = {
   fetchAllUsers({ commit }) {
     userService.fetch('')
       .then(response => {
-        // console.log(response.data.code)
         commit('SET_USERS', response.data.data)
       })
       .catch(error => {
