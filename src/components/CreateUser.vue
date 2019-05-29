@@ -58,7 +58,7 @@
     </v-card-text>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn color="primary" @click="onSubmit">Create user</v-btn>
+      <v-btn color="primary" @click="onSubmit">Opret bruger</v-btn>
     </v-card-actions>
 
   </v-card>
