@@ -81,7 +81,7 @@ export default {
     Roles: ["user","management","admin"],
     show: true
   }
-},
+  },
 methods: {
   onSubmit() {
     return this.$store.dispatch('user/createUser', this.form);
