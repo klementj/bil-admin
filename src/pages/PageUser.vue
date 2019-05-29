@@ -17,7 +17,8 @@ export default {
 
   components: {
     // UserEdit,
-    UsersList, CreateUser
+    UsersList, 
+    CreateUser
   }
 }
 </script>
