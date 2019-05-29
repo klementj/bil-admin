@@ -48,7 +48,7 @@
         <!-- Roles -->
         <v-select
           v-model="form.role"
-          :items="Roles"
+          :items="roles"
           name="role"
           label="Rolle"
           type="text"
