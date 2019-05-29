@@ -45,7 +45,6 @@ export default {
         search: '',
         header:[ 
           
-          
           { text: 'Navn', align: 'left', value: 'title' },
           { text: 'Pris', align: 'right' , value: 'price'},
           { text: 'Beskrivelse', align: 'right' , value: 'description'},
