@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app :dark="isDark">
     <Snackbar />
     <template v-if="!isAuthenticated">
       <Login />
@@ -23,10 +23,21 @@ export default {
     Login,
     Main
   },
+
+  beforeCreate() {
+    // Check if dark theme and set in store
+    const dark = JSON.parse(localStorage.getItem('darkTheme'))    
+    if (dark) {
+      this.$store.commit('ui/SET_COLOR_THEME', dark)
+    }
+  },
   
   computed: {
     isAuthenticated(){
       return this.$store.state.auth.signedIn
+    },
+    isDark(){
+      return this.$store.state.ui.isDark
     }
   }
 }
