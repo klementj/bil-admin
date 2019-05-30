@@ -53,6 +53,10 @@
       </v-list>
 
       <div class="pa-2 mt-auto">
+        <ToggleTheme />
+      </div>
+
+      <div class="pa-2">
         <v-btn block outline color="primary" :to="{ name: 'logout'}">Logout</v-btn>
       </div>
     </v-layout>  
@@ -61,12 +65,14 @@
 
 <script>
 import UserDisplay from './UserDisplay'
+import ToggleTheme from './ToggleTheme'
 
 export default {
   name: 'Navigation',
 
   components: {
-    UserDisplay
+    UserDisplay,
+    ToggleTheme
   },
   
   computed: {
