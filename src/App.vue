@@ -1,36 +1,31 @@
 <template>
   <v-app>
-    <NotificationSnackbar />
-    <template v-if="!authenticated">
-        <Login />
+    <Snackbar />
+    <template v-if="!isAuthenticated">
+      <Login />
     </template>
-    <template v-if="authenticated">
+    <template v-if="isAuthenticated">
       <Main />
     </template>
   </v-app>
 </template>
 
 <script>
-import Main from '@/pages/PageMain.vue'
+import Snackbar from '@/components/notification/Snackbar'
 import Login from '@/pages/PageLogin.vue'
-import NotificationSnackbar from '@/components/notification/NotificationSnackbar'
+import Main from '@/pages/PageMain.vue'
 
 export default {
   name: 'app',
+
   components: {
-    NotificationSnackbar,
+    Snackbar,
     Login,
     Main
   },
   
-  data() {
-    return {
-      drawer: null
-    }
-  },
-  
   computed: {
-    authenticated(){
+    isAuthenticated(){
       return this.$store.state.auth.signedIn
     }
   }
