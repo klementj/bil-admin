@@ -8,15 +8,15 @@
         >
           <template v-slot:placeholder>
             <v-layout fill-height align-center justify-center ma-0 >
+              <v-progress-circular v-if="inProgress" indeterminate color="primary"></v-progress-circular>
               <input id="file-upload" class="btn" type="file" @change="onfileSelected">
-              <v-progress-circular v-if="inProgress" indeterminate color="grey lighten-5"></v-progress-circular>
             </v-layout>
           </template>
         </v-img>
       </v-sheet>
       
-      <v-text-field id="title-image" v-model="title" name="title" label="Title of image" type="text"></v-text-field>
-      <v-text-field id="alt-image" v-model="alt" name="alt" label="Alternative text" type="text"></v-text-field>
+      <v-text-field id="title-image" v-model="form.title" name="title" label="Title of image" type="text"></v-text-field>
+      <v-text-field id="alt-image" v-model="form.alt" name="alt" label="Alternative text" type="text"></v-text-field>
       <v-btn class="ml-auto" color="primary" @click="uploadFile">Upload</v-btn>
     </v-form>
 </template>
@@ -30,9 +30,11 @@ export default {
 
   data () {
     return {
-      selectedFile: null,
-      title: undefined,
-      alt: undefined,
+      form: {
+        compressedImage: null,
+        title: undefined,
+        alt: undefined
+      },
       imgSrc: undefined,
       inProgress: false
     }
@@ -40,44 +42,95 @@ export default {
 
   methods: {
     onfileSelected(event) {
-      this.selectedFile = event.target.files[0]
       this.inProgress = true
-      this.imgSrc = URL.createObjectURL(this.selectedFile)
-      this.inProgress = false      
+      this.compressFile(event.target.files[0])
     },
-    uploadFile() {
-      if (this.selectedFile === null) {
+
+    // compress(image) {
+    //   const width = 2732
+    //   const height = 2048
+    //   const quality = 0.8
+    //   const fileName = image.name
+    //   const reader = new FileReader()
+    //   reader.readAsDataURL(image)
+    //   reader.onload = event => {
+    //     const img = new Image()
+    //     img.src = event.target.result
+    //     img.onload = () => {
+    //       const elem = document.createElement('canvas')
+    //       elem.width = width
+    //       elem.height = height
+    //       const ctx = elem.getContext('2d')
+    //       ctx.drawImage(img, 0, 0, width, height)
+    //       ctx.canvas.toBlob( blob => {
+    //         this.imgSrc = URL.createObjectURL(blob)
+    //         console.log('Log blob in custom compressor', this.imgSrc);
+            
+    //         const file = new File([blob], fileName, {
+    //           type: 'image/jpeg',
+    //           lastModified: Date.now()
+    //         })
+    //       }, 'image/jpeg', quality)
+    //     },
+    //     reader.onerror = error => console.log(error)
+    //   }
+    // },
+
+    compressFile(image) {
+      if (image === null) {
         return
-      }      
-      const imageService = new ImageService
-      
-      console.log(this.title); // Not undefined
-      
-      // Initial compression to make sure we don't upload huge images.
-      new Compressor(this.selectedFile, {
-        // default quality
-        quality: 0.8,
-        // Ipad retina screensize
-        maxWidth: 2732,
-        maxHeight: 2048,
-        success(result){
-          const formData = new FormData()
-          formData.append('file', result, result.name)
+      }
+      new Promise((resolve, reject) => {
+        // Initial compression to make sure we don't upload huge images.
+        new Compressor(image, {
+          success: resolve,
+          error: reject,
+          // default quality
+          quality: 0.8,
+          // Ipad retina screensize
+          maxWidth: 2732,
+          maxHeight: 2048,
+        })
+      }).then( result => {
+        this.imgSrc = URL.createObjectURL(result)
+        this.form.compressedImage = result
+        this.inProgress = false
+      }).catch( error => {
+        console.log('compress error', error);
+      }).finally(() => {
+        console.log('Compress success');
+      })
+    },
 
-          console.log('this.title',this.title); //Undefined?
-          formData.set('title', this.title)
-          formData.set('alt', this.alt)
+    createFormData() {
+      const formData = new FormData()
+      formData.append('file', result, result.name)
+      formData.set('title', this.form.title)
+      formData.set('alt', this.form.alt)
 
-          imageService.create(formData)
-            .then(() => {
-              // eslint-disable-next-line
-              console.log('Upload success', formData);
-            })
-        },
-        error(error) {
+      imageService.create(formData)
+        .then(() => {
           // eslint-disable-next-line
-          console.log(error.message)
-        }
+          console.log('Upload success', formData);
+        })
+    },
+
+    uploadFile() {
+      if (this.compressedImage === null || this.form.title === undefined || this.form.alt === undefined) {
+        return
+      }
+
+      const imageService = new ImageService
+      const formData = new FormData()
+
+      formData.append('file', this.compressedImage, this.compressedImage.name)
+      formData.set('title', this.form.title)
+      formData.set('alt', this.form.alt)
+
+      imageService.create(formData)
+      .then(() => {
+        // eslint-disable-next-line
+        console.log('Upload success', formData);
       })
     }
   }
@@ -91,35 +144,6 @@ export default {
 
 .uploader #preview-image {
   display: inline;
-} 
-/* 
-  REMOVES SELECT BUTTON
- */
-/* .uploader input[type="file"] {
-  display: none;
-} */
-/* For button */
-/* .uploader .btn {
-  display: inline-block;
-  margin: .5rem .5rem 1rem .5rem;
-  clear: both;
-  font-family: inherit;
-  font-weight: 700;
-  font-size: 14px;
-  text-decoration: none;
-  text-transform: initial;
-  border: none;
-  border-radius: .2rem;
-  outline: none;
-  padding: 0 1rem;
-  height: 36px;
-  line-height: 36px;
-  color: #fff;
-  transition: all 0.2s ease-in-out;
-  box-sizing: border-box;
-  background: #454cad;
-  border-color: #454cad;
-  cursor: pointer;
-} */
+}
 
 </style>
