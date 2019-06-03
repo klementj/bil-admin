@@ -46,36 +46,6 @@ export default {
       this.compressFile(event.target.files[0])
     },
 
-    // compress(image) {
-    //   const width = 2732
-    //   const height = 2048
-    //   const quality = 0.8
-    //   const fileName = image.name
-    //   const reader = new FileReader()
-    //   reader.readAsDataURL(image)
-    //   reader.onload = event => {
-    //     const img = new Image()
-    //     img.src = event.target.result
-    //     img.onload = () => {
-    //       const elem = document.createElement('canvas')
-    //       elem.width = width
-    //       elem.height = height
-    //       const ctx = elem.getContext('2d')
-    //       ctx.drawImage(img, 0, 0, width, height)
-    //       ctx.canvas.toBlob( blob => {
-    //         this.imgSrc = URL.createObjectURL(blob)
-    //         console.log('Log blob in custom compressor', this.imgSrc);
-            
-    //         const file = new File([blob], fileName, {
-    //           type: 'image/jpeg',
-    //           lastModified: Date.now()
-    //         })
-    //       }, 'image/jpeg', quality)
-    //     },
-    //     reader.onerror = error => console.log(error)
-    //   }
-    // },
-
     compressFile(image) {
       if (image === null) {
         return
@@ -102,28 +72,15 @@ export default {
       })
     },
 
-    createFormData() {
-      const formData = new FormData()
-      formData.append('file', result, result.name)
-      formData.set('title', this.form.title)
-      formData.set('alt', this.form.alt)
-
-      imageService.create(formData)
-        .then(() => {
-          // eslint-disable-next-line
-          console.log('Upload success', formData);
-        })
-    },
-
     uploadFile() {
-      if (this.compressedImage === null || this.form.title === undefined || this.form.alt === undefined) {
+      if (this.form.compressedImage === null || this.form.title === undefined || this.form.alt === undefined) {
         return
       }
 
       const imageService = new ImageService
       const formData = new FormData()
 
-      formData.append('file', this.compressedImage, this.compressedImage.name)
+      formData.append('file', this.form.compressedImage, this.form.compressedImage.name)
       formData.set('title', this.form.title)
       formData.set('alt', this.form.alt)
 
