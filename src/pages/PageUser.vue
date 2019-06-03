@@ -27,7 +27,7 @@ export default {
   computed: {   
 
     allUsers() {
-      return this.$store.getters['users/allUsers']    
+      return this.$store.getters['user/allUsers']    
     }
   }
 }

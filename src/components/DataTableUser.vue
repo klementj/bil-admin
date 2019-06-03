@@ -44,12 +44,12 @@ export default {
         return{
             search: '',
             header: [
-                { text: 'Navn', value: 'firstName' },
-                { text: 'Efternavn', value: 'lastName' },
-                { text: 'Email', value:'email' },
-                { text: 'Cykel lån', value: 'bookings' },
-                { text: 'tlf.', value: 'phone' },
-                { text: 'bruger rolle', value: 'role' }
+                { text: 'Navn', align: 'left' , value: 'firstName' },
+                { text: 'Efternavn', align: 'right' , value: 'lastName' },
+                { text: 'Email', align: 'right' , value:'email' },
+                { text: 'Cykel lån', align: 'right' , value: 'bookings' },
+                { text: 'tlf.', align: 'right' , value: 'phone' },
+                { text: 'bruger rolle', align: 'right' , value: 'role' }
             ]
         }
     }
