@@ -10,6 +10,11 @@ export default {
 
   components: {
     Booking
-  }
+  },
+
+  created: function (){
+            this.$store.dispatch('bike/fetchAllBikes');
+            this.$store.dispatch('user/fetchAllUsers');
+        }
 }
 </script>

@@ -6,7 +6,7 @@
     <v-card-text>
         <v-form>
             <v-date-picker
-                v-model="dates"
+                v-model="form.dates"
                 multiple
                 scrollable>
             </v-date-picker>
@@ -28,14 +28,17 @@
             
             <v-select 
                 v-model="form.bike"
-                items="Cykel"
+                v-bind:items="listBikes"
+                item-text="title"
                 name="first_name"
                 label="Cykel"
                 type="text"
             ></v-select>
             <v-select 
                 v-model="form.user"
-                items="Bruger"
+                v-bind:items="allUsers"
+                item-text="firstName"
+                item-value="lastName"
                 name="first_name"
                 label="Bruger"
                 type="text"
@@ -50,15 +53,14 @@
 </template>
 
 <script>
+
 export default {
     name: "CreateBooking",
 
     data() {
         return {
-            dates: [],
             form: {
-                timeStart: 0,
-                timeEnd: 0,
+                dates: [],
                 bike: null,
                 user: null
             },
@@ -69,6 +71,18 @@ export default {
     methods: {
         onSubmit() {
             //Do dispatch booking request here
+        }
+    },
+
+    computed: {
+        listBikes: function(){
+            return this.$store.getters['bike/allBikes'];
+        },
+        allUsers: function(){
+            return this.$store.getters['user/allUsers'];
+        },
+        userFullName: function(val){
+            return val.firstName + " " + val.lastName;
         }
     }
 }
