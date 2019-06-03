@@ -1,33 +1,24 @@
 <template>
-  <div>
-    <input type="file" @change="onfileSelected">
-    <v-btn @click="uploadFile">Upload</v-btn>
-
-    <v-divider></v-divider>
-
-<form id="file-upload-form" class="uploader">
-  <input id="file-upload" type="file" name="fileUpload" accept="image/*" />
-
-  <label for="file-upload" id="file-drag">
-    <img id="file-image" src="#" alt="Preview" class="hidden">
-    <div id="start">
-      <i class="fa fa-download" aria-hidden="true"></i>
-      <div>Select a file or drag here</div>
-      <div id="notimage" class="hidden">Please select an image</div>
-      <v-btn id="file-upload-btn">Select a file</v-btn>
-    </div>
-    <div id="response" class="hidden">
-      <div id="messages"></div>
-      <progress class="progress" id="file-progress" value="0">
-        <span>0</span>%
-      </progress>
-    </div>
-  </label>
-
-  
-
-</form>
-  </div>
+    <v-form class="uploader">
+      <v-sheet for="file-upload" class="sheet d-flex" color="white" min-height="400">
+        <v-img 
+        id="preview-image" 
+        :src="imgSrc"
+        alt="No preview of image"
+        >
+          <template v-slot:placeholder>
+            <v-layout fill-height align-center justify-center ma-0 >
+              <input id="file-upload" class="btn" type="file" @change="onfileSelected">
+              <v-progress-circular v-if="inProgress" indeterminate color="grey lighten-5"></v-progress-circular>
+            </v-layout>
+          </template>
+        </v-img>
+      </v-sheet>
+      
+      <v-text-field id="title-image" v-model="title" name="title" label="Title of image" type="text"></v-text-field>
+      <v-text-field id="alt-image" v-model="alt" name="alt" label="Alternative text" type="text"></v-text-field>
+      <v-btn class="ml-auto" color="primary" @click="uploadFile">Upload</v-btn>
+    </v-form>
 </template>
 
 <script>
@@ -39,21 +30,29 @@ export default {
 
   data () {
     return {
-      selectedFile: null
+      selectedFile: null,
+      title: undefined,
+      alt: undefined,
+      imgSrc: undefined,
+      inProgress: false
     }
   },
 
   methods: {
     onfileSelected(event) {
       this.selectedFile = event.target.files[0]
+      this.inProgress = true
+      this.imgSrc = URL.createObjectURL(this.selectedFile)
+      this.inProgress = false      
     },
     uploadFile() {
       if (this.selectedFile === null) {
         return
-      }
-      
+      }      
       const imageService = new ImageService
-
+      
+      console.log(this.title); // Not undefined
+      
       // Initial compression to make sure we don't upload huge images.
       new Compressor(this.selectedFile, {
         // default quality
@@ -64,13 +63,15 @@ export default {
         success(result){
           const formData = new FormData()
           formData.append('file', result, result.name)
-          formData.set('title', 'En titel til billedet')
-          formData.set('alt', 'En titel til billedet')
+
+          console.log('this.title',this.title); //Undefined?
+          formData.set('title', this.title)
+          formData.set('alt', this.alt)
 
           imageService.create(formData)
             .then(() => {
               // eslint-disable-next-line
-              console.log('Upload success');
+              console.log('Upload success', formData);
             })
         },
         error(error) {
@@ -84,116 +85,21 @@ export default {
 </script>
 
 <style>
-.uploader {
-  display: block;
-  clear: both;
-  margin: 0 auto;
-  width: 100%;
-  max-width: 600px;
+.uploader .sheet {
+ padding: 5px
 }
-.uploader label {
-  float: left;
-  clear: both;
-  width: 100%;
-  padding: 2rem 1.5rem;
-  text-align: center;
-  background: #fff;
-  border-radius: 7px;
-  border: 3px solid #eee;
-  transition: all .2s ease;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-.uploader label:hover {
-  border-color: #454cad;
-}
-.uploader label.hover {
-  border: 3px solid #454cad;
-  box-shadow: inset 0 0 0 6px #eee;
-}
-.uploader label.hover #start i.fa {
-  -webkit-transform: scale(0.8);
-          transform: scale(0.8);
-  opacity: 0.3;
-}
-.uploader #start {
-  float: left;
-  clear: both;
-  width: 100%;
-}
-.uploader #start.hidden {
-  display: none;
-}
-.uploader #start i.fa {
-  font-size: 50px;
-  margin-bottom: 1rem;
-  transition: all .2s ease-in-out;
-}
-.uploader #response {
-  float: left;
-  clear: both;
-  width: 100%;
-}
-.uploader #response.hidden {
-  display: none;
-}
-.uploader #response #messages {
-  margin-bottom: .5rem;
-}
-.uploader #file-image {
+
+.uploader #preview-image {
   display: inline;
-  margin: 0 auto .5rem auto;
-  width: auto;
-  height: auto;
-  max-width: 180px;
-}
-.uploader #file-image.hidden {
+} 
+/* 
+  REMOVES SELECT BUTTON
+ */
+/* .uploader input[type="file"] {
   display: none;
-}
-.uploader #notimage {
-  display: block;
-  float: left;
-  clear: both;
-  width: 100%;
-}
-.uploader #notimage.hidden {
-  display: none;
-}
-.uploader progress,
-.uploader .progress {
-  display: inline;
-  clear: both;
-  margin: 0 auto;
-  width: 100%;
-  max-width: 180px;
-  height: 8px;
-  border: 0;
-  border-radius: 4px;
-  background-color: #eee;
-  overflow: hidden;
-}
-.uploader .progress[value]::-webkit-progress-bar {
-  border-radius: 4px;
-  background-color: #eee;
-}
-.uploader .progress[value]::-webkit-progress-value {
-  background: linear-gradient(to right, #393f90 0%, #454cad 50%);
-  border-radius: 4px;
-}
-.uploader .progress[value]::-moz-progress-bar {
-  background: linear-gradient(to right, #393f90 0%, #454cad 50%);
-  border-radius: 4px;
-}
-.uploader input[type="file"] {
-  display: none;
-}
-.uploader div {
-  margin: 0 0 .5rem 0;
-  color: #5f6982;
-}
-.uploader .btn {
+} */
+/* For button */
+/* .uploader .btn {
   display: inline-block;
   margin: .5rem .5rem 1rem .5rem;
   clear: both;
@@ -214,6 +120,6 @@ export default {
   background: #454cad;
   border-color: #454cad;
   cursor: pointer;
-}
+} */
 
 </style>
