@@ -2,7 +2,7 @@
 <div>
   <AddBike/>
   <DataTable :bikes="allBikes" ></DataTable>
-  <MoneyComponent :price='9245' />
+  <MoneyComponent :price='600000000' />
 </div>
 </template>
 

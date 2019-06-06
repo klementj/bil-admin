@@ -13,8 +13,11 @@ export default {
 
     filters: {
         ConvertToDecimals: function(data) {
-            const replace = ((data/100).toFixed(2)).replace(/[.]/g, ",")
-            return  replace + " kr" 
+            const testnumber = ((data/100).toFixed(2)).replace(/[.]/g, ",")
+            const test = testnumber.toString()
+            const testing = test.exec(/..[0-9]/g)
+
+            return  testing + " kr" 
         }
     }
 }
