@@ -1,5 +1,7 @@
 <template>
   <v-navigation-drawer v-model="drawer" fixed app>
+    <v-layout justify-space-between column fill-height>
+      <!-- Dispay current users profile picture and name -->
       <UserDisplay />
       <v-list class="pt-0">
         <v-divider></v-divider>
@@ -40,7 +42,6 @@
           </v-list-tile-content>
         </v-list-tile>
 
-
         <v-list-tile :to="{ name: 'projects'}">
           <v-list-tile-action>
             <v-icon>mdi-sunglasses</v-icon>
@@ -49,33 +50,40 @@
             <v-list-tile-title>Projects</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-
-        <v-list-tile :to="{ name: 'logout'}">
-          <v-list-tile-action>
-            <v-icon>mdi-emoticon-poop</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Logout</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
       </v-list>
-    </v-navigation-drawer>
+
+      <div class="pa-2 mt-auto">
+        <ToggleTheme />
+      </div>
+
+      <div class="pa-2">
+        <v-btn block outline color="primary" :to="{ name: 'logout'}">Logout</v-btn>
+      </div>
+    </v-layout>  
+  </v-navigation-drawer>
 </template>
 
 <script>
 import UserDisplay from './UserDisplay'
+import ToggleTheme from './ToggleTheme'
 
 export default {
   name: 'Navigation',
-  components: {
-    UserDisplay
-  },
 
-  data() {
-    return {
-      drawer: null
+  components: {
+    UserDisplay,
+    ToggleTheme
+  },
+  
+  computed: {
+    drawer: {
+      get () {
+        return this.$store.state.ui.drawer
+      },
+      set (val) {
+        this.$store.commit('ui/SET_DRAWER', val)
+      }
     }
   }
-
 }
 </script>

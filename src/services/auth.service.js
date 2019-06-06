@@ -13,6 +13,10 @@ export default class AuthService {
     return this.api.post('session', data)
   }
 
+  setAxiosAuthHeaders(token) {
+    this.api.setHeaders(token) 
+  }
+
   resetPassword(data) {
     return this.api.post('password-reset', data)
   }

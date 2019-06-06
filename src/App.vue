@@ -1,37 +1,43 @@
 <template>
-  <v-app>
-    <NotificationSnackbar />
-    <template v-if="!authenticated">
-        <Login />
+  <v-app :dark="isDark">
+    <Snackbar />
+    <template v-if="!isAuthenticated">
+      <Login />
     </template>
-    <template v-if="authenticated">
+    <template v-if="isAuthenticated">
       <Main />
     </template>
   </v-app>
 </template>
 
 <script>
-import Main from '@/pages/PageMain.vue'
+import Snackbar from '@/components/notification/Snackbar'
 import Login from '@/pages/PageLogin.vue'
-import NotificationSnackbar from '@/components/notification/NotificationSnackbar'
+import Main from '@/pages/PageMain.vue'
 
 export default {
   name: 'app',
+
   components: {
-    NotificationSnackbar,
+    Snackbar,
     Login,
     Main
   },
-  
-  data() {
-    return {
-      drawer: null
+
+  beforeCreate() {
+    // Check if dark theme and set in store
+    const dark = JSON.parse(localStorage.getItem('darkTheme'))    
+    if (dark) {
+      this.$store.commit('ui/SET_COLOR_THEME', dark)
     }
   },
   
   computed: {
-    authenticated(){
+    isAuthenticated(){
       return this.$store.state.auth.signedIn
+    },
+    isDark(){
+      return this.$store.state.ui.isDark
     }
   }
 }

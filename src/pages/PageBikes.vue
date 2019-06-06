@@ -1,26 +1,20 @@
 <template>
 <div>
   <AddBike/>
-  <pre>
-  {{allBikes}}
-  </pre>
+  <DataTable :bikes="allBikes" ></DataTable>
 </div>
 </template>
 
 <script>
 import AddBike from '@/components/AddBike'
+import DataTable from '@/components/DataTable'
 
 export default {
   name: 'PageBikes',
 
   components: {
-    AddBike
-  },
-
-  data() {
-    return {
-      bikes: []
-    }
+    AddBike,
+    DataTable
   },
 
   created: function() {

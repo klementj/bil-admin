@@ -1,5 +1,7 @@
 <template>
-  <h1>Projects Page</h1>
+  <v-card>
+    <v-card-title>Projects</v-card-title>
+  </v-card>
 </template>
 
 <script>
