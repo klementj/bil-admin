@@ -86,8 +86,7 @@ export default {
 
       imageService.create(formData)
       .then(() => {
-        // eslint-disable-next-line
-        console.log('Upload success', formData);
+        this.$store.dispatch('notification/notify', { message: 'Picture was uploaded succesfully', color: 'success'})
       })
     }
   }
