@@ -2,9 +2,9 @@
 <div>
 
   <!-- <b-table responsive hover :items="allUsers" :fields="fields"></b-table> -->
-  <b-card class="mt-3" header="Current User">
+  <!-- <b-card class="mt-3" header="Current User">
     <pre class="m-0">{{ user }}</pre>
-  </b-card>
+  </b-card> -->
   <!-- <b-card class="mt-3" header="All Users">
     <pre class="m-0">{{ allUsers }}</pre>
   </b-card> -->
