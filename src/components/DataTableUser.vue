@@ -25,7 +25,7 @@
             </template>
             <template v-slot:no-results>
                 <v-alert :value="true" color="error" icon="warning">
-                din søgning efter "{{ search }}" blev fundet ingen resultater til.
+                Your search for "{{ search }}" found no results.
             </v-alert>
             </template>
         </v-data-table>
