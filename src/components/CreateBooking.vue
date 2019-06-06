@@ -37,7 +37,7 @@
             <v-select 
                 v-model="form.user"
                 v-bind:items="allUsers"
-                item-text="firstName"
+                :item-text="userFullName"
                 item-value="lastName"
                 name="first_name"
                 label="Bruger"
@@ -71,6 +71,9 @@ export default {
     methods: {
         onSubmit() {
             //Do dispatch booking request here
+        },
+        userFullName: function(item){
+            return item.firstName + " " + item.lastName;
         }
     },
 
@@ -81,9 +84,6 @@ export default {
         allUsers: function(){
             return this.$store.getters['user/allUsers'];
         },
-        userFullName: function(val){
-            return val.firstName + " " + val.lastName;
-        }
     }
 }
 </script>
