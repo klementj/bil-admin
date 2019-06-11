@@ -12,7 +12,7 @@
               >
               <template v-slot:activator="{ on }">
                 <v-text-field
-                v-model="form.timeStart"
+                v-model="form.startTime"
                 label="Date"
                 hint="This is the selected date"
                 persistent-hint
@@ -21,7 +21,7 @@
                 ></v-text-field>
                 </template>
                 <v-date-picker
-                v-model="form.timeStart"
+                v-model="form.startTime"
                 name="startTime"
                 ></v-date-picker>
             </v-menu>
@@ -33,7 +33,7 @@
               >
               <template v-slot:activator="{ on }">
                 <v-text-field
-                v-model="form.timeEnd"
+                v-model="form.endTime"
                 label="Date"
                 hint="This is the selected date"
                 persistent-hint
@@ -42,8 +42,8 @@
                 ></v-text-field>
                 </template>
                 <v-date-picker
-                v-model="form.timeEnd"
-                :min="form.timeStart + 1"
+                v-model="form.endTime"
+                :min="form.startTime + 1"
                 name="endTime"
                 ></v-date-picker>
             </v-menu>
@@ -93,8 +93,8 @@ export default {
             menu1: false,
             menu2: false,
             form: {
-                timeStart: new Date().toISOString().substr(0, 10),
-                timeEnd: new Date().toISOString().substr(0, 10),
+                startTime: new Date().toISOString().substr(0, 10),
+                endTime: new Date().toISOString().substr(0, 10),
                 bike: [],
                 user: []
             },
@@ -119,10 +119,10 @@ export default {
             return this.$store.getters['user/allUsers'];
         },
         reservedDates: function(){
-          return [this.form.timeStart, this.form.timeEnd]
+            return [this.form.startTime, this.form.endTime]
         },
         validSelection: function(){
-            return this.form.timeStart < this.form.timeEnd ? true : false;
+            return this.form.startTime < this.form.endTime ? true : false;
         }
     },
 }
