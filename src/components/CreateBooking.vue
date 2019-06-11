@@ -5,32 +5,63 @@
     </v-toolbar>
     <v-card-text>
         <v-form>
+            <!-- Start date -->
+            <v-menu
+              ref="menu1"
+              v-model="menu1"
+              >
+              <template v-slot:activator="{ on }">
+                <v-text-field
+                v-model="form.timeStart"
+                label="Date"
+                hint="This is the selected date"
+                persistent-hint
+                readonly
+                v-on="on"
+                ></v-text-field>
+                </template>
+                <v-date-picker
+                v-model="form.timeStart"
+                name="startTime"
+                ></v-date-picker>
+            </v-menu>
+
+            <!-- End date -->
+            <v-menu
+              ref="menu2"
+              v-model="menu2"
+              >
+              <template v-slot:activator="{ on }">
+                <v-text-field
+                v-model="form.timeEnd"
+                label="Date"
+                hint="This is the selected date"
+                persistent-hint
+                readonly
+                v-on="on"
+                ></v-text-field>
+                </template>
+                <v-date-picker
+                v-model="form.timeEnd"
+                :min="form.timeStart + 1"
+                name="endTime"
+                ></v-date-picker>
+            </v-menu>
+
+            <!-- Calendar for display -->
             <v-date-picker
-                v-model="form.dates"
+                v-model="reservedDates"
+                no-title
                 multiple
-                scrollable>
+                scrollable
+                readonly>
             </v-date-picker>
 
-            <v-text-field 
-                v-model="form.timeStart"
-                readonly="true"
-                name="first_name"
-                label="Start tidspunkt"
-                type="text"
-            ></v-text-field>
-            <v-text-field 
-                v-model="form.timeEnd"
-                readonly="true"
-                name="first_name"
-                label="Slut tidspunkt"
-                type="text"
-            ></v-text-field>
-            
             <v-select 
                 v-model="form.bike"
                 v-bind:items="listBikes"
                 item-text="title"
-                name="first_name"
+                name="bike"
                 label="Cykel"
                 type="text"
             ></v-select>
@@ -39,7 +70,7 @@
                 v-bind:items="allUsers"
                 :item-text="userFullName"
                 item-value="lastName"
-                name="first_name"
+                name="user"
                 label="Bruger"
                 type="text"
             ></v-select>
@@ -59,10 +90,13 @@ export default {
 
     data() {
         return {
+            menu1: false,
+            menu2: false,
             form: {
-                dates: [],
-                bike: null,
-                user: null
+                timeStart: new Date().toISOString().substr(0, 10),
+                timeEnd: new Date().toISOString().substr(0, 10),
+                bike: [],
+                user: []
             },
             show: true
         }
@@ -74,7 +108,7 @@ export default {
         },
         userFullName: function(item){
             return item.firstName + " " + item.lastName;
-        }
+        },
     },
 
     computed: {
@@ -84,6 +118,19 @@ export default {
         allUsers: function(){
             return this.$store.getters['user/allUsers'];
         },
-    }
+        reservedDates: function(){
+          return [this.form.timeStart, this.form.timeEnd]
+        },
+        validSelection: function(){
+            return this.form.timeStart < this.form.timeEnd ? true : false;
+        }
+    },
 }
 </script>
+
+<style scoped>
+.dateSelectionInvalid{
+    text-decoration-color: red;
+    border-color: 1px solid red;
+}
+</style>
