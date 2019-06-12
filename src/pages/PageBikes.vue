@@ -2,22 +2,20 @@
 <div>
   <AddBike/>
   <DataTable :bikes="allBikes" ></DataTable>
-  <MoneyComponent :price='655341341300000000' />
+  
 </div>
 </template>
 
 <script>
 import AddBike from '@/components/AddBike'
 import DataTable from '@/components/DataTable'
-import MoneyComponent from '@/components/MoneyComponent'
 
 export default {
   name: 'PageBikes',
 
   components: {
     AddBike,
-    DataTable,
-    MoneyComponent
+    DataTable
   },
 
   data() {

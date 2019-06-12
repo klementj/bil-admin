@@ -17,7 +17,7 @@
     >
     <template v-slot:items="bikes">
       <td class="text-xs-left">{{bikes.item.title}}</td>
-      <td class="text-xs-right">{{bikes.item.price}}</td>
+      <MoneyComponent :price="bikes.item.price" /> 
       <td class="text-xs-right">{{bikes.item.description}}</td>
       <td class="text-xs-right">{{bikes.item.categories}}</td>
       <td class="text-xs-right">{{bikes.item.discount}}</td>
@@ -33,8 +33,14 @@
 </template>
 
 <script>
+import MoneyComponent from '@/components/MoneyComponent'
+
 export default {
     name: "DataTable",
+
+    components: {
+      MoneyComponent
+    },
 
     props: {
       bikes: Array
