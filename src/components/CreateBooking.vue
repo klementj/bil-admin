@@ -134,8 +134,4 @@ export default {
 .dateSelectionInvalid{
     border: 1px solid red;
 }
-
-.dateSelectionInvalid input {
-    color: goldenrod !important
-}
 </style>
