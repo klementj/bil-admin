@@ -1,7 +1,7 @@
 <template>
-    <td class="text-xs-right">
+    <span>
         {{price | ConvertToDecimals}}
-    </td>
+    </span>
 </template>
 
 <script>
