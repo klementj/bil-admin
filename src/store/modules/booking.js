@@ -9,16 +9,16 @@ export const state = {
 }
 
 export const mutations = {
-  SET_BIKES(state, bookings){
+  SET_BOOKINGS(state, bookings){
     state.bookings = bookings
   },
-  ADD_BIKE_TO_STORE(state, booking) {
+  ADD_BOOKING_TO_STORE(state, booking) {
     state.bookings.push(booking)
   }
 }
 
 export const actions = {
-  fetchAllBikes({ commit }) {
+  fetchAllBookings({ commit }) {
     bookingService.fetch()
       .then(response => {
         commit('SET_BOOKINGS', response.data.data)
@@ -28,7 +28,7 @@ export const actions = {
       })
   },
 
-  addBike({ commit }, payload) {
+  addBooking({ commit }, payload) {
     bookingService.create(payload)
       .then(response => {
         if(response.status === 201) {
@@ -39,5 +39,5 @@ export const actions = {
 }
 
 export const getters = {
-  allBikes: state => state.bookings
+  allBookings: state => state.bookings
 }
