@@ -13,8 +13,8 @@
               <template v-slot:activator="{ on }">
                 <v-text-field
                 v-model="form.startTime"
-                label="Date"
-                hint="This is the selected date"
+                label="Start date"
+                hint="This is the selected start date"
                 persistent-hint
                 readonly
                 v-on="on"
@@ -34,11 +34,13 @@
               <template v-slot:activator="{ on }">
                 <v-text-field
                 v-model="form.endTime"
-                label="Date"
-                hint="This is the selected date"
+                label="End date"
+                hint="This is the selected end date"
                 persistent-hint
+                :class="{'dateSelectionInvalid': !validSelection}"
                 readonly
                 v-on="on"
+                class="TEST"
                 ></v-text-field>
                 </template>
                 <v-date-picker
@@ -95,8 +97,8 @@ export default {
             form: {
                 startTime: new Date().toISOString().substr(0, 10),
                 endTime: new Date().toISOString().substr(0, 10),
-                bike: [],
-                user: []
+                bike: {},
+                user: {}
             },
             show: true
         }
@@ -130,7 +132,10 @@ export default {
 
 <style scoped>
 .dateSelectionInvalid{
-    text-decoration-color: red;
-    border-color: 1px solid red;
+    border: 1px solid red;
+}
+
+.dateSelectionInvalid input {
+    color: goldenrod !important
 }
 </style>
