@@ -17,11 +17,11 @@
     >
     <template v-slot:items="bikes">
       <td class="text-xs-left">{{bikes.item.title}}</td>
-      <td :class="styling" > <MoneyComponent :price="bikes.item.price" /> </td>
-      <td :class="styling">{{bikes.item.description}}</td>
-      <td :class="styling">{{bikes.item.categories}}</td>
-      <td :class="styling">{{bikes.item.discount}}</td>
-      <td :class="styling">{{bikes.item.images}}</td>
+      <td class="text-xs-right" > <MoneyComponent :price="bikes.item.price" /> </td>
+      <td class="text-xs-right">{{bikes.item.description}}</td>
+      <td class="text-xs-right">{{bikes.item.categories}}</td>
+      <td class="text-xs-right">{{bikes.item.discount}}</td>
+      <td class="text-xs-right">{{bikes.item.images}}</td>
     </template>
     <template v-slot:no-results>
       <v-alert :value="true" color="error" icon="warning">
@@ -49,8 +49,6 @@ export default {
     data() {
       return{
         search: '',
-
-        styling: 'text-xs-right',
 
         header:[ 
           
