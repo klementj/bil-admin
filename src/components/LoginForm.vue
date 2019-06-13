@@ -8,7 +8,16 @@
         <v-card-text>
           <v-form>
             <v-text-field v-model="form.email" prepend-icon="mdi-account" name="email" label="Enter email" type="email"></v-text-field>
-            <v-text-field v-model="form.password" prepend-icon="mdi-lock" name="password" label="Enter password" type="password"></v-text-field>
+            <v-text-field 
+              :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+              v-model="form.password" 
+              prepend-icon="mdi-lock" 
+              name="password" 
+              label="Enter password" 
+              class="input-group--focused"
+              :type="show ? 'text' : 'password'"
+              @click:append="show = !show"
+            ></v-text-field>
           </v-form>
         </v-card-text>
         <v-card-actions>
@@ -30,7 +39,8 @@ export default {
       form: {
         email: '',
         password: ''
-      }
+      },
+      show: false,
     }
   },
 
