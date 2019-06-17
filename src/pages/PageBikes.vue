@@ -2,6 +2,7 @@
 <div>
   <AddBike/>
   <DataTable :bikes="allBikes" ></DataTable>
+  
 </div>
 </template>
 
@@ -15,12 +16,6 @@ export default {
   components: {
     AddBike,
     DataTable
-  },
-
-  data() {
-    return {
-      bikes: []
-    }
   },
 
   created: function() {
