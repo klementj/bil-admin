@@ -106,7 +106,7 @@ export default {
 
     methods: {
         onSubmit() {
-            //Do dispatch booking request here
+            return this.$store.dispatch('user/createBooking', this.form);
         },
         userFullName: function(item){
             return item.firstName + " " + item.lastName;
