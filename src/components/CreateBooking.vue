@@ -59,19 +59,20 @@
                 readonly>
             </v-date-picker>
 
+            <!-- Bike -->
             <v-select 
-                v-model="form.bike"
+                :v-model="setBike"
                 v-bind:items="listBikes"
                 item-text="title"
                 name="bike"
                 label="Cykel"
                 type="text"
             ></v-select>
+            <!-- User -->
             <v-select 
-                v-model="form.user"
+                :v-model="setUser"
                 v-bind:items="allUsers"
                 :item-text="userFullName"
-                item-value="lastName"
                 name="user"
                 label="Bruger"
                 type="text"
@@ -97,8 +98,8 @@ export default {
             form: {
                 startTime: new Date().toISOString().substr(0, 10),
                 endTime: new Date().toISOString().substr(0, 10),
-                bike: {},
-                user: {}
+                bike: "",
+                user: ""
             },
             show: true
         }
@@ -106,11 +107,17 @@ export default {
 
     methods: {
         onSubmit() {
-            return this.$store.dispatch('user/createBooking', this.form);
+            return this.$store.dispatch('booking/addBooking', this.form);
         },
         userFullName: function(item){
             return item.firstName + " " + item.lastName;
         },
+        setBike: function(item){
+            this.form.bike = item.id;
+        },
+        setUser: function(item){
+            this.form.user = item.id;
+        }
     },
 
     computed: {
