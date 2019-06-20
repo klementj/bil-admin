@@ -1,6 +1,6 @@
 <template>
   <div class="editor">
-    <div class="canvas" @dblclick="dblclick">
+    <div class="canvas">
       <img :src="data.url" ref="image" :alt="data.name" @load="start"/>
     </div>
 
@@ -22,11 +22,19 @@
           <v-icon>mdi-rotate-right</v-icon>
         </button>
       <!-- </div> -->
-<v-spacer></v-spacer>
       <!-- <div class="item-group v-btn-toggle v-btn-toggle--selected"> -->
         <button class="toolbar__button v-btn v-btn--flat" data-action="crop" title="Crop (C)" type="button">
           <span>crop</span>
           <v-icon>mdi-check</v-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="toolbar" v-else @click.prevent="click">
+      <div class="item-group v-btn-toggle">
+        <button class="toolbar__button v-btn v-btn--flat" data-action="undo" title="Undo last crop (CTRL + Z)" type="button">
+          <span>Undo crop</span>
+          <v-icon>mdi-undo-variant</v-icon>
         </button>
       </div>
     </div>
@@ -62,6 +70,10 @@ export default {
         case 'move':
         case 'crop':
           this.crop()
+          break
+
+        case 'undo':
+          this.restore()
           break
 
         case 'zoom-in':
@@ -116,13 +128,13 @@ export default {
       }
     },
 
-    dblclick(e) {
-      if (e.target.className.indexOf('cropper-face') >= 0) {
-        e.preventDefault()
-        e.stopPropagation()
-        this.crop()
-      }
-    },
+    // dblclick(e) {
+    //   if (e.target.className.indexOf('cropper-face') >= 0) {
+    //     e.preventDefault()
+    //     e.stopPropagation()
+    //     this.crop()
+    //   }
+    // },
 
     start() {
       const { data } = this
@@ -246,6 +258,11 @@ export default {
     margin-bottom: 1rem;
 }
 
+.toolbar {
+  /* background: lightgray; */
+  border: 1px solid lightgray;
+  border-top: 0;
+}
 
 .canvas {
   align-items: center;
