@@ -14,7 +14,6 @@
     </template>
     
     <!-- Image dialog -->
- <!-- v-on:close:dialog="dialog = false" -->
     <ImageDialog v-on:add:image="addImage( $event )" />
   </v-dialog>
 
@@ -44,7 +43,6 @@ export default {
   methods: {
     addImage(image) {
       this.dialog = false
-      console.log('Image blob in addImage in imageGallery', image);
       this.images.push(image)
     }
   }
@@ -52,13 +50,8 @@ export default {
 </script>
 
 <style>
-/* .image-dialog{
-  max-width: 500px !important
-} */
-
 .image-dialog--addButton{
-  max-width: 400px;
+  width: 100%;
   height: 100%;
-  /* border: 1px dotted */
 }
 </style>

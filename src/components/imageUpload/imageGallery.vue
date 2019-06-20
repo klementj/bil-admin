@@ -29,13 +29,10 @@
           </v-img>
         </v-card>
       </v-flex>
+
       <!-- Add image button -->
       <v-flex xs4 d-flex class="add-btn">
-        <!-- <v-card flat tile>
-          <v-img>  -->
             <addButton :images="images"></addButton>
-          <!-- </v-img>
-        </v-card> -->
       </v-flex>
 
     </v-layout>
@@ -53,15 +50,8 @@ export default {
     addButton
   },
 
-  // props: {
-  //   images: Array
-  // },
-
-  data() {
-    return {
-      images: [
-      ]
-    }
+  props: {
+    images: Array
   }
 }
 </script>
@@ -70,5 +60,6 @@ export default {
 .add-btn {
   border: 1px dotted #eee;
   height: 100%;
+  width: 100%;
 }
 </style>
