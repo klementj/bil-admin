@@ -110,30 +110,6 @@ export default {
         case 'Enter':
           this.crop()
           break
-
-        case 'c':
-          cropper.setDragMode('crop')
-          break
-        
-        case 'm':
-          cropper.setDragMode('move')
-          break
-
-        case 'i':
-          cropper.zoom(0.1);
-          break;
-
-        case 'o':
-          cropper.zoom(-0.1);
-          break;
-        
-        case 'l':
-          cropper.rotate(-90)
-          break
-        
-        case 'r':
-          cropper.rotate(90)
-          break
         
         default:
           break
