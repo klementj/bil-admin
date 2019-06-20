@@ -22,7 +22,6 @@
         ></v-textarea>
 
         <!-- Price -->
-        
         <v-text-field
           v-model="MoneyConversion"
           name="title"
@@ -41,7 +40,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'AddBike',
 
@@ -52,7 +50,7 @@ export default {
         description: '',
         price: 0,
       },
-    show: true
+    show: true,
     }
   },
 
@@ -67,8 +65,9 @@ export default {
         return  testnumber.replace(/\B(?=(\d{3})+(?!\d))/g, ".")
     },
     ConverToCurrency(data) {
-      const currencyNumber =  (data).replace(/[^0-9]/g, "")
-      return parseFloat(currencyNumber)
+      const dataArr = data.split(",")
+      const currencyNumber =  data.replace(/[^0-9//\d.]+(\d*)/g, "")
+      return parseFloat(currencyNumber.replace(/[^0-9]/g, "") + dataArr[1])
     }    
   },
 
