@@ -12,7 +12,7 @@
               >
               <template v-slot:activator="{ on }">
                 <v-text-field
-                v-model="form.startTime"
+                v-model="form.start_time"
                 label="Start date"
                 hint="This is the selected start date"
                 persistent-hint
@@ -21,7 +21,7 @@
                 ></v-text-field>
                 </template>
                 <v-date-picker
-                v-model="form.startTime"
+                v-model="form.start_time"
                 name="startTime"
                 ></v-date-picker>
             </v-menu>
@@ -33,19 +33,18 @@
               >
               <template v-slot:activator="{ on }">
                 <v-text-field
-                v-model="form.endTime"
+                v-model="form.end_time"
                 label="End date"
                 hint="This is the selected end date"
                 persistent-hint
                 :class="{'dateSelectionInvalid': !validSelection}"
                 readonly
                 v-on="on"
-                class="TEST"
                 ></v-text-field>
                 </template>
                 <v-date-picker
-                v-model="form.endTime"
-                :min="form.startTime + 1"
+                v-model="form.end_time"
+                :min="form.start_time + 1"
                 name="endTime"
                 ></v-date-picker>
             </v-menu>
@@ -61,18 +60,20 @@
 
             <!-- Bike -->
             <v-select 
-                :v-model="setBike"
+                v-model="form.bike"
                 v-bind:items="listBikes"
                 item-text="title"
+                item-value="id"
                 name="bike"
                 label="Cykel"
                 type="text"
             ></v-select>
             <!-- User -->
             <v-select 
-                :v-model="setUser"
+                v-model="form.user"
                 v-bind:items="allUsers"
                 :item-text="userFullName"
+                item-value="id"
                 name="user"
                 label="Bruger"
                 type="text"
@@ -96,8 +97,8 @@ export default {
             menu1: false,
             menu2: false,
             form: {
-                startTime: new Date().toISOString().substr(0, 10),
-                endTime: new Date().toISOString().substr(0, 10),
+                start_time: new Date().toISOString().substr(0, 10),
+                end_time: new Date().toISOString().substr(0, 10),
                 bike: "",
                 user: ""
             },
@@ -111,12 +112,6 @@ export default {
         },
         userFullName: function(item){
             return item.firstName + " " + item.lastName;
-        },
-        setBike: function(item){
-            this.form.bike = item.id;
-        },
-        setUser: function(item){
-            this.form.user = item.id;
         }
     },
 
@@ -128,10 +123,10 @@ export default {
             return this.$store.getters['user/allUsers'];
         },
         reservedDates: function(){
-            return [this.form.startTime, this.form.endTime]
+            return [this.form.start_time, this.form.end_time]
         },
         validSelection: function(){
-            return this.form.startTime < this.form.endTime ? true : false;
+            return this.form.start_time < this.form.end_time ? true : false;
         }
     },
 }
@@ -139,6 +134,6 @@ export default {
 
 <style scoped>
 .dateSelectionInvalid{
-    border: 1px solid red;
+    border: 1px solid var(--v-error-base);
 }
 </style>
