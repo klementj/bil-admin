@@ -22,11 +22,12 @@
         ></v-textarea>
 
         <!-- Price -->
+        
         <v-text-field
-          v-model="form.price"
+          v-model="MoneyConversion"
           name="title"
           label="Price of bike"
-          type="number"
+          type="text"
         ></v-text-field>
 
       </v-form>
@@ -58,6 +59,27 @@ export default {
   methods: {
     onSubmit() {
       this.$store.dispatch('bike/addBike', this.form)
+    },
+
+    
+    ConvertToDecimals(data) {
+        const testnumber = ((data/100).toFixed(2)).replace(/[.]/g, ",")
+        return  testnumber.replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    },
+    ConverToCurrency(data) {
+      const currencyNumber =  (data).replace(/[^0-9]/g, "")
+      return parseFloat(currencyNumber)
+    }    
+  },
+
+  computed: {
+    MoneyConversion: {
+      get: function(){
+        return this.ConvertToDecimals(this.form.price)
+      },
+      set: function(newValue){
+        this.form.price = this.ConverToCurrency(newValue)
+      }
     }
   }
 }
