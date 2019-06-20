@@ -23,10 +23,10 @@
 
         <!-- Price -->
         <v-text-field
-          v-model="form.price"
+          v-model="MoneyConversion"
           name="title"
           label="Price of bike"
-          type="number"
+          type="text"
         ></v-text-field>
 
       </v-form>
@@ -40,7 +40,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'AddBike',
 
@@ -51,13 +50,35 @@ export default {
         description: '',
         price: 0,
       },
-    show: true
+    show: true,
     }
   },
 
   methods: {
     onSubmit() {
       this.$store.dispatch('bike/addBike', this.form)
+    },
+
+    
+    ConvertToDecimals(data) {
+        const testnumber = ((data/100).toFixed(2)).replace(/[.]/g, ",")
+        return  testnumber.replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    },
+    ConverToCurrency(data) {
+      const dataArr = data.split(",")
+      const currencyNumber =  data.replace(/[^0-9//\d.]+(\d*)/g, "")
+      return parseFloat(currencyNumber.replace(/[^0-9]/g, "") + dataArr[1])
+    }    
+  },
+
+  computed: {
+    MoneyConversion: {
+      get: function(){
+        return this.ConvertToDecimals(this.form.price)
+      },
+      set: function(newValue){
+        this.form.price = this.ConverToCurrency(newValue)
+      }
     }
   }
 }
