@@ -49,15 +49,15 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <!-- Cancel button -->
-        <!-- <v-btn color="teal" flat @click="closeDialog">Clear</v-btn> -->
-
+        <v-btn color="teal" flat @click="closeDialog">Clear</v-btn>
         <!-- Upload button -->
         <v-btn 
           color="success"
+          flat
           outline
           :loading="btn.loading"
           :disabled="btn.disabled"
-          @click="validate"
+          @click="addImage"
         >
           Add image
           <!-- <v-icon right>mdi-cloud-upload</v-icon> -->
@@ -116,16 +116,12 @@ export default {
   },
 
   methods: {
-    validate() {
-      
+    addImage() {
+      if (!this.form.image.cropped) {
+        this.$refs.editor.crop()
+      }
       if (this.$refs.form.validate()) {
         this.uploadFile()
-      }
-    },
-
-    cropImage() {
-      if (!image.cropped) {
-        this.$refs.editor.crop()
       }
     },
 
@@ -135,6 +131,9 @@ export default {
       }
       this.$refs.form.reset()
       this.$emit('close:dialog')
+
+      if (this.btn.loading) this.btn.loading = false
+      if (this.btn.disabled) this.btn.disabled = false
     },
 
     compressFile(image) {
@@ -184,21 +183,20 @@ export default {
       .then(({ data }) => {
 
         if (data.code === 201) {
-          console.log(data.data)
           const image = {
             url: this.form.image.url,
             title: this.form.title,
             alt: this.form.alt,
             id: data.data.id
           }
-  
-          console.error(data.data.id)
-  
+    
           this.btn.loading = false
           this.btn.disabled = false
           this.$store.dispatch('notification/notify', { message: 'Picture was uploaded succesfully', color: 'success'})
           this.closeDialog()
           this.$emit('add:image', image)
+        } else {
+          this.$store.dispatch('notification/notify', { message: `Something went wront. Please try again ${data.error}`, color: 'error'})
         }
       })
     }
