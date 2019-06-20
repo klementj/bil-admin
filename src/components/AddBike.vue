@@ -29,6 +29,9 @@
           type="number"
         ></v-text-field>
 
+        <!-- Image Gallery -->
+        <ImageGallery :images="form.images"/>
+
       </v-form>
     </v-card-text>
     <v-card-actions>
@@ -40,9 +43,14 @@
 </template>
 
 <script>
+import ImageGallery from '@/components/imageUpload/imageGallery'
 
 export default {
   name: 'AddBike',
+
+  components: {
+    ImageGallery
+  },
 
   data() {
     return {
@@ -50,6 +58,7 @@ export default {
         title: '',
         description: '',
         price: 0,
+        images: []
       },
     show: true
     }
