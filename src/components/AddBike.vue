@@ -30,7 +30,7 @@
         ></v-text-field>
 
         <!-- Image Gallery -->
-        <ImageGallery :images="form.images"/>
+        <ImageGallery :images="imageObjects"/>
 
       </v-form>
     </v-card-text>
@@ -60,12 +60,16 @@ export default {
         price: 0,
         images: []
       },
-    show: true
+      imageObjects: [],
+      show: true
     }
   },
 
   methods: {
     onSubmit() {
+      this.imageObjects.forEach(({ id }) => {
+        this.form.images.push(id)
+      })    
       this.$store.dispatch('bike/addBike', this.form)
     }
   }
