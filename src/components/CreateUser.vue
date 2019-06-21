@@ -23,10 +23,12 @@
 
         <!-- Password -->
         <v-text-field
+          :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
           v-model="form.password"
           name="password"
           label="Kodeord"
-          type="password"
+          :type="show ? 'text' : 'password'"
+          @click:append="show = !show"
         ></v-text-field>
 
         <!-- Phonenumber -->
