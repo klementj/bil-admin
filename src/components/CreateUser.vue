@@ -77,6 +77,26 @@ export default {
       phone: "",
       role: null
     },
+    first_nameRules: [
+      v => !!v || 'Navn er påkrævet',
+      v => !v === " " || "Kun mellemrum er ikke et navn"
+    ],
+    last_nameRules: [
+      v => !!v || 'efternavn er påkrævet',
+      v => !!v === " " || "Kun mellemrum er ikke et navn"
+    ],
+    passwordRules: [
+      v => !!v || 'Password påkrævet',
+      v => (v && v.length >= 6) || 'Navnet skal være længere end 6 tegn'
+    ],
+    emailRules: [
+      v => !!v || 'E-mail er påkrævet',
+      v => /.+@.+/.test(v) || 'E-mail må være valid'
+    ],
+    phoneRules: [
+      v => !!v || 'Telefon nummer er påkrævet',
+      v => (v && v.length >= 8) || 'Telefon nummet skal være valid'
+    ],
     //Hard coded roles
     roles: ["user","management","admin"],
     show: true
