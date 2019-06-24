@@ -128,11 +128,20 @@ export default {
         },
         checkBikeAvailablility: function(){
             this.bookedDates = [];
+
             let bookings = this.$store.getters['booking/allBookings'];
+
             bookings.forEach(booking => {
+
                 if(booking.bike === this.form.bike){
-                    this.bookedDates.push(booking.startTime.split('T')[0]);
-                    this.bookedDates.push(booking.endTime.split('T')[0]);                    
+                  
+                  let date = new Date(booking.startTime);
+                  let date2 = new Date(booking.endTime);
+                  
+                  while(date <= date2){
+                    this.bookedDates.push(date.toISOString().split('T')[0]);
+                    date.setDate(date.getDate() + 1);
+                  }
                 }
             })
         },
