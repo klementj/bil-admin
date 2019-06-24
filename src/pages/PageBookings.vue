@@ -15,6 +15,7 @@ export default {
   created: function (){
             this.$store.dispatch('bike/fetchAllBikes');
             this.$store.dispatch('user/fetchAllUsers');
+            this.$store.dispatch('booking/fetchAllBookings');
         }
 }
 </script>
