@@ -10,6 +10,7 @@
           v-model="form.first_name"
           name="first_name"
           label="Fornavn"
+          :rules="first_nameRules"
           type="text"
         ></v-text-field>
 
@@ -18,6 +19,7 @@
           v-model="form.last_name"
           name="last_name"
           label="Efternavn"
+          :rules="last_nameRules"
           type="text"
         ></v-text-field>
 
@@ -26,6 +28,7 @@
           v-model="form.password"
           name="password"
           label="Kodeord"
+          :rules="passwordRules"
           type="password"
         ></v-text-field>
 
@@ -34,6 +37,7 @@
           v-model="form.phone"
           name="phonenumber"
           label="Telefonnummer"
+          :rules="phoneRules"
           type="number"
         ></v-text-field>
 
@@ -42,6 +46,7 @@
           v-model="form.email"
           name="email"
           label="Email"
+          :rules="emailRules"
           type="text"
         ></v-text-field>
 
@@ -79,15 +84,12 @@ export default {
     },
     first_nameRules: [
       v => !!v || 'Navn er påkrævet',
-      v => !v === " " || "Kun mellemrum er ikke et navn"
     ],
     last_nameRules: [
       v => !!v || 'efternavn er påkrævet',
-      v => !!v === " " || "Kun mellemrum er ikke et navn"
     ],
     passwordRules: [
-      v => !!v || 'Password påkrævet',
-      v => (v && v.length >= 6) || 'Navnet skal være længere end 6 tegn'
+      v => !!v || 'Password påkrævet'
     ],
     emailRules: [
       v => !!v || 'E-mail er påkrævet',
