@@ -134,17 +134,20 @@ export default {
             bookings.forEach(booking => {
 
                 if(booking.bike === this.form.bike){
-                  
-                  let date = new Date(booking.startTime);
-                  let date2 = new Date(booking.endTime);
-                  
-                  while(date <= date2){
-                    this.bookedDates.push(date.toISOString().split('T')[0]);
-                    date.setDate(date.getDate() + 1);
-                  }
+                 this.bookedDates.push(... this.getDateRange(booking.startTime,booking.endTime));
                 }
             })
         },
+        getDateRange: function(date1, date2){
+            let dateArr = [];
+            let startDate = new Date(date1);
+            let endDate = new Date(date2);
+            while(startDate <= endDate){
+                dateArr.push(startDate.toISOString().split('T')[0]);
+                startDate.setDate(startDate.getDate() + 1);
+            }
+            return dateArr;
+        }
     },
 
     computed: {
