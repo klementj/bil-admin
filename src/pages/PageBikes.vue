@@ -2,20 +2,22 @@
 <div>
   <AddBike/>
   <DataTable :bikes="allBikes" ></DataTable>
-  
+  <BikeCard :bike="allBikes[1]"/>
 </div>
 </template>
 
 <script>
 import AddBike from '@/components/AddBike'
 import DataTable from '@/components/DataTable'
+import BikeCard from '@/components/BikeCard'
 
 export default {
   name: 'PageBikes',
 
   components: {
     AddBike,
-    DataTable
+    DataTable,
+    BikeCard
   },
 
   created: function() {
