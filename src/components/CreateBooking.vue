@@ -120,8 +120,13 @@ export default {
 
     methods: {
         onSubmit() {
+            let arr = this.getDateRange(this.form.start_time, this.form.end_time);
 
-            return this.$store.dispatch('booking/addBooking', this.form);
+            let invalidDates = this.compareDateArrays(arr, this.bookedDates);
+
+            if(invalidDates.length === 0){
+                return this.$store.dispatch('booking/addBooking', this.form);
+            }
         },
         userFullName: function(item){
             return item.firstName + " " + item.lastName;
@@ -142,11 +147,24 @@ export default {
             let dateArr = [];
             let startDate = new Date(date1);
             let endDate = new Date(date2);
+
             while(startDate <= endDate){
                 dateArr.push(startDate.toISOString().split('T')[0]);
                 startDate.setDate(startDate.getDate() + 1);
             }
             return dateArr;
+        },
+        //Compares two arrays and return matching entries in an array
+        compareDateArrays: function(arr1, arr2){
+            let matches = [];
+                arr1.forEach( date1 => {
+                    arr2.some( date2 => {
+                        if(date1 === date2){
+                            matches.push(date1);
+                        }
+                    });
+                })
+            return matches;
         }
     },
 
