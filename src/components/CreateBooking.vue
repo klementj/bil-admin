@@ -108,10 +108,32 @@ export default {
             show: true,
             dummyData: {
                 project: {
+                    image: null,
+                    name: "Dummy Project",
+                    startDate: new Date().toISOString().substr(0, 10),
+                    endDate: new Date().toISOString().substr(0, 10),
+                    location: {
+                        street: "Over There",
+                        streetNumber: 27,
+                        areaCode: 2160,
+                        town: "That Place",
+                        municipal: "Here",
+                        address: () => {
+                        return this.areaCode + ", " + this.municipal + ", " + this.town + ", " + this.street + " " + this.streetNumber;
+                        }},
                     restrictions: {
-                        duration: [2,7],
-                        times:[{startDate: new Date().toISOString().substr(0, 10), endDate: new Date().toISOString().substr(0, 10)},
-                            {startDate: new Date().toISOString().substr(0, 10), endDate: new Date().toISOString().substr(0, 10)}]
+                        duration: {
+                            minDays: 2,
+                            maxDays: 7
+                        },
+                        times:[{begin: new Date().toISOString().substr(0, 10), end: new Date().toISOString().substr(0, 10)},
+                            {begin: new Date().toISOString().substr(0, 10), end: new Date().toISOString().substr(0, 10)}],
+                        schema: {},
+                        extend: {
+                            allowed: true,
+                            minAmount: 2,
+                            maxAmount: 7
+                        }
                     }
                 }
             }
@@ -124,13 +146,14 @@ export default {
 
             let invalidDates = this.compareDateArrays(arr, this.bookedDates);
 
-            if(invalidDates.length === 0){
+            if(invalidDates.length === 0 && this.checkProjectParameters(arr)){
                 return this.$store.dispatch('booking/addBooking', this.form);
             }
         },
         userFullName: function(item){
             return item.firstName + " " + item.lastName;
         },
+        //returns all dates a bike is booked in an array
         checkBikeAvailablility: function(){
             this.bookedDates = [];
 
@@ -139,10 +162,11 @@ export default {
             bookings.forEach(booking => {
 
                 if(booking.bike === this.form.bike){
-                 this.bookedDates.push(... this.getDateRange(booking.startTime,booking.endTime));
+                 this.bookedDates.push(... this.getDateRange(booking.startTime, booking.endTime));
                 }
             })
         },
+        //Returns all dates between two dates; param 1 = start, param 2 = end
         getDateRange: function(date1, date2){
             let dateArr = [];
             let startDate = new Date(date1);
@@ -165,6 +189,15 @@ export default {
                     });
                 })
             return matches;
+        },
+        //All requirements from project definitions goes here; takes array of dates as argument
+        checkProjectParameters: function(arr){
+            let project = this.dummyData.project;
+            //Is duration requirements met?
+            if(arr.length >= project.restrictions.duration.minDays && arr.length <= project.restrictions.duration.maxDays){
+                return true;
+            }
+            return false;
         }
     },
 
