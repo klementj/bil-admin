@@ -4,7 +4,7 @@
       <v-toolbar-title>Create New User</v-toolbar-title>
     </v-toolbar>
     <v-card-text>
-      <v-form>
+      <v-form ref="form">
         <!-- Firstname -->
         <v-text-field
           v-model="form.first_name"
@@ -25,11 +25,13 @@
 
         <!-- Password -->
         <v-text-field
+          :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
           v-model="form.password"
           name="password"
           label="Kodeord"
           :rules="passwordRules"
-          type="password"
+          :type="show ? 'text' : 'password'"
+          @click:append="show = !show"
         ></v-text-field>
 
         <!-- Phonenumber -->
@@ -70,6 +72,10 @@
 </template>
 
 <script>
+import UserService from '@/services/user.service'
+
+const userService = new UserService()
+
 export default {
  name: "CreateUser",
  data() {
@@ -100,13 +106,22 @@ export default {
       v => (v && v.length >= 8) || 'Telefon nummet skal være valid'
     ],
     //Hard coded roles
-    roles: ["user","management","admin"],
+    roles: ["user","manager","admin"],
     show: true
   }
   },
 methods: {
   onSubmit() {
-    return this.$store.dispatch('user/createUser', this.form);
+        userService.create(this.form)
+      .then(response => {
+        if(response.status === 201) {
+          this.$store.commit('user/CREATE_USER', response.data.data)
+          this.$refs.form.reset()
+        }
+      }).catch(error => {
+        alert(error.response.data.error)
+      })
+    // return this.$store.dispatch('user/createUser', this.form);
   }
 }
 }

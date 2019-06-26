@@ -44,20 +44,6 @@ export const actions = {
         throw error
       })
   },
-
-  createUser({ commit }, payload) {
-    let status = "ikkegivet"
-    userService.create(payload)
-      .then(response => {
-        if(response.status === 201) {
-          commit('CREATE_USER', response.data.data)
-          status = response.status
-        }
-      }).catch(error => {
-        throw error;
-      })
-    return status
-  }
 }
 
 export const getters = {
