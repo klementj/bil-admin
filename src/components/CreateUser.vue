@@ -103,7 +103,7 @@ export default {
     ],
     phoneRules: [
       v => !!v || 'Telefon nummer er påkrævet',
-      v => (v && v.length >= 8) || 'Telefon nummet skal være valid'
+      v => (v && v.length >= 8) || 'Telefon nummeret skal være valid'
     ],
     //Hard coded roles
     roles: ["user","manager","admin"],
