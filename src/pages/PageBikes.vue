@@ -2,7 +2,6 @@
 <div>
   <AddBike/>
   <DataTable :bikes="allBikes" ></DataTable>
-  
 </div>
 </template>
 
