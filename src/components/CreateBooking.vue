@@ -117,10 +117,8 @@ export default {
                         streetNumber: 27,
                         areaCode: 2160,
                         town: "That Place",
-                        municipal: "Here",
-                        address: () => {
-                        return this.areaCode + ", " + this.municipal + ", " + this.town + ", " + this.street + " " + this.streetNumber;
-                        }},
+                        municipal: "Here"
+                    },
                     restrictions: {
                         duration: {
                             minDays: 2,
@@ -141,13 +139,19 @@ export default {
     },
 
     methods: {
-        onSubmit() {
+        async onSubmit() {
             let arr = this.getDateRange(this.form.start_time, this.form.end_time);
 
             let invalidDates = this.compareDateArrays(arr, this.bookedDates);
 
-            if(invalidDates.length === 0 && this.checkProjectParameters(arr)){
-                return this.$store.dispatch('booking/addBooking', this.form);
+            if(invalidDates.length === 0 && this.checkProjectParameters(arr) && this.validSelection){
+                let booking = await this.$store.dispatch('booking/addBooking', this.form);
+                this.$store.dispatch('notification/notify', {message: 'Success booking created', color: 'success'});
+                this.checkBikeAvailablility()
+                return booking;
+            } else {
+                this.$store.dispatch('notification/notify', {message: 'Error booking not created', color: 'error'});
+                return false;
             }
         },
         userFullName: function(item){
@@ -216,6 +220,9 @@ export default {
         },
         bookings: function(){
             return this.$store.getters['booking/allBookings']
+        },
+        address: function() {
+            return "Not implemented"
         }
     },
 }
