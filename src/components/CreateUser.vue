@@ -30,6 +30,7 @@
           name="password"
           label="Kodeord"
           :rules="passwordRules"
+
           :type="show ? 'text' : 'password'"
           @click:append="show = !show"
         ></v-text-field>

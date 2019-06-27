@@ -68,11 +68,12 @@ export default {
   methods: {
     onSubmit() {
       this.imageObjects.forEach(({ id }) => {
-        this.form.images.push(id)
+        if (this.form.images.indexOf(id) === -1 ) {
+          this.form.images.push(id)
+        }
       })    
       this.$store.dispatch('bike/addBike', this.form)
     },
-
     
     ConvertToDecimals(data) {
         const testnumber = ((data/100).toFixed(2)).replace(/[.]/g, ",")
