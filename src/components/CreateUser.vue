@@ -4,12 +4,13 @@
       <v-toolbar-title>Create New User</v-toolbar-title>
     </v-toolbar>
     <v-card-text>
-      <v-form>
+      <v-form ref="form">
         <!-- Firstname -->
         <v-text-field
           v-model="form.first_name"
           name="first_name"
           label="Fornavn"
+          :rules="first_nameRules"
           type="text"
         ></v-text-field>
 
@@ -18,6 +19,7 @@
           v-model="form.last_name"
           name="last_name"
           label="Efternavn"
+          :rules="last_nameRules"
           type="text"
         ></v-text-field>
 
@@ -27,6 +29,8 @@
           v-model="form.password"
           name="password"
           label="Kodeord"
+          :rules="passwordRules"
+
           :type="show ? 'text' : 'password'"
           @click:append="show = !show"
         ></v-text-field>
@@ -36,6 +40,7 @@
           v-model="form.phone"
           name="phonenumber"
           label="Telefonnummer"
+          :rules="phoneRules"
           type="number"
         ></v-text-field>
 
@@ -44,6 +49,7 @@
           v-model="form.email"
           name="email"
           label="Email"
+          :rules="emailRules"
           type="text"
         ></v-text-field>
 
@@ -67,6 +73,10 @@
 </template>
 
 <script>
+import UserService from '@/services/user.service'
+
+const userService = new UserService()
+
 export default {
  name: "CreateUser",
  data() {
@@ -79,14 +89,40 @@ export default {
       phone: "",
       role: null
     },
+    first_nameRules: [
+      v => !!v || 'Navn er påkrævet',
+    ],
+    last_nameRules: [
+      v => !!v || 'efternavn er påkrævet',
+    ],
+    passwordRules: [
+      v => !!v || 'Password påkrævet'
+    ],
+    emailRules: [
+      v => !!v || 'E-mail er påkrævet',
+      v => /.+@.+/.test(v) || 'E-mail må være valid'
+    ],
+    phoneRules: [
+      v => !!v || 'Telefon nummer er påkrævet',
+      v => (v && v.length >= 8) || 'Telefon nummeret skal være valid'
+    ],
     //Hard coded roles
-    roles: ["user","management","admin"],
+    roles: ["user","manager","admin"],
     show: true
   }
   },
 methods: {
   onSubmit() {
-    return this.$store.dispatch('user/createUser', this.form);
+        userService.create(this.form)
+      .then(response => {
+        if(response.status === 201) {
+          this.$store.commit('user/CREATE_USER', response.data.data)
+          this.$refs.form.reset()
+        }
+      }).catch(error => {
+        alert(error.response.data.error)
+      })
+    // return this.$store.dispatch('user/createUser', this.form);
   }
 }
 }
