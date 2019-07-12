@@ -147,7 +147,7 @@ export default {
             if(invalidDates.length === 0 && this.checkProjectParameters(arr) && this.validSelection){
                 let booking = await this.$store.dispatch('booking/addBooking', this.form);
                 this.$store.dispatch('notification/notify', {message: 'Success booking created', color: 'success'});
-                this.checkBikeAvailablility()
+                this.bookedDates.push(... arr);
                 return booking;
             } else {
                 this.$store.dispatch('notification/notify', {message: 'Error booking not created', color: 'error'});
