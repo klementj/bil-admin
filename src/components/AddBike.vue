@@ -29,6 +29,9 @@
           type="text"
         ></v-text-field>
 
+        <!-- Image Gallery -->
+        <ImageGallery :images="imageObjects"/>
+
       </v-form>
     </v-card-text>
     <v-card-actions>
@@ -40,8 +43,14 @@
 </template>
 
 <script>
+import ImageGallery from '@/components/imageUpload/imageGallery'
+
 export default {
   name: 'AddBike',
+
+  components: {
+    ImageGallery
+  },
 
   data() {
     return {
@@ -49,16 +58,22 @@ export default {
         title: '',
         description: '',
         price: 0,
+        images: []
       },
-    show: true,
+      imageObjects: [],
+      show: true
     }
   },
 
   methods: {
     onSubmit() {
+      this.imageObjects.forEach(({ id }) => {
+        if (this.form.images.indexOf(id) === -1 ) {
+          this.form.images.push(id)
+        }
+      })    
       this.$store.dispatch('bike/addBike', this.form)
     },
-
     
     ConvertToDecimals(data) {
         const testnumber = ((data/100).toFixed(2)).replace(/[.]/g, ",")
