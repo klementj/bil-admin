@@ -85,7 +85,7 @@
     </v-card-text>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn color="primary" @click="onSubmit">Tilføj reservation</v-btn>
+      <v-btn color="primary" @click="onSubmit">Add booking</v-btn>
     </v-card-actions>
     </v-card>
 </template>
