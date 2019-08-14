@@ -78,7 +78,7 @@
                 :item-text="userFullName"
                 item-value="id"
                 name="user"
-                label="Bruger"
+                label="User"
                 type="text"
             ></v-select>
         </v-form>
