@@ -67,7 +67,7 @@
                 item-text="title"
                 item-value="id"
                 name="bike"
-                label="Cykel"
+                label="Bike"
                 type="text"
                 v-on:change="checkBikeAvailablility()"
             ></v-select>
