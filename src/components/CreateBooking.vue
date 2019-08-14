@@ -1,7 +1,7 @@
 <template>
     <v-card>
         <v-toolbar flat>
-      <v-toolbar-title>Opret ny reservation</v-toolbar-title>
+      <v-toolbar-title>Create new booking</v-toolbar-title>
     </v-toolbar>
     <v-card-text>
         <v-form>
