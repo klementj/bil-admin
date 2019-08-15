@@ -12,14 +12,14 @@
         </v-card-title>    
         <v-data-table
         :headers="header"
-        :items="bookings"
+        :items="fullBookings"
         :search="search"
         >
-            <template v-slot:items="bookings">
-                <td class="text-xs-left">{{findUserById(bookings.item.user)}}</td>
-                <td class="text-xs-right">{{findBikeById(bookings.item.bike)}}</td>
-                <td class="text-xs-right">{{bookings.item.startTime.substr(0, 10)}}</td>
-                <td class="text-xs-right">{{bookings.item.endTime.substr(0, 10)}}</td>
+            <template v-slot:items="fullBookings">
+                <td class="text-xs-left">{{fullName(fullBookings.item.user)}}</td>
+                <td class="text-xs-right">{{fullBookings.item.bike.title}}</td>
+                <td class="text-xs-right">{{fullBookings.item.startTime.substr(0, 10)}}</td>
+                <td class="text-xs-right">{{fullBookings.item.endTime.substr(0, 10)}}</td>
             </template>
             <template v-slot:no-results>
                 <v-alert :value="true" color="error" icon="warning">
@@ -34,15 +34,13 @@
 export default {
     name: "DataTableBooking",
     
-    props: {
-        bookings: Array
-    },
+    props: ['bookings'],
 
     data() {
         return{
             search: '',
             header: [
-                { text: 'User', align: 'left' , value: 'Name' },
+                { text: 'User', align: 'left' , value: 'user' },
                 { text: 'Bike', align: 'right' , value: 'bike' },
                 { text: 'Start', align: 'right' , value:'startTime' },
                 { text: 'End', align: 'right' , value: 'endTime' }
@@ -52,8 +50,7 @@ export default {
 
     methods:{
         findUserById: function(id){
-            var user = this.$store.getters['user/allUsers'].find(u => u.id = id);
-            return this.fullName(user);
+            return this.$store.getters['user/allUsers'].find(u => u.id === id);
         },
 
         fullName: function(item) {
@@ -61,13 +58,22 @@ export default {
         },
 
         findBikeById: function(id){
-            var bike = this.$store.getters['bike/allBikes'].find(b => b.id = id);
-            return bike.title;
+            return this.$store.getters['bike/allBikes'].find(b => b.id === id);
         },
     },
 
     computed: {
-        
+        fullBookings: function(){
+            let newBookings = Array.from(this.bookings);
+            
+            newBookings.forEach(booking => {
+               booking.user = this.findUserById(booking.user);
+
+               booking.bike = this.findBikeById(booking.bike);
+            });
+
+            return newBookings;
+        }
     }
 }
 </script>
