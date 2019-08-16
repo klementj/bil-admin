@@ -1,12 +1,18 @@
 <template>
   <v-card>
-    <v-card-title>Projects</v-card-title>
+    <CreateProject/>
   </v-card>
 </template>
 
 <script>
+import CreateProject from '@/components/CreateProject.vue';
+
 export default {
-  name: 'PageProjects'
+  name: 'PageProjects',
+
+  components: {
+    CreateProject
+  }
 }
 </script>
 
