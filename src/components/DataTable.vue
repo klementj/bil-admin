@@ -1,8 +1,9 @@
 <template>
   <v-card>
     <v-dialog v-model="dialog" max-width="500px">
+      <v-card>
       <v-card-title>
-        <span class="headline">{{ formTitle }}</span>
+        <span class="headline">Bike</span>
       </v-card-title>
       <v-card-text>
           <v-container grid-list-md>
@@ -31,6 +32,7 @@
         <v-btn color="blue darken-1" flat @click="close">Cancel</v-btn>
         <v-btn color="blue darken-1" flat @click="save">Save</v-btn>
       </v-card-actions>
+      </v-card>
     </v-dialog>
 
     <v-card-title>
@@ -69,14 +71,15 @@
     <template v-slot:no-results>
       <v-alert :value="true" color="error" icon="warning">
           Din søgning efter "{{ search }}" gav intet resultat.
-        </v-alert>
-      </template>
+      </v-alert>
+    </template>
   </v-data-table>
 </v-card>
 </template>
 
 <script>
 import MoneyComponent from '@/components/MoneyComponent'
+import { setTimeout } from 'timers';
 
 export default {
     name: "DataTable",
@@ -119,6 +122,17 @@ export default {
         this.editedIndex = this.bikes.indexOf(item)
         this.editedItem = Object.assign({}, item)
         this.dialog = true
+      },
+
+      close() {
+        this.dialog = false
+        setTimeout(() => {
+          this.editedItem = Object.assign({}, this.defaultItem)
+        }, 300)
+      },
+
+      save() {
+        this.close()
       }
     }
 }
