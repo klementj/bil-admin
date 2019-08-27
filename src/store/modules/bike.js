@@ -14,6 +14,11 @@ export const mutations = {
   },
   ADD_BIKE_TO_STORE(state, bike) {
     state.bikes.push(bike)
+  },
+  UPDATE_BIKES(state, updatedBike){
+    state.bikes.map(obj => obj.id === updatedBike.id && Object.assign(obj, updatedBike))
+
+    // state.bikes.find(updatedBike.id).then(Object.assign(obj, updatedBike))
   }
 }
 
@@ -34,6 +39,18 @@ export const actions = {
         if(response.status === 201) {
           commit('ADD_BIKE_TO_STORE', response.data.data)
         }
+      })
+  },
+
+    updateBike({commit}, payload){
+      
+      const { id, title, price, description, categories, images } = payload
+       
+      bikeService.update(id, { title, price, description, categories, images })
+        .then(response => {
+          if(response.status === 200){
+            commit('UPDATE_BIKES', payload)
+          }
       })
   }
 }

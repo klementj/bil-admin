@@ -3,7 +3,7 @@
     <v-list class="pa-0">
       <v-list-tile avatar>
         <v-list-tile-avatar>
-          <img :src="getImg !== null ? 'https://imgplaceholder.com/420x320/3a47c6/f7f7f7/glyphicon-user' : getimg " alt="avatar">
+          <img :src="getImg !== null ? 'https://imgplaceholder.com/420x320/4c38e1/fefefe/glyphicon-user' : getimg " alt="avatar">
         </v-list-tile-avatar>
 
         <v-list-tile-content>

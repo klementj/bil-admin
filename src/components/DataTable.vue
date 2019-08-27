@@ -12,16 +12,10 @@
                 <v-text-field v-model="editedItem.title" label="Tite"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6 md4>
-                <v-text-field v-model="editedItem.price" label="pris"></v-text-field>
+                <v-text-field v-model.number="editedItem.price" label="pris" ></v-text-field>
               </v-flex>
               <v-flex xs12 sm6 md4>
                 <v-text-field v-model="editedItem.description" label="beskrivelse"></v-text-field>
-              </v-flex>
-              <v-flex xs12 sm6 md4>
-                <v-text-field v-model="editedItem.discount" label="tilbud"></v-text-field>
-              </v-flex>
-              <v-flex xs12 sm6 md4>
-                <v-text-field v-model="editedItem.categories" label="kategory"></v-text-field>
               </v-flex>
             </v-layout>
           </v-container>
@@ -79,7 +73,7 @@
 
 <script>
 import MoneyComponent from '@/components/MoneyComponent'
-import { setTimeout } from 'timers';
+
 
 export default {
     name: "DataTable",
@@ -106,33 +100,31 @@ export default {
           { text: 'Discount', align: 'right', value: 'discount'},
           { text: 'Billeder', align: 'right', value: 'images'}
         ],
+
         editedItem: {
           title: '',
           price: 0,
           description: '',
           categories: [],
-          discount: '',
           images: []
-        }
+        },
       }
     },
 
     methods: {
       editItem (item) {
-        this.editedIndex = this.bikes.indexOf(item)
         this.editedItem = Object.assign({}, item)
         this.dialog = true
       },
 
       close() {
         this.dialog = false
-        setTimeout(() => {
-          this.editedItem = Object.assign({}, this.defaultItem)
-        }, 300)
       },
 
       save() {
-        this.close()
+        // {if(response.status === 200){this.close()}}
+        this.$store.dispatch('bike/updateBike', this.editedItem)
+          
       }
     }
 }
