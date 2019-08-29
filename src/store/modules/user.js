@@ -20,6 +20,10 @@ export const mutations = {
 
   CREATE_USER(state, user) {
     state.users.push(user)
+  },
+
+  UPDATE_USER(state, updateuser){
+    state.users.map(obj => obj.id === updateuser.id && Object.assign(obj, updateuser)))
   }
 }
 
@@ -44,6 +48,16 @@ export const actions = {
         throw error
       })
   },
+
+  updateUser({commit} , payload){
+
+    const {id, firstName, lastName, email, phone, role} = payload
+
+    userService.update(id , {firstName, lastName, email, phone, role})
+      .then(response => {
+        commit('UPDATE_USER', payload)
+      })
+  }
 }
 
 export const getters = {
