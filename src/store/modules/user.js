@@ -23,7 +23,7 @@ export const mutations = {
   },
 
   UPDATE_USER(state, updateuser){
-    state.users.map(obj => obj.id === updateuser.id && Object.assign(obj, updateuser)))
+    state.users.map(obj => obj.id === updateuser.id && Object.assign(obj, updateuser))
   }
 }
 
@@ -54,8 +54,9 @@ export const actions = {
     const {id, firstName, lastName, email, phone, role} = payload
 
     userService.update(id , {firstName, lastName, email, phone, role})
-      .then(response => {
+      .then(response => { if(response.status === 200){
         commit('UPDATE_USER', payload)
+        }
       })
   }
 }
