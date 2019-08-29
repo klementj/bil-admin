@@ -73,7 +73,8 @@
 
 <script>
 import MoneyComponent from '@/components/MoneyComponent'
-
+// import { mapActions } from 'vuex'
+// import { mapMutations, mapState } from 'vuex'
 
 export default {
     name: "DataTable",
@@ -88,8 +89,8 @@ export default {
 
     data() {
       return{
-        dialog: false,
         search: '',
+        dialog: false,
 
         header:[ 
           
@@ -115,18 +116,35 @@ export default {
       editItem (item) {
         this.editedItem = Object.assign({}, item)
         this.dialog = true
+        // this.$store.commit('ui/showModal', this.dialog)
       },
 
       close() {
         this.dialog = false
+        
+      //   // this.$store.commit('ui/hideModal', this.dialog)
       },
 
+      // ...mapMutations({
+      //   close: 'ui/hideModal',
+      //   OpenSesam: 'ui/showModal'
+      // }),
+
+      // ...mapState({
+      //     dialog: 'ui/modalComponent'
+      // }),
+      // ...mapActions([
+      //   'bike/updateBike'
+      // ]),
+
+      // ...mapActions({
+      //   save: 'bike/updateBike'
+      // })
+
       save() {
-        // {if(response.status === 200){this.close()}}
-        this.$store.dispatch('bike/updateBike', this.editedItem)
-          
+        this.$store.dispatch('bike/updateBike', this.editedItem).then(this.close())
       }
-    }
+    },
 }
 </script>
 

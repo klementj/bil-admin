@@ -18,7 +18,7 @@ export const mutations = {
     localStorage.setItem('darkTheme', bool)
   },
 
-  showModal(state, componentName){
+  showModal( state, componentName){
     state.modalVisible = true
     state.modalComponent = componentName
   },
