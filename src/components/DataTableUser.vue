@@ -76,7 +76,6 @@
 </template>
 
 <script>
-import { setTimeout } from 'timers'
 
 export default {
     name: "DataTableUser",
@@ -109,20 +108,16 @@ export default {
 
     methods: {
         editItem (item) {
-        this.editedIndex = this.users.indexOf(item)
         this.editedItem = Object.assign({}, item)
         this.dialog = true
       },
 
       close() {
         this.dialog = false
-        setTimeout(() => {
-          this.editedItem = Object.assign({}, this.defaultItem)
-        }, 300)
       },
 
       save() {
-          this.close()
+          this.$store.dispatch('user/updateUser', this.editedItem).then(this.close())
       }
     }
 }
