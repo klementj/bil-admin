@@ -2,11 +2,16 @@
   <v-app>
     <Navigation />
 
-    <v-toolbar color="primary" dark fixed app>
-      <v-toolbar-side-icon @click.stop="toggleDrawer"></v-toolbar-side-icon>
-      <v-toolbar-title>{{ $route.meta.title }}</v-toolbar-title>
-    </v-toolbar>
-
+    <v-card
+     dark 
+     fixed 
+     app
+    >  
+      <v-toolbar color="primary">
+        <v-toolbar-side-icon @click.stop="toggleDrawer"></v-toolbar-side-icon>
+        <v-toolbar-title>{{ $route.meta.title }}</v-toolbar-title>
+      </v-toolbar>
+    </v-card>
     <v-content fill-height>
       <v-container>
           <router-view></router-view>
