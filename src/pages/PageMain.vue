@@ -1,17 +1,14 @@
 <template>
   <v-app>
     <Navigation />
-
-    <v-card
+      <v-app-bar 
      dark 
      fixed 
-     app
-    >  
-      <v-toolbar color="primary">
-        <v-toolbar-side-icon @click.stop="toggleDrawer"></v-toolbar-side-icon>
+     app 
+     color="primary">
+        <v-app-bar-nav-icon @click.stop="toggleDrawer"></v-app-bar-nav-icon>
         <v-toolbar-title>{{ $route.meta.title }}</v-toolbar-title>
-      </v-toolbar>
-    </v-card>
+      </v-app-bar>
     <v-content fill-height>
       <v-container>
           <router-view></router-view>

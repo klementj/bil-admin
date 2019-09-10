@@ -1,5 +1,4 @@
 <template>
-  <v-card>
     <v-toolbar flat class="transparent">
       <v-list class="pa-0">
         <v-list-item avatar>
@@ -8,12 +7,11 @@
           </v-list-item-avatar>
 
           <v-list-item-content>
-            <v-list-tile-title>{{ fullName }}</v-list-tile-title>
+            <v-list-item-title>{{ fullName }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
     </v-toolbar>
-  </v-card>
 </template>
 
 <script>
