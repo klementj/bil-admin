@@ -10,21 +10,22 @@
         d-flex
         :data-id="image.id"
       >
-        <v-card flat tile >
+        <v-card text tile >
           <v-img
             :src="image.url"
+            :lazy-src="image.url"
             aspect-ratio="1"
             class="grey lighten-2"
           >
             <template v-slot:placeholder>
-              <v-layout
+              <v-row
                 fill-height
                 align-center
                 justify-center
                 ma-0
               >
                 <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-              </v-layout>
+              </v-row>
             </template>
           </v-img>
         </v-card>

@@ -49,12 +49,12 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <!-- Cancel button -->
-        <v-btn color="teal" flat @click="closeDialog">Clear</v-btn>
+        <v-btn color="teal" text @click="closeDialog">Clear</v-btn>
         <!-- Upload button -->
         <v-btn 
           color="success"
-          flat
-          outline
+          text
+          outlined
           :loading="btn.loading"
           :disabled="btn.disabled"
           @click="addImage"
