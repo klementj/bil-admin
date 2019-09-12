@@ -58,7 +58,7 @@
       </div>
 
       <div class="pa-2">
-        <v-btn block outline color="primary" :to="{ name: 'logout'}">Logout</v-btn>
+        <v-btn block outlined color="primary" :to="{ name: 'logout'}">Logout</v-btn>
       </div>
     </v-layout>  
   </v-navigation-drawer>

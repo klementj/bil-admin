@@ -1,7 +1,7 @@
 <template>
     <v-toolbar flat class="transparent">
       <v-list class="pa-0">
-        <v-list-item avatar>
+        <v-list-item>
           <v-list-item-avatar>
             <v-img :src="getImg !== null ? 'https://imgplaceholder.com/420x320/3a47c6/f7f7f7/glyphicon-user' : getimg " alt="avatar"></v-img>
           </v-list-item-avatar>
