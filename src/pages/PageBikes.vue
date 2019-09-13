@@ -1,13 +1,14 @@
 <template>
 <div>
   <AddBike/>
-  <DataTable :bikes="allBikes" ></DataTable>
+  <DataTable :bikes="Bikes" ></DataTable>
 </div>
 </template>
 
 <script>
 import AddBike from '@/components/AddBike'
 import DataTable from '@/components/DataTable'
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'PageBikes',
@@ -22,9 +23,11 @@ export default {
   },
 
   computed: {
-    allBikes() {
-      return this.$store.getters['bike/allBikes']
-    }
+
+
+    ...mapGetters({
+      Bikes: 'bike/allBikes'
+    })
   }
 }
 </script>

@@ -2,7 +2,9 @@ export const namespaced = true
 
 export const state = {
   drawer: null,
-  isDark: null
+  isDark: null,
+  modalVisible: false,
+  modalComponent: null
 }
 
 export const mutations = {
@@ -14,5 +16,13 @@ export const mutations = {
   SET_COLOR_THEME(state, bool) {
     state.isDark = bool
     localStorage.setItem('darkTheme', bool)
+  },
+
+  showModal( state, componentName){
+    state.modalVisible = true
+    state.modalComponent = componentName
+  },
+  hideModal(state){
+    state.modalVisible = false
   }
 }
