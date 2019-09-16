@@ -6,7 +6,6 @@
             <v-img :src="getImg !== null ? 'https://imgplaceholder.com/420x320/3a47c6/f7f7f7/glyphicon-user' : getimg " alt="avatar"></v-img>
           </v-list-item-avatar>
 
-
           <v-list-item-content>
             <v-list-item-title>{{ fullName }}</v-list-item-title>
           </v-list-item-content>
