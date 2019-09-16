@@ -108,6 +108,7 @@ export default {
 
     methods: {
         editItem (item) {
+        // assigns values from the item seleected to have its values over the editeditem
         this.editedItem = Object.assign({}, item)
         this.dialog = true
       },
@@ -117,6 +118,7 @@ export default {
       },
 
       save() {
+        // using Vuex dispatch function to use action updateUser to update a user with values given from the editeditem
           this.$store.dispatch('user/updateUser', this.editedItem).then(this.close())
       }
     }

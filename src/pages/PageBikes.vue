@@ -17,14 +17,14 @@ export default {
     AddBike,
     DataTable
   },
-
+    // Using  vuex function dispatch to trigger the actions to fetch all the bikes
   created: function() {
     this.$store.dispatch('bike/fetchAllBikes')
   },
 
   computed: {
 
-
+    // Using mapGetter to pull to get all bikes from the store bike module
     ...mapGetters({
       Bikes: 'bike/allBikes'
     })
