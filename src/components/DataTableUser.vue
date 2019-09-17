@@ -55,7 +55,7 @@
                     class="mr-2"
                     @click="editItem(item)"
                     >
-                    Rediger
+                    mdi-pencil
                     </v-icon>
           </template>
             <template v-slot:no-results>
@@ -87,7 +87,7 @@ export default {
                 { text: 'Cykel lån', align: 'right' , value: 'bookings' },
                 { text: 'tlf.', align: 'right' , value: 'phone' },
                 { text: 'bruger rolle', align: 'right' , value: 'role' },
-                { text: '', align: 'right', value: 'action', sortable: false }
+                { text: 'rediger', align: 'right', value: 'action', sortable: false }
             ],
             editedItem: {
               firstName: '',

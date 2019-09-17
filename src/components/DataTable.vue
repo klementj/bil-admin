@@ -58,7 +58,7 @@
           class="mr-2"
           @click="editItem(item)"
         >
-        rediger
+        mdi-pencil
         </v-icon>
       </template>
 
