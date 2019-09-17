@@ -49,23 +49,15 @@
         :items="users"
         :search="search"
         >
-            <template v-slot:items="users">
-                <td class="text-xs-left">{{users.item.firstName}}</td>
-                <td class="text-xs-right">{{users.item.lastName}}</td>
-                <td class="text-xs-right">{{users.item.email}}</td>
-                <td class="text-xs-right">{{users.item.bookings}}</td>
-                <td class="text-xs-right">{{users.item.phone}}</td>
-                <td class="text-xs-right">{{users.item.role}}</td>
-                <td class="justify-center layout px-0">
+          <template v-slot:item.action="{ item }" >
                     <v-icon
                     small
                     class="mr-2"
-                    @click="editItem(users.item)"
+                    @click="editItem(item)"
                     >
                     Rediger
-                    </v-icon> 
-                </td>
-            </template>
+                    </v-icon>
+          </template>
             <template v-slot:no-results>
                 <v-alert :value="true" color="error" icon="warning">
                 Your search for "{{ search }}" found no results.
@@ -94,7 +86,8 @@ export default {
                 { text: 'Email', align: 'right' , value:'email' },
                 { text: 'Cykel lån', align: 'right' , value: 'bookings' },
                 { text: 'tlf.', align: 'right' , value: 'phone' },
-                { text: 'bruger rolle', align: 'right' , value: 'role' }
+                { text: 'bruger rolle', align: 'right' , value: 'role' },
+                { text: '', align: 'right', value: 'action', sortable: false }
             ],
             editedItem: {
               firstName: '',

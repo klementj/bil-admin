@@ -26,6 +26,9 @@
                   <v-col cols="12" sm="6" md="4">
                     <v-text-field v-model="editedItem.discount" label="discount"></v-text-field>
                   </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field v-model="editedItem.category" label="kategori"></v-text-field>
+                  </v-col>
                 </v-row>
               </v-container>
           </v-card-text>
@@ -94,7 +97,7 @@ export default {
           { text: 'Pris', align: 'right' , value: 'price'},
           { text: 'Discount', align: 'right', value: 'discount'},
           { text: 'Kategori', align: 'right', value: 'category'},
-          { text: 'Actions', align: 'right', value: 'action', sortable: false}
+          { text: 'rediger', align: 'right', value: 'action', sortable: false}
         ],
         editedItem: {
           title: '',
