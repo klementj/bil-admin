@@ -15,7 +15,7 @@ export default {
         return this.$store.state.ui.isDark
       },
       set(val) {
-        this.$store.commit('ui/SET_COLOR_THEME', val)
+        this.$vuetify.theme.dark = val
       }
     }
   }

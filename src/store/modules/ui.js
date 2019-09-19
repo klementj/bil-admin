@@ -1,3 +1,4 @@
+
 export const namespaced = true
 
 export const state = {
@@ -15,6 +16,7 @@ export const mutations = {
   // Toggle dark color theme 
   SET_COLOR_THEME(state, bool) {
     state.isDark = bool
+    this.$vuetify.theme.dark = state.isDark
     localStorage.setItem('darkTheme', bool)
   },
 
