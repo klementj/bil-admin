@@ -1,3 +1,4 @@
+import Vuetify from '@/plugins/vuetify'
 
 export const namespaced = true
 
@@ -16,7 +17,7 @@ export const mutations = {
   // Toggle dark color theme 
   SET_COLOR_THEME(state, bool) {
     state.isDark = bool
-    this.$vuetify.theme.dark = state.isDark
+    Vuetify.framework.theme.dark = bool
     localStorage.setItem('darkTheme', bool)
   },
 

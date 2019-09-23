@@ -84,6 +84,10 @@ export default {
       set (val) {
         this.$store.commit('ui/SET_DRAWER', val)
       }
+    },
+    
+    makeTheme(){
+      return JSON.parse(localStorage.getItem('darkTheme'))
     }
   }
 }

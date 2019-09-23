@@ -95,7 +95,7 @@ export default {
           
           { text: 'Navn', align: 'left', value: 'title' },
           { text: 'Pris', align: 'right' , value: 'price'},
-          { text: 'Discount', align: 'right', value: 'discount'},
+          { text: 'Discount', align: 'right', value: 'discount %'},
           { text: 'Kategori', align: 'right', value: 'category'},
           { text: 'rediger', align: 'right', value: 'action', sortable: false}
         ],
