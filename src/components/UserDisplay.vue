@@ -1,17 +1,17 @@
 <template>
-  <v-toolbar flat class="transparent">
-    <v-list class="pa-0">
-      <v-list-tile avatar>
-        <v-list-tile-avatar>
-          <img :src="getImg !== null ? 'https://imgplaceholder.com/420x320/3a47c6/f7f7f7/glyphicon-user' : getimg " alt="avatar">
-        </v-list-tile-avatar>
+    <v-toolbar flat class="transparent">
+      <v-list class="pa-0">
+        <v-list-item>
+          <v-list-item-avatar>
+            <v-img :src="getImg !== null ? 'https://imgplaceholder.com/420x320/3a47c6/f7f7f7/glyphicon-user' : getimg " alt="avatar"></v-img>
+          </v-list-item-avatar>
 
-        <v-list-tile-content>
-          <v-list-tile-title>{{ fullName }}</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
-    </v-list>
-  </v-toolbar>
+          <v-list-item-content>
+            <v-list-item-title>{{ fullName }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-toolbar>
 </template>
 
 <script>
