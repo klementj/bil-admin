@@ -9,7 +9,7 @@
         <v-text-field
           v-model="form.first_name"
           name="first_name"
-          label="Fornavn"
+          label="First name"
           :rules="first_nameRules"
           type="text"
         ></v-text-field>
@@ -18,7 +18,7 @@
         <v-text-field
           v-model="form.last_name"
           name="last_name"
-          label="Efternavn"
+          label="Last name"
           :rules="last_nameRules"
           type="text"
         ></v-text-field>
@@ -28,7 +28,7 @@
           :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
           v-model="form.password"
           name="password"
-          label="Kodeord"
+          label="password"
           :rules="passwordRules"
 
           :type="show ? 'text' : 'password'"
@@ -39,7 +39,7 @@
         <v-text-field
           v-model="form.phone"
           name="phonenumber"
-          label="Telefonnummer"
+          label="phone number"
           :rules="phoneRules"
           type="number"
         ></v-text-field>
@@ -58,7 +58,7 @@
           v-model="form.role"
           :items="roles"
           name="role"
-          label="Rolle"
+          label="Role"
           type="text"
         ></v-select>
 
