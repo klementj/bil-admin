@@ -121,6 +121,40 @@
                 ></v-text-field>
 
                 <!-- Times NOT IMPLEMENTED -->
+                <v-card-text>
+                    <v-calendar
+                    :now="today"
+                    :value="today"
+                    :events="events"
+                    color="primary"
+                    type="week"
+                    :weekdays="[1,2,3,4,5,6,0]">
+                        <!-- the events at the top (all-day) -->
+                        <template v-slot:day-header="{ date }">
+                            <template v-for="event in eventsMap[date]">
+                            <!-- all day events don't have time -->
+                            <div
+                                v-if="!event.time"
+                                :key="event.title"
+                                v-html="event.title"
+                            ></div>
+                            </template>
+                        </template>
+
+                         <!-- the events at the bottom (timed) -->
+                        <template v-slot:day-body="{ date, timeToY, minutesToPixels }">
+                            <template v-for="event in eventsMap[date]">
+                            <!-- timed events -->
+                            <div
+                                v-if="event.time"
+                                :key="event.title"
+                                :style="{ top: timeToY(event.time) + 'px', height: minutesToPixels(event.duration) + 'px' }"
+                                v-html="event.title"
+                            ></div>
+                            </template>
+                        </template>
+                    </v-calendar>
+                </v-card-text>
 
                 <!-- Schema NOT IMPLEMENTED -->
 
@@ -161,6 +195,25 @@ export default {
             menu1: false,
             menu2: false,
 
+            today: new Date().toISOString().substr(0, 10),
+
+            events: [
+                {
+                    name: "Weekly Meeting",
+                    start: new Date().toISOString().substr(0, 10) + ' 09:00',
+                    end: new Date().toISOString().substr(0, 10) + ' 10:00'
+                },
+                {
+                    name: "Open",
+                    start: new Date().toISOString().substr(0, 10) + " 09:00",
+                    end: new Date().toISOString().substr(0, 10) + " 15:00"
+                },
+                {
+                    name: "Workday",
+                    start: new Date().toISOString().substr(0, 10),
+                }
+            ],
+
             form:{
                 projectName: "",
                 start_time: new Date().toISOString().substr(0, 10),
@@ -188,6 +241,13 @@ export default {
                 }
             }
         }    
+    },
+
+    methods: {
+        //Not working
+        createEventDialog: function(){
+            console.log("Create event; NOT IMPLEMENTED");
+        }
     },
 
     computed: {
