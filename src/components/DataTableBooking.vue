@@ -12,15 +12,9 @@
         </v-card-title>    
         <v-data-table
         :headers="header"
-        :items="fullBookings"
+        :items="bookings"
         :search="search"
         >
-            <template v-slot:items="fullBookings">
-                <td class="text-xs-left">{{fullName(fullBookings.item.user)}}</td>
-                <td class="text-xs-right">{{fullBookings.item.bike.title}}</td>
-                <td class="text-xs-right">{{fullBookings.item.startTime.substr(0, 10)}}</td>
-                <td class="text-xs-right">{{fullBookings.item.endTime.substr(0, 10)}}</td>
-            </template>
             <template v-slot:no-results>
                 <v-alert :value="true" color="error" icon="warning">
                 Your search for "{{ search }}" found no results.
@@ -31,10 +25,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
     name: "DataTableBooking",
     
-    props: ['bookings'],
+    props: {
+        bookings: Array
+    },
 
     data() {
         return{
@@ -48,32 +45,18 @@ export default {
         }
     },
 
-    methods:{
-        findUserById: function(id){
-            return this.$store.getters['user/allUsers'].find(u => u.id === id);
-        },
-
-        fullName: function(item) {
-            return item.firstName + " " + item.lastName;
-        },
-
-        findBikeById: function(id){
-            return this.$store.getters['bike/allBikes'].find(b => b.id === id);
-        },
+    methods: {
+        getUserName(id){
+            const { firstName, lastName} = this.Users.find(user => user === id)
+            return { firstName, lastName }
+        }
     },
 
     computed: {
-        fullBookings: function(){
-            let newBookings = Array.from(this.bookings);
-            
-            newBookings.forEach(booking => {
-               booking.user = this.findUserById(booking.user);
-
-               booking.bike = this.findBikeById(booking.bike);
-            });
-
-            return newBookings;
-        }
+        ...mapGetters({
+            Users: 'user/allUsers',
+            Bikes: 'bike/allBikes'
+        })
     }
 }
 </script>
