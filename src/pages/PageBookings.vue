@@ -32,7 +32,7 @@ export default {
       fetchBookings: 'booking/fetchAllBookings'
     }),
     fullBookings: function(){
-          let newBookings = Array.from(this.dontrunawa);
+          let newBookings = Array.from(this.allBookings);
           
           newBookings.forEach(booking => {
               booking.user = this.findUserById(booking.user);
