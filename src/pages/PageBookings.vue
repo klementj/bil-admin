@@ -1,7 +1,7 @@
 <template>
 <div>
   <Booking />
-  <DataTableBooking :bookings="allBookings" />
+  <DataTableBooking :bookings="makeBookings" />
 </div>
 </template>
 
@@ -18,38 +18,54 @@ export default {
     DataTableBooking
   },
 
-  created: function (){
-    this.fetchBookings
+  mounted() {
+    this.fetchUsers,
+    this.fetchBookings,
+    this.fetchBikes
   },
 
   computed: {
     ...mapGetters({
       allBookings: 'booking/allBookings',
       allBikes: 'bike/allBikes',
-      allUser: 'user/allUsers'
+      allUsers: 'user/allUsers'
     }),
     ...mapActions({
-      fetchBookings: 'booking/fetchAllBookings'
+      fetchBookings: 'booking/fetchAllBookings',
+      fetchUsers: 'user/fetchAllUsers',
+      fetchBikes: 'bike/fetchAllBikes'
     }),
-    fullBookings: function(){
-          let newBookings = Array.from(this.allBookings);
-          
-          newBookings.forEach(booking => {
-              booking.user = this.findUserById(booking.user);
+    makeBookings(){
 
-              booking.bike = this.findBikeById(booking.bike);
-          });
-          return newBookings;
-      },
+            this.allBookings.forEach(booking => {
+                booking.user = this.getUserName(booking.user);
+
+                booking.bike = this.getBikeName(booking.bike)
+            })
+            return this.allBookings
+    }
   },
 
     methods:{
-        findUserById: function(id){
-            return this.allBikes.find(bike => bike.id === id);
+        getUserName( id ){
+            const user = this.allUsers.find(user => user.id === id)
+
+            const userName = user.firstName + " " + user.lastName
+           
+            return JSON.stringify(userName)
         },
-        findBikeById: function(id){
-            return this.allUsers.find(user => user.id === id);
-        },
+
+        getBikeName( id ){
+          const bike = this.allBikes.find(bike => bike.id === id)
+          
+          return JSON.stringify(bike.title)
+        }
+        // findUserById: function(id){
+        //     return this.allBikes.find(bike => bike.id === id);
+        // },
+        // findBikeById: function(id){
+        //     return this.allUsers.find(user => user.id === id);
+        // },
     },
 }
 </script>

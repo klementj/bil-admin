@@ -45,13 +45,6 @@ export default {
         }
     },
 
-    methods: {
-        getUserName(id){
-            const { firstName, lastName} = this.Users.find(user => user === id)
-            return { firstName, lastName }
-        }
-    },
-
     computed: {
         ...mapGetters({
             Users: 'user/allUsers',
