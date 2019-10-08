@@ -1,13 +1,14 @@
 <template>
 <div>
   <Booking />
-  <DataTableBooking :bookings="makeBookings" />
+  <DataTableBooking :bookings="makeBooking" />
 </div>
 </template>
 
 <script>
 import Booking from '@/components/CreateBooking.vue'
 import DataTableBooking from '@/components/DataTableBooking.vue'
+import moment from 'moment'
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
@@ -23,7 +24,7 @@ export default {
     this.fetchBookings,
     this.fetchBikes
   },
-
+  
   computed: {
     ...mapGetters({
       allBookings: 'booking/allBookings',
@@ -35,31 +36,52 @@ export default {
       fetchUsers: 'user/fetchAllUsers',
       fetchBikes: 'bike/fetchAllBikes'
     }),
-    makeBookings(){
+    makeBooking() {
+      
+      const bookings = Array.from(this.allBookings)
+      bookings.forEach(booking => {
+          
+          booking.startTime = moment(booking.startTime).format('DD-MM-YY')
 
-            this.allBookings.forEach(booking => {
-                booking.user = this.getUserName(booking.user);
+          booking.endTime = moment(booking.endTime).format('DD-MM-YY')
 
-                booking.bike = this.getBikeName(booking.bike)
-            })
-            return this.allBookings
+          booking.user =  Object.assign(booking.user, this.getUserName(booking.user))
+
+          booking.bike = Object.assign(booking.bike, this.getBikeName(booking.bike) )
+        })
+    //   // get: function(){ 
+    //   //   return this.bookings
+    //   // },
+      
+    //   // set: function(){
+    //   //     let bookings = Array.from(this.allBookings)
+          
+    //   //     bookings.forEach(booking => {
+    //   //       console.log(booking)
+            
+    //   //         booking.user = this.getUserName(booking.user)
+
+    //   //         booking.bike = this.getBikeName(booking.bike)
+    //   //     })
+    //   // }
+    //   // let bookingArray = Array.from(this.allBookings)
+
+    //   // console.log("bookingArray",bookingArray)
+      return bookings
     }
   },
 
     methods:{
         getUserName( id ){
-            const user = this.allUsers.find(user => user.id === id)
-
-            const userName = user.firstName + " " + user.lastName
-           
-            return JSON.stringify(userName)
+          const user = this.allUsers.find(user => user.id === id)
+          return user
         },
 
         getBikeName( id ){
-          const bike = this.allBikes.find(bike => bike.id === id)
-          
-          return JSON.stringify(bike.title)
-        }
+          const bike = this.allBikes.find(bike => bike.id === id)         
+          return bike
+        },
+
         // findUserById: function(id){
         //     return this.allBikes.find(bike => bike.id === id);
         // },

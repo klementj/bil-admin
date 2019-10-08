@@ -17,15 +17,14 @@
         >
             <template v-slot:no-results>
                 <v-alert :value="true" color="error" icon="warning">
-                Your search for "{{ search }}" found no results.
-            </v-alert>
+                    Your search for "{{ search }}" found no results.
+                </v-alert>
             </template>
         </v-data-table>
     </v-card>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 export default {
     name: "DataTableBooking",
     
@@ -37,20 +36,23 @@ export default {
         return{
             search: '',
             header: [
-                { text: 'User', align: 'left' , value: 'user' },
-                { text: 'Bike', align: 'right' , value: 'bike' },
+                { text: 'User', align: 'left' , value: 'user.firstName' },
+                { text: 'Bike', align: 'right' , value: 'bike.title' },
                 { text: 'Start', align: 'right' , value:'startTime' },
                 { text: 'End', align: 'right' , value: 'endTime' }
             ]
         }
     },
 
-    computed: {
-        ...mapGetters({
-            Users: 'user/allUsers',
-            Bikes: 'bike/allBikes'
-        })
-    }
+    // computed: {
+
+    //     makeUserName(id){            
+    //       const user = this.Users.find(user => user.id === id)
+    //       console.log("Users",this.Users)
+    //       const userName = user.firstName + " " + user.lastName
+    //       return userName
+    //     }
+    // }
 }
 </script>
 

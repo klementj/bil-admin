@@ -13,6 +13,7 @@
     "compressorjs": "^1.0.5",
     "core-js": "^2.6.5",
     "cropperjs": "^1.5.1",
+    "moment": "^2.24.0",
     "roboto-fontface": "*",
     "vue": "^2.6.6",
     "vue-router": "^3.0.6",
