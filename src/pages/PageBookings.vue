@@ -41,13 +41,13 @@ export default {
       const bookings = Array.from(this.allBookings)
       bookings.forEach(booking => {
           
-          booking.startTime = moment(booking.startTime).format('DD-MM-YY')
+          booking.startTime = moment(booking.startTime).format('DD/MM/YY')
 
-          booking.endTime = moment(booking.endTime).format('DD-MM-YY')
+          booking.endTime = moment(booking.endTime).format('DD/MM/YY')
 
-          booking.user =  Object.assign(booking.user, this.getUserName(booking.user))
+          booking.user =  Object.assign(booking.user, this.getUserName(typeof booking.user.id === "undefined" ? booking.user : booking.user.id))
 
-          booking.bike = Object.assign(booking.bike, this.getBikeName(booking.bike) )
+          booking.bike = Object.assign(booking.bike, this.getBikeName(typeof booking.bike.id === "undefined" ? booking.bike : booking.bike.id))
         })
     //   // get: function(){ 
     //   //   return this.bookings
