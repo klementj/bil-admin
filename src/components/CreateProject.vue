@@ -121,7 +121,7 @@
                 ></v-text-field>
 
                 <!-- Times NOT IMPLEMENTED -->
-                <v-card-text>
+                <!-- <v-card-text>
                     <v-calendar
                     :now="today"
                     :value="today"
@@ -129,10 +129,10 @@
                     color="primary"
                     type="week"
                     :weekdays="[1,2,3,4,5,6,0]">
-                        <!-- the events at the top (all-day) -->
+                        < !-- the events at the top (all-day) -- >
                         <template v-slot:day-header="{ date }">
                             <template v-for="event in eventsMap[date]">
-                            <!-- all day events don't have time -->
+                            < !-- all day events don't have time -- >
                             <div
                                 v-if="!event.time"
                                 :key="event.title"
@@ -141,10 +141,10 @@
                             </template>
                         </template>
 
-                         <!-- the events at the bottom (timed) -->
+                         < !-- the events at the bottom (timed) -- >
                         <template v-slot:day-body="{ date, timeToY, minutesToPixels }">
                             <template v-for="event in eventsMap[date]">
-                            <!-- timed events -->
+                            < !-- timed events -- >
                             <div
                                 v-if="event.time"
                                 :key="event.title"
@@ -154,7 +154,7 @@
                             </template>
                         </template>
                     </v-calendar>
-                </v-card-text>
+                </v-card-text> -->
 
                 <!-- Schema NOT IMPLEMENTED -->
 
@@ -244,10 +244,7 @@ export default {
     },
 
     methods: {
-        //Not working
-        createEventDialog: function(){
-            console.log("Create event; NOT IMPLEMENTED");
-        }
+        
     },
 
     computed: {
