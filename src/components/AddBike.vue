@@ -36,6 +36,7 @@
     </v-card-text>
     <v-card-actions>
       <v-spacer></v-spacer>
+      <CreateCategory/>
       <v-btn color="primary" @click="onSubmit">Add bike</v-btn>
     </v-card-actions>
 
@@ -44,12 +45,14 @@
 
 <script>
 import ImageGallery from '@/components/imageUpload/imageGallery'
+import CreateCategory from '@/components/CreateCategory'
 
 export default {
   name: 'AddBike',
 
   components: {
-    ImageGallery
+    ImageGallery,
+    CreateCategory
   },
 
   data() {
