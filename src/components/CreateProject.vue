@@ -121,6 +121,29 @@
                 ></v-text-field>
 
                 <!-- Times NOT IMPLEMENTED -->
+                <v-row>
+                    <v-col cols="12" sm="1">
+                        <v-text-field
+                        placeholder="Placeholder text">
+                            
+                        </v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="2">
+                        <v-text-field
+                        placeholder="Placeholder text">
+                            
+                        </v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="2">
+                        <v-text-field
+                        placeholder="Placeholder text">
+                            
+                        </v-text-field>
+                    </v-col>
+                </v-row>
+                
+
+                <!-- Calendar -->
                 <!-- <v-card-text>
                     <v-calendar
                     :now="today"
@@ -244,7 +267,12 @@ export default {
     },
 
     methods: {
-        
+        updateTime: function(timeObj){
+            let timesArr = this.form.restrictions.times;
+            if(timesArr.any(timeObj.day === true)){
+                timesArr.replace()
+            }
+        }
     },
 
     computed: {
