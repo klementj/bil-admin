@@ -26,10 +26,15 @@ export const actions = {
     },
 
     addCategory({commit}, payload){
-
+            categoryService.create(payload)
+                .then(response => {
+                    if(response.status === 201) {
+                      commit('ADD_CATEGORY_TO_STORE', response.data.data)
+                    }
+                  })
     }
 }
 
 export const getters = {
-
+    allCategories: state => state.categories
 }

@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
 
     data(){
@@ -51,8 +53,13 @@ export default {
         },
         close(){
             this.dialog = false
-        }
-        
+        },
+        save(){
+            this.addCategory(this.form).then(this.dialog = false, this.form = {title: "", description: ""})
+        },
+        ...mapActions({
+            addCategory: 'category/addCategory'
+        })   
     }
 
     
