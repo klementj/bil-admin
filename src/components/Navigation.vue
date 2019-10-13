@@ -2,54 +2,55 @@
   <v-navigation-drawer v-model="drawer" fixed app>
     <v-layout justify-space-between column fill-height>
       <!-- Dispay current users profile picture and name -->
-      <UserDisplay />
+      
       <v-list class="pt-0">
+        <UserDisplay />
         <v-divider></v-divider>
 
-        <v-list-tile :to="{ name: 'home'}">
-          <v-list-tile-action>
+        <v-list-item :to="{ name: 'home'}">
+          <v-list-item-action>
             <v-icon>mdi-view-dashboard</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Dashboard</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Dashboard</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
 
-        <v-list-tile :to="{ name: 'bookings'}">
-          <v-list-tile-action>
+        <v-list-item :to="{ name: 'bookings'}">
+          <v-list-item-action>
             <v-icon>mdi-calendar</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Bookings</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Bookings</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
 
-        <v-list-tile :to="{ name: 'bikes'}">
-          <v-list-tile-action>
+        <v-list-item :to="{ name: 'bikes'}">
+          <v-list-item-action>
             <v-icon>mdi-bike</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Bikes</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Bikes</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
 
-        <v-list-tile :to="{ name: 'users'}">
-          <v-list-tile-action>
+        <v-list-item :to="{ name: 'users'}">
+          <v-list-item-action>
             <v-icon>mdi-account-group</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Users</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Users</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
 
-        <v-list-tile :to="{ name: 'projects'}">
-          <v-list-tile-action>
+        <v-list-item :to="{ name: 'projects'}">
+          <v-list-item-action>
             <v-icon>mdi-sunglasses</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Projects</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Projects</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
 
       <div class="pa-2 mt-auto">
@@ -57,7 +58,7 @@
       </div>
 
       <div class="pa-2">
-        <v-btn block outline color="primary" :to="{ name: 'logout'}">Logout</v-btn>
+        <v-btn block outlined color="primary" :to="{ name: 'logout'}">Logout</v-btn>
       </div>
     </v-layout>  
   </v-navigation-drawer>
@@ -83,6 +84,10 @@ export default {
       set (val) {
         this.$store.commit('ui/SET_DRAWER', val)
       }
+    },
+    
+    makeTheme(){
+      return JSON.parse(localStorage.getItem('darkTheme'))
     }
   }
 }
