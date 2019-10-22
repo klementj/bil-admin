@@ -2,13 +2,13 @@ FROM node:lts
 
 WORKDIR /app
 
-# split the project up so i don't install react-native in the docker container, or make another package.json file.
-COPY package*.json ./
+COPY package.json ./
+COPY yarn.lock ./
 
-run npm install
+RUN yarn install
 
-copy . .
+COPY . .
 
 EXPOSE 8080
 
-CMD ["npm", "run", "serve"]
+CMD ["yarn", "serve"]
