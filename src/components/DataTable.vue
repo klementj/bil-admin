@@ -15,19 +15,19 @@
               <v-container grid-list-md>
                 <v-row wrap>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.title" label="Tite"></v-text-field>
+                    <v-text-field v-model="editedItem.title" label="name"></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model.number="editedItem.price" label="pris" ></v-text-field>
+                    <v-text-field v-model="editedItem.description" label="desciption"></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.description" label="beskrivelse"></v-text-field>
+                    <v-text-field v-model.number="editedItem.price" label="price" ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
                     <v-text-field v-model="editedItem.discount" label="discount"></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.category" label="kategori"></v-text-field>
+                    <v-text-field v-model="editedItem.category" label="category"></v-text-field>
                   </v-col>
                 </v-row>
               </v-container>
@@ -93,16 +93,16 @@ export default {
 
         header:[ 
           
-          { text: 'Navn', align: 'left', value: 'title' },
-          { text: 'Pris', align: 'right' , value: 'price'},
-          { text: 'Discount', align: 'right', value: 'discount'},
-          { text: 'Kategori', align: 'right', value: 'category'},
-          { text: 'rediger', align: 'right', value: 'action', sortable: false}
+          { text: 'Name', align: 'left', value: 'title' },
+          { text: 'Price', align: 'right' , value: 'price'},
+          { text: 'Discount', align: 'right', value: 'discount %'},
+          { text: 'Category', align: 'right', value: 'category'},
+          { text: 'Edit', align: 'right', value: 'action', sortable: false}
         ],
         editedItem: {
           title: '',
-          price: 0,
           description: '',
+          price: 0,
           categories: [],
           images: []
         },
