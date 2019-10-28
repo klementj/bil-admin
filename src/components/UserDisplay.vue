@@ -3,7 +3,11 @@
       <v-list class="pa-0">
         <v-list-item>
           <v-list-item-avatar>
-            <v-img :src="getImg !== null ? 'https://imgplaceholder.com/420x320/3a47c6/f7f7f7/glyphicon-user' : getimg " alt="avatar"></v-img>
+            <v-img :src="getimg" v-if="!defaultIcon" >
+            </v-img>
+            <v-img v-if="defaultIcon">
+              <PersonIcon w="36px" h="36px"/>
+            </v-img>
           </v-list-item-avatar>
 
           <v-list-item-content>
@@ -15,18 +19,33 @@
 </template>
 
 <script>
+import PersonIcon from 'vue-ionicons/dist/md-person.vue'
+
 export default {
   name: 'UserDisplay',
+  
+  components: {
+    PersonIcon
+  },
+
+  data(){
+    return{
+      defaultIcon: false,
+    }
+  },
 
   computed: {
 
     fullName() {
+      const userImg = this.$store.state.user.currentUser.userImg
+
+      if ( userImg === "undefinded" || userImg === false) {
+        this.defaultIcon = true
+      } else{
+        this.defaultIcon = false
+      }
       return this.$store.state.user.currentUser.firstName + " " + this.$store.state.user.currentUser.lastName
     },
-
-    getImg(){
-      return this.$store.state.user.currentUser.img
-    }
   }
 }
 </script>

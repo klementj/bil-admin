@@ -3,13 +3,11 @@
     >
             Make Category
             <v-dialog v-model="dialog" max-width="500px" >
-                
-                <v-toolbar text>
-                    <v-toolbar-title>
-                        Make Category
-                    </v-toolbar-title>
-                </v-toolbar>
-                <v-card>
+             
+                <v-card>       
+                    <v-card-title >
+                            Make Category
+                    </v-card-title>
                     <v-card-text>
                         <v-container grid-list-md>
                             <v-layout wrap>
@@ -24,8 +22,8 @@
                     </v-card-text>
                     <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn color="blue darken-1 white--text" flat @click="close">Cancel</v-btn>
-                        <v-btn color="blue darken-1 white--text" flat @click="save">Save</v-btn>
+                        <v-btn color="blue darken-1 white--text"  @click="close">Cancel</v-btn>
+                        <v-btn color="blue darken-1 white--text"  @click="save">Save</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-dialog>
