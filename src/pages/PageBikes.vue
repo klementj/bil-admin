@@ -1,6 +1,5 @@
 <template>
 <div>
-  <CreateCategory />
   <AddBike/>
   <DataTable :bikes="Bikes" ></DataTable>
 </div>
