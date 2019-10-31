@@ -15,7 +15,15 @@
 
 <script>
 export default {
-
+ name: 'UserDisplay',
+  computed: {
+    fullName() {
+      return this.$store.state.user.currentUser.firstName + " " + this.$store.state.user.currentUser.lastName
+    },
+    getImg(){
+      return this.$store.state.user.currentUser.img
+    }
+  }
 }
 </script>
 
