@@ -15,7 +15,7 @@ export default {
 
   components: {
     AddBike,
-    DataTable,
+    DataTable
   },
 
     // Using  vuex function dispatch to trigger the actions to fetch all the bikes
