@@ -21,6 +21,7 @@ export default {
     // Using  vuex function dispatch to trigger the actions to fetch all the bikes
   created: function() {
     this.$store.dispatch('bike/fetchAllBikes')
+    this.$store.dispatch('category/fetchAllCategories')
   },
 
   computed: {
