@@ -3,7 +3,10 @@
       <v-list class="pa-0">
         <v-list-item>
           <v-list-item-avatar>
-            <v-img :src="getImg !== null ? 'https://imgplaceholder.com/420x320/3a47c6/f7f7f7/glyphicon-user' : getimg " alt="avatar"></v-img>
+            <v-img v-if=" typeof getImg === 'undefined' || getImg === null" src="@/assets/Person.svg" >
+            </v-img>
+            <v-img v-else :src="getImg">
+            </v-img>
           </v-list-item-avatar>
 
           <v-list-item-content>
