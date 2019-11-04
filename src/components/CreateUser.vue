@@ -39,7 +39,7 @@
         <v-text-field
           v-model="form.phone"
           name="phonenumber"
-          label="phone number"
+          label="Phone number"
           :rules="phoneRules"
           type="number"
         ></v-text-field>
