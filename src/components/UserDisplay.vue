@@ -15,7 +15,7 @@
 
 <script>
 export default {
- name: 'UserDisplay',
+  name: 'UserDisplay',
   computed: {
     fullName() {
       return this.$store.state.user.currentUser.firstName + " " + this.$store.state.user.currentUser.lastName
