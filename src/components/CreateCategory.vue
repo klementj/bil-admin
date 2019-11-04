@@ -1,5 +1,5 @@
 <template >
-    <v-btn @click="See" color="primary"
+    <v-btn @click="dialog = true" color="primary"
     >
             Make Category
             <v-dialog v-model="dialog" max-width="500px" >
