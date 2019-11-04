@@ -29,6 +29,8 @@
               {{category.title}}
           </v-chip>
         </v-chip-group>
+        
+        <CreateCategory/>
               
         <!-- Price -->
         <v-text-field
@@ -45,7 +47,6 @@
     </v-card-text>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <CreateCategory/>
       <v-btn color="primary" @click="onSubmit">Add bike</v-btn>
     </v-card-actions>
 
