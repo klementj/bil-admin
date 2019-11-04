@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title >
-      <v-toolbar-title>Add bike</v-toolbar-title>
+Add bike
     </v-card-title>
     <v-card-text>
       <v-form>
