@@ -28,7 +28,7 @@
           :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
           v-model="form.password"
           name="password"
-          label="password"
+          label="Password"
           :rules="passwordRules"
 
           :type="show ? 'text' : 'password'"
