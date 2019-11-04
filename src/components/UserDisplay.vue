@@ -8,8 +8,7 @@
             <v-img v-else :src="getImg">
             </v-img>
           </v-list-item-avatar>
-
-          <v-list-item-content>
+           <v-list-item-content>
             <v-list-item-title>{{ fullName }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
@@ -20,13 +19,10 @@
 <script>
 export default {
   name: 'UserDisplay',
-
   computed: {
-
     fullName() {
       return this.$store.state.user.currentUser.firstName + " " + this.$store.state.user.currentUser.lastName
     },
-
     getImg(){
       return this.$store.state.user.currentUser.img
     }
