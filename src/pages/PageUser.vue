@@ -10,6 +10,7 @@
 // import UserEdit from '@/components/UserEdit'
 import CreateUser from '@/components/CreateUser.vue'
 import DataTableUser from '@/components/DataTableUser'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'PageUser',
@@ -24,11 +25,11 @@ export default {
     this.$store.dispatch('user/fetchAllUsers')
   },
 
-  computed: {   
-
-    allUsers() {
-      return this.$store.getters['user/allUsers']    
-    }
+  computed: {
+    
+    ...mapGetters({
+      allUsers: 'user/allUsers'
+    })
   }
 }
 </script>
