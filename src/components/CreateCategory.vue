@@ -22,7 +22,7 @@
                     </v-card-text>
                     <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn color="blue darken-1 white--text"  @click="close">Cancel</v-btn>
+                        <v-btn color="blue darken-1 white--text"  @click="dialog = false">Cancel</v-btn>
                         <v-btn color="blue darken-1 white--text"  @click="save">Save</v-btn>
                     </v-card-actions>
                 </v-card>
@@ -46,12 +46,6 @@ export default {
     },
 
     methods: {
-        See(){
-            this.dialog = true
-        },
-        close(){
-            this.dialog = false
-        },
         save(){
             this.addCategory(this.form).then(this.dialog = false, this.form = {title: "", description: ""})
         },
