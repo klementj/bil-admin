@@ -25,7 +25,7 @@
           column
           active-class="primary--text"
         >  
-          <v-chip v-for="category in allCategories" :key="category">
+          <v-chip v-for="category in allCategories" :key="category" @click="addCategory(category)" >
               {{category.title}}
           </v-chip>
         </v-chip-group>
@@ -71,6 +71,7 @@ export default {
       form: {
         title: '',
         description: '',
+        categories: [],
         price: 0,
         images: []
       },
@@ -97,7 +98,11 @@ export default {
       const dataArr = data.split(",")
       const currencyNumber =  data.replace(/[^0-9//\d.]+(\d*)/g, "")
       return parseFloat(currencyNumber.replace(/[^0-9]/g, "") + dataArr[1])
-    }    
+    },
+    
+    addCategory(category){
+      this.form.categories.push(category.id)
+    }
   },
 
   computed: {
