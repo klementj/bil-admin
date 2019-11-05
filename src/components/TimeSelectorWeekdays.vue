@@ -1,49 +1,64 @@
 <template>
-    <v-row>
-        <v-col cols="12" sm="4">
+        <v-row align="center">
+        <v-checkbox v-model="checkBoxState.dayActive" ></v-checkbox>
+
+        <v-col>
             <v-text-field
-            placeholder="Day">
+            :value="this.propDay"
+            readonly
+            :disabled="!this.checkBoxState.dayActive"
+            placeholder="No day available">
+            </v-text-field>
+        </v-col>
+        
+        <v-col>
+            <v-text-field
+            :disabled="!this.checkBoxState.dayActive"
+             placeholder="Start date">
             </v-text-field>
         </v-col>
 
-        <v-col cols="12" sm="4">
+        <v-col>
             <v-text-field
-            placeholder="Start date">
+            :disabled="!this.checkBoxState.dayActive"
+            placeholder="End date">
             </v-text-field>
         </v-col>
 
-        <v-col cols="12" sm="4">
-            <v-text-field
-             placeholder="End date">
-            </v-text-field>
-        </v-col>
-    </v-row>
+        </v-row>
 </template>
 
 <script>
 export default {
-    components: {
-        TimeSelectorWeekdays
+    name: "Weekdays",
+    props: {
+        propDay: {
+            type: String,
+            required: true,
+            default: "No day Available"
+        }
     },
 
-    props: {
-        namesArray: Array
-    },
-    
-    date(){
+    data(){
         return {
+            checkBoxState: {
+                dayActive: true,
+            },
             dateTimeSlot: {
-                day: '',
-                startTime: Date,
-                endTime: Date
+                day: this.propDay,
+                startTime: new Date().toISOString().substr(0, 10),
+                endTime: new Date().toISOString().substr(0, 10),
             }
         }
+    },
+    created(){
+        console.log("Child test", this.checkBoxState.dayActive)
     },
 
     methods: {
         timeChanged: function(){
-            this.$emit('updateTime', )
-        }
+            this.$emit('updateTime', this.dateTimeSlot)
+        },
     }
 }
 </script>

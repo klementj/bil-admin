@@ -121,6 +121,11 @@
                 ></v-text-field>
 
                 <!-- Times NOT IMPLEMENTED -->
+                <slot v-for="day in days">
+                    <weekDays :propDay="day"/>
+                </slot>
+
+                <!--
                 <v-row>
                     <v-col cols="12" sm="1">
                         <v-text-field
@@ -141,7 +146,7 @@
                         </v-text-field>
                     </v-col>
                 </v-row>
-                
+                -->
 
                 <!-- Calendar -->
                 <!-- <v-card-text>
@@ -207,9 +212,13 @@
 </template>
 
 <script>
+import WeekDays from './TimeSelectorWeekdays.vue'
 
 export default {
     name: "CreateProject",
+    components:{
+        WeekDays
+    },
     data(){
         return {
             showLocation:false,
@@ -217,6 +226,8 @@ export default {
 
             menu1: false,
             menu2: false,
+
+            days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
 
             today: new Date().toISOString().substr(0, 10),
 
