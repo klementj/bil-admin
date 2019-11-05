@@ -9,19 +9,19 @@
           <v-container grid-list-md>
             <v-layout wrap>
               <v-flex xs12 sm6 md4>
-                <v-text-field v-model="editedItem.firstName" label="Fornavn"></v-text-field>
+                <v-text-field v-model="editedItem.firstName" label="First name"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6 md4>
-                <v-text-field v-model="editedItem.lastName" label="Efternavn"></v-text-field>
+                <v-text-field v-model="editedItem.lastName" label="Last name"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6 md4>
                 <v-text-field v-model="editedItem.email" label="Email"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6 md4>
-                <v-text-field v-model="editedItem.phone" label="tlf:"></v-text-field>
+                <v-text-field v-model="editedItem.phone" label="phone number"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6 md4>
-                <v-text-field v-model="editedItem.role" label="Rolle"></v-text-field>
+                <v-text-field v-model="editedItem.role" label="Role"></v-text-field>
               </v-flex>
             </v-layout>
           </v-container>
@@ -81,13 +81,13 @@ export default {
             dialog: false,
             search: '',
             header: [
-                { text: 'Navn', align: 'left' , value: 'firstName' },
-                { text: 'Efternavn', align: 'right' , value: 'lastName' },
-                { text: 'Email', align: 'right' , value:'email' },
-                { text: 'Cykel lån', align: 'right' , value: 'bookings' },
-                { text: 'tlf.', align: 'right' , value: 'phone' },
-                { text: 'bruger rolle', align: 'right' , value: 'role' },
-                { text: 'rediger', align: 'right', value: 'action', sortable: false }
+                { text: 'First name', align: 'left' , value: 'firstName' },
+                { text: 'Last name', align: 'center' , value: 'lastName' },
+                { text: 'Email', align: 'center' , value:'email' },
+                { text: 'Bicycle booked', align: 'center' , value: 'bookings' },
+                { text: 'Phone number.', align: 'center' , value: 'phone' },
+                { text: 'User role', align: 'center' , value: 'role' },
+                { text: 'Edit', align: 'right', value: 'action', sortable: false }
             ],
             editedItem: {
               firstName: '',

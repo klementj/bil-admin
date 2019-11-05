@@ -1,8 +1,6 @@
 <template>
   <v-card>
-    <v-toolbar flat>
-      <v-toolbar-title>Add bike</v-toolbar-title>
-    </v-toolbar>
+    <v-card-title >Add bike</v-card-title>
     <v-card-text>
       <v-form>
         <!-- Title -->
@@ -21,6 +19,19 @@
           type="text"
         ></v-textarea>
 
+        <!-- Categories -->
+        <v-chip-group
+          multiple
+          column
+          active-class="primary--text"
+        >  
+          <v-chip v-for="category in allCategories" :key="category">
+              {{category.title}}
+          </v-chip>
+        </v-chip-group>
+        
+        <CreateCategory/>
+              
         <!-- Price -->
         <v-text-field
           v-model="MoneyConversion"
@@ -44,12 +55,15 @@
 
 <script>
 import ImageGallery from '@/components/imageUpload/imageGallery'
+import CreateCategory from '@/components/CreateCategory'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'AddBike',
 
   components: {
-    ImageGallery
+    ImageGallery,
+    CreateCategory
   },
 
   data() {
@@ -94,7 +108,11 @@ export default {
       set: function(newValue){
         this.form.price = this.ConverToCurrency(newValue)
       }
-    }
+    },
+
+    ...mapGetters({
+      allCategories: 'category/allCategories'
+    })
   }
 }
 </script>

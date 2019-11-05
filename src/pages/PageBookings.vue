@@ -1,13 +1,15 @@
 <template>
 <div>
   <Booking />
-  <DataTableBooking :bookings="allBookings" />
+  <DataTableBooking :bookings="makeBooking" />
 </div>
 </template>
 
 <script>
 import Booking from '@/components/CreateBooking.vue'
 import DataTableBooking from '@/components/DataTableBooking.vue'
+import moment from 'moment'
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'PageBookings',
@@ -17,16 +19,75 @@ export default {
     DataTableBooking
   },
 
-  created: function (){
-    this.$store.dispatch('bike/fetchAllBikes');
-    this.$store.dispatch('user/fetchAllUsers');
-    this.$store.dispatch('booking/fetchAllBookings');
+  mounted() {
+    this.fetchUsers,
+    this.fetchBookings,
+    this.fetchBikes
+  },
+  
+  computed: {
+    ...mapGetters({
+      allBookings: 'booking/allBookings',
+      allBikes: 'bike/allBikes',
+      allUsers: 'user/allUsers'
+    }),
+    ...mapActions({
+      fetchBookings: 'booking/fetchAllBookings',
+      fetchUsers: 'user/fetchAllUsers',
+      fetchBikes: 'bike/fetchAllBikes'
+    }),
+    makeBooking() {
+      
+      const bookings = Array.from(this.allBookings)
+      bookings.forEach(booking => {
+          
+          booking.startTime = moment(booking.startTime).format('DD/MM/YY')
+
+          booking.endTime = moment(booking.endTime).format('DD/MM/YY')
+
+          booking.user =  Object.assign(booking.user, this.getUserName(typeof booking.user.id === "undefined" ? booking.user : booking.user.id))
+
+          booking.bike = Object.assign(booking.bike, this.getBikeName(typeof booking.bike.id === "undefined" ? booking.bike : booking.bike.id))
+        })
+    //   // get: function(){ 
+    //   //   return this.bookings
+    //   // },
+      
+    //   // set: function(){
+    //   //     let bookings = Array.from(this.allBookings)
+          
+    //   //     bookings.forEach(booking => {
+    //   //       console.log(booking)
+            
+    //   //         booking.user = this.getUserName(booking.user)
+
+    //   //         booking.bike = this.getBikeName(booking.bike)
+    //   //     })
+    //   // }
+    //   // let bookingArray = Array.from(this.allBookings)
+
+    //   // console.log("bookingArray",bookingArray)
+      return bookings
+    }
   },
 
-  computed: {
-    allBookings: function(){
-      return this.$store.getters['booking/allBookings'];
-    }
-  }
+    methods:{
+        getUserName( id ){
+          const user = this.allUsers.find(user => user.id === id)
+          return user
+        },
+
+        getBikeName( id ){
+          const bike = this.allBikes.find(bike => bike.id === id)         
+          return bike
+        },
+
+        // findUserById: function(id){
+        //     return this.allBikes.find(bike => bike.id === id);
+        // },
+        // findBikeById: function(id){
+        //     return this.allUsers.find(user => user.id === id);
+        // },
+    },
 }
 </script>

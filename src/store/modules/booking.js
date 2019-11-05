@@ -5,7 +5,8 @@ const bookingService = new BookingService();
 export const namespaced = true
 
 export const state = {
-  bookings: []
+  bookings: [],
+  combinedBookings: [],
 }
 
 export const mutations = {
@@ -40,4 +41,10 @@ export const actions = {
 
 export const getters = {
   allBookings: state => state.bookings
+  // find: (state, _,__, rootGetter) => id => {
+  //   return resolveRelation(state.byID[id], ['bookings'], rootGetter)
+  // },
+  // list: (state, getters) => {
+  //   return state.allIds.map(id => getters.find(id))
+  // }
 }
