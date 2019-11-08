@@ -100,10 +100,10 @@ export default {
     },
     
     toggleCategory({id}){
-      
       const categories = this.form.categories
-
-      categories.find(item => item === id) ? categories.splice(categories.indexOf(id), 1) : categories.push(id) 
+      categories.find(item => item === id) 
+        ? categories.splice(categories.indexOf(id), 1) 
+        : categories.push(id) 
     }
   },
 
