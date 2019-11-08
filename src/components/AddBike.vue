@@ -23,11 +23,10 @@
         <v-chip-group
           multiple
           column
-          active-class="primary--text"
-        >  
-          <v-chip v-for="category in allCategories" :key="category" @click="addCategory(category)" >
-              {{category.title}}
-          </v-chip>
+        > 
+        <v-chip v-for="category in allCategories" :key="category.id" @click="toggleCategory(category)" >
+            {{category.title}}
+        </v-chip>
         </v-chip-group>
         
         <CreateCategory/>
@@ -100,8 +99,11 @@ export default {
       return parseFloat(currencyNumber.replace(/[^0-9]/g, "") + dataArr[1])
     },
     
-    addCategory(category){
-      this.form.categories.push(category.id)
+    toggleCategory({id}){
+      
+      const categories = this.form.categories
+
+      categories.find(item => item === id) ? categories.splice(categories.indexOf(id), 1) : categories.push(id) 
     }
   },
 
