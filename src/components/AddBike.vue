@@ -24,7 +24,7 @@
           multiple
           column
         > 
-        <v-chip v-for="category in allCategories" :key="category.id" @click="toggleCategory(category)" >
+        <v-chip v-for="category in allCategories" :key="category.id" @click="toggleCategory(category.id)" >
             {{category.title}}
         </v-chip>
         </v-chip-group>
@@ -99,7 +99,7 @@ export default {
       return parseFloat(currencyNumber.replace(/[^0-9]/g, "") + dataArr[1])
     },
     
-    toggleCategory({id}){
+    toggleCategory(id){
       const categories = this.form.categories
       categories.find(item => item === id) 
         ? categories.splice(categories.indexOf(id), 1) 
