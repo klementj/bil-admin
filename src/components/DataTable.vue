@@ -96,7 +96,7 @@ export default {
           { text: 'Name', align: 'left', value: 'title' },
           { text: 'Price', align: 'right' , value: 'price'},
           { text: 'Discount', align: 'right', value: 'discount %'},
-          { text: 'Category', align: 'right', value: 'category'},
+          { text: 'Category', align: 'right', value: 'categories'},
           { text: 'Edit', align: 'right', value: 'action', sortable: false}
         ],
         editedItem: {
