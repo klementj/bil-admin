@@ -5,6 +5,15 @@
     :items="bikes"
     :search="search"
     >
+
+    <template v-slot:item.categories="{ item }"  >
+        <div v-if="getCategory(item.categories).length !== 0">
+          <v-chip :v-for="categories in catBikes" :key="categories" >
+            {{ categories }}
+          </v-chip>
+        </div>
+    </template>
+
       <template v-slot:top>
         <v-dialog v-model="dialog" max-width="500px">
           <v-card>
@@ -56,7 +65,7 @@
         <v-icon
           small 
           class="mr-2"
-          @click="editItem(item)"
+          @click="editItem(item.categories)"
         >
         mdi-pencil
         </v-icon>
@@ -73,8 +82,8 @@
 
 <script>
 // import MoneyComponent from '@/components/MoneyComponent'
-// import { mapActions } from 'vuex'
 // import { mapMutations, mapState } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
     name: "DataTable",
@@ -96,7 +105,7 @@ export default {
           { text: 'Name', align: 'left', value: 'title' },
           { text: 'Price', align: 'right' , value: 'price'},
           { text: 'Discount', align: 'right', value: 'discount %'},
-          { text: 'Category', align: 'right', value: 'categories'},
+          { text: 'Categories', align: 'center', value: 'categories'},
           { text: 'Edit', align: 'right', value: 'action', sortable: false}
         ],
         editedItem: {
@@ -109,35 +118,46 @@ export default {
       }
     },
 
+    mounted() {
+      this.fetchCategories
+    },
+
+    computed: {
+      
+      ...mapGetters({
+        allCategories: 'category/allCategories'
+      }),
+
+      ...mapActions({
+        fetchCategories: 'category/fetchAllCategories'
+      })
+    },
+
     methods: {
+      getCategory(item){
+
+
+        let readable = []
+        item.forEach(category => {
+          if (typeof category !== "undefined" || category.length !== 0 ) {
+            readable.push(this.allCategories.find(stuff => stuff.id === category).title)
+            
+          }
+        })
+        // console.log("object",readable)
+        return readable
+      },
       editItem (item) {
         // item to edit overwrites editeditems default values, to be equal, using an assign to incase more parameters are added, the edited item still consist of the core parameters such as the ID which isn't given to the editedItem at default
         this.editedItem = Object.assign({}, item)
         this.dialog = true
-        // this.$store.commit('ui/showModal', this.dialog)
       },
 
       close() {
         this.dialog = false
         
-      //   // this.$store.commit('ui/hideModal', this.dialog)
       },
 
-      // ...mapMutations({
-      //   close: 'ui/hideModal',
-      //   OpenSesam: 'ui/showModal'
-      // }),
-
-      // ...mapState({
-      //     dialog: 'ui/modalComponent'
-      // }),
-      // ...mapActions([
-      //   'bike/updateBike'
-      // ]),
-
-      // ...mapActions({
-      //   save: 'bike/updateBike'
-      // })
 
       save() {
         // Using Vuex function dispatch to trigger action updateBike and putting the information from the editedItem into the parameters needed to update a specifik bike

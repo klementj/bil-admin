@@ -1,7 +1,7 @@
 <template>
 <div>
   <AddBike/>
-  <DataTable :bikes="Bikes" ></DataTable>
+  <DataTable :bikes="allBikes" ></DataTable>
 </div>
 </template>
 
@@ -23,13 +23,14 @@ export default {
     this.$store.dispatch('bike/fetchAllBikes')
     this.$store.dispatch('category/fetchAllCategories')
   },
-
-  computed: {
-
-    // Using mapGetter to pull to get all bikes from the store bike module
+  computed:{
+      // Using mapGetter to pull to get all bikes from the store bike module
     ...mapGetters({
-      Bikes: 'bike/allBikes'
-    })
+      allBikes: 'bike/allBikes',
+      allCategories: 'category/allCategories'      
+    }),
   }
+  
 }
+
 </script>
