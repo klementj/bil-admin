@@ -13,16 +13,12 @@
         
         <v-col sm="auto">
             <input type="time"
-            min="07:00"
-            max="23:00"
             v-model="dateTimeSlot.startTime"
             @change="timeChanged()">
         </v-col>
 
         <v-col sm="auto">
             <input type="time"
-            min="07:00"
-            max="23:00"
             v-model="dateTimeSlot.endTime"
             @change="timeChanged()">
         </v-col>
@@ -53,13 +49,9 @@ export default {
             }
         }
     },
-    created(){
-        console.log("Child test", this.checkBoxState.dayActive)
-    },
 
     methods: {
         timeChanged: function(){
-            console.log("Starting Emit", this.dateTimeSlot);
             this.$emit('timeChanged', this.dateTimeSlot);
         },
     }

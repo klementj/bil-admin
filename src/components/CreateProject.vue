@@ -120,69 +120,10 @@
                 :disabled="form.restrictions.default"
                 ></v-text-field>
 
-                <!-- Times NOT IMPLEMENTED -->
+                <!-- Times  -->
                 <slot v-for="day in days">
                     <weekDays :propDay="day" @timeChanged="updateTime"/>
                 </slot>
-
-                <!--
-                <v-row>
-                    <v-col cols="12" sm="1">
-                        <v-text-field
-                        placeholder="Placeholder text">
-                            
-                        </v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="2">
-                        <v-text-field
-                        placeholder="Placeholder text">
-                            
-                        </v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="2">
-                        <v-text-field
-                        placeholder="Placeholder text">
-                            
-                        </v-text-field>
-                    </v-col>
-                </v-row>
-                -->
-
-                <!-- Calendar -->
-                <!-- <v-card-text>
-                    <v-calendar
-                    :now="today"
-                    :value="today"
-                    :events="events"
-                    color="primary"
-                    type="week"
-                    :weekdays="[1,2,3,4,5,6,0]">
-                        < !-- the events at the top (all-day) -- >
-                        <template v-slot:day-header="{ date }">
-                            <template v-for="event in eventsMap[date]">
-                            < !-- all day events don't have time -- >
-                            <div
-                                v-if="!event.time"
-                                :key="event.title"
-                                v-html="event.title"
-                            ></div>
-                            </template>
-                        </template>
-
-                         < !-- the events at the bottom (timed) -- >
-                        <template v-slot:day-body="{ date, timeToY, minutesToPixels }">
-                            <template v-for="event in eventsMap[date]">
-                            < !-- timed events -- >
-                            <div
-                                v-if="event.time"
-                                :key="event.title"
-                                :style="{ top: timeToY(event.time) + 'px', height: minutesToPixels(event.duration) + 'px' }"
-                                v-html="event.title"
-                            ></div>
-                            </template>
-                        </template>
-                    </v-calendar>
-                </v-card-text> -->
 
                 <!-- Schema NOT IMPLEMENTED -->
 
@@ -286,16 +227,11 @@ export default {
             let timesArr = this.form.restrictions.times;
             
             let dayToReplace = timesArr.findIndex(day => day.day == timeObj.day);
-            console.log("Index: ",dayToReplace)
             if(dayToReplace >= 0){
-                console.log("Updating existing day in Array")
                 timesArr[dayToReplace] = timeObj;
-                console.log(timesArr)
             }
             else {
-                console.log("Adding new day to array")
                 timesArr.push(timeObj);
-                console.log(timesArr)
             }
         }
     },
