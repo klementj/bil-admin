@@ -122,7 +122,7 @@
 
                 <!-- Times NOT IMPLEMENTED -->
                 <slot v-for="day in days">
-                    <weekDays :propDay="day"/>
+                    <weekDays :propDay="day" @timeChanged="updateTime"/>
                 </slot>
 
                 <!--
@@ -208,6 +208,7 @@
     </v-form>
     </v-card-text>
     </v-card>
+    <v-btn  @click="onSubmit()">Create Project</v-btn>
     </div>
 </template>
 
@@ -278,10 +279,23 @@ export default {
     },
 
     methods: {
+        onSubmit: function(){
+            this.$emit('createProject', this.form);
+        },
         updateTime: function(timeObj){
             let timesArr = this.form.restrictions.times;
-            if(timesArr.any(timeObj.day === true)){
-                timesArr.replace()
+            
+            let dayToReplace = timesArr.findIndex(day => day.day == timeObj.day);
+            console.log("Index: ",dayToReplace)
+            if(dayToReplace >= 0){
+                console.log("Updating existing day in Array")
+                timesArr[dayToReplace] = timeObj;
+                console.log(timesArr)
+            }
+            else {
+                console.log("Adding new day to array")
+                timesArr.push(timeObj);
+                console.log(timesArr)
             }
         }
     },

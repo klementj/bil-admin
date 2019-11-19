@@ -7,6 +7,7 @@ import * as notification from './modules/notification'
 import * as ui from './modules/ui'
 import * as booking from './modules/booking'
 import * as category from './modules/category'
+import * as project from './modules/project'
 
 Vue.use(Vuex)
 
@@ -18,6 +19,7 @@ export default new Vuex.Store({
     notification,
     ui,
     booking,
-    category
+    category,
+    project
   }
 })

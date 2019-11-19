@@ -2,7 +2,7 @@
         <v-row align="center">
         <v-checkbox v-model="checkBoxState.dayActive" ></v-checkbox>
 
-        <v-col>
+        <v-col sm="auto">
             <v-text-field
             :value="this.propDay"
             readonly
@@ -11,18 +11,20 @@
             </v-text-field>
         </v-col>
         
-        <v-col>
-            <v-text-field
-            :disabled="!this.checkBoxState.dayActive"
-             placeholder="Start date">
-            </v-text-field>
+        <v-col sm="auto">
+            <input type="time"
+            min="07:00"
+            max="23:00"
+            v-model="dateTimeSlot.startTime"
+            @change="timeChanged()">
         </v-col>
 
-        <v-col>
-            <v-text-field
-            :disabled="!this.checkBoxState.dayActive"
-            placeholder="End date">
-            </v-text-field>
+        <v-col sm="auto">
+            <input type="time"
+            min="07:00"
+            max="23:00"
+            v-model="dateTimeSlot.endTime"
+            @change="timeChanged()">
         </v-col>
 
         </v-row>
@@ -46,8 +48,8 @@ export default {
             },
             dateTimeSlot: {
                 day: this.propDay,
-                startTime: new Date().toISOString().substr(0, 10),
-                endTime: new Date().toISOString().substr(0, 10),
+                startTime: "01:01",
+                endTime: "02:02",
             }
         }
     },
@@ -57,7 +59,8 @@ export default {
 
     methods: {
         timeChanged: function(){
-            this.$emit('updateTime', this.dateTimeSlot)
+            console.log("Starting Emit", this.dateTimeSlot);
+            this.$emit('timeChanged', this.dateTimeSlot);
         },
     }
 }
