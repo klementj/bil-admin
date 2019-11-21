@@ -1,9 +1,12 @@
 <template v-slot:prepend>
   <v-list-item two-line>
     <v-list-item-avatar>
-      <v-img v-if=" typeof getImg === 'undefined' || getImg === null" src="@/assets/person.svg" >
-      </v-img>
-      <v-img v-else :src="getImg">
+      <v-img v-if=" typeof getImg === 'undefined' || getImg === null" >
+        <template v-slot:placeholder>
+          <svg>
+            <use xlink:href="@/assets/person.svg#lighttheme"></use>
+          </svg>
+        </template>
       </v-img>
     </v-list-item-avatar>
 
