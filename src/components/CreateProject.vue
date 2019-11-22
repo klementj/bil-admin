@@ -155,6 +155,7 @@
 
 <script>
 import WeekDays from './TimeSelectorWeekdays.vue'
+import { mapActions } from 'vuex';
 
 export default {
     name: "CreateProject",
@@ -221,7 +222,7 @@ export default {
 
     methods: {
         onSubmit: function(){
-            this.$emit('createProject', this.form);
+            this.addProject(this.form);
         },
         updateTime: function(timeObj){
             let timesArr = this.form.restrictions.times;
@@ -239,7 +240,10 @@ export default {
     computed: {
         validSelection: function(){
             return this.form.start_time < this.form.end_time ? true : false;
-        }
+        },
+        ...mapActions({
+            addProject: 'project/addProject'
+        })
     }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <CreateProject @onSubmit="createProject"/>
+    <CreateProject/>
   </v-card>
 </template>
 
@@ -19,19 +19,12 @@ export default {
     this.fetchProjects;
   },
 
-  methods: {
-    createProject: function(project){
-      this.addProject(project);
-    }
-  },
-
   computed: {
     ...mapGetters({
       allProjects: 'project/allProjects',
     }),
     ...mapActions({
       fetchProjects: 'project/fetchAllProjects',
-      addProject: 'project/addProject'
     })
   }
 }
