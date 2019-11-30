@@ -1,8 +1,14 @@
 <template>
-<div>
-  <AddBike/>
-  <DataTable :bikes="Bikes" ></DataTable>
-</div>
+<v-container>
+  <v-row>
+    <v-col cols="12" md="8">
+      <DataTable :bikes="Bikes" />
+    </v-col>
+    <v-col cols="12" md="4">
+      <AddBike/>
+    </v-col>
+  </v-row>
+</v-container>  
 </template>
 
 <script>

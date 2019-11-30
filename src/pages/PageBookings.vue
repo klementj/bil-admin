@@ -1,8 +1,14 @@
 <template>
-<div>
-  <Booking />
-  <DataTableBooking :bookings="makeBooking" />
-</div>
+<v-container>
+  <v-row>
+    <v-col cols="12" md="8">
+      <DataTableBooking :bookings="makeBooking" />
+    </v-col>
+    <v-col cols="12" md="4">
+      <Booking />
+    </v-col>
+  </v-row>
+</v-container>  
 </template>
 
 <script>

@@ -1,9 +1,14 @@
 <template>
-  <div>
-    <CreateUser />
-    <DataTableUser :users="allUsers" ></DataTableUser>
-    <!-- <UserEdit /> -->
-  </div>
+<v-container>
+  <v-row>
+    <v-col cols="12" md="8">
+      <DataTableUser :users="allUsers" />
+    </v-col>
+    <v-col cols="12" md="4">
+      <CreateUser />
+    </v-col>
+  </v-row>
+</v-container>  
 </template>
 
 <script>
