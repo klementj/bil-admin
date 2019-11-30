@@ -1,6 +1,6 @@
-import projectService from '@/services/project.service'
+import ProjectService from '@/services/project.service'
 
-const projectService = new projectService()
+const projectService = new ProjectService()
 
 export const namespaced = true
 

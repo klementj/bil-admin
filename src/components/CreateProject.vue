@@ -120,7 +120,10 @@
                 :disabled="form.restrictions.default"
                 ></v-text-field>
 
-                <!-- Times NOT IMPLEMENTED -->
+                <!-- Times  -->
+                <slot v-for="day in days">
+                    <weekDays :propDay="day" @timeChanged="updateTime"/>
+                </slot>
 
                 <!-- Schema NOT IMPLEMENTED -->
 
@@ -146,13 +149,19 @@
     </v-form>
     </v-card-text>
     </v-card>
+    <v-btn  @click="onSubmit()">Create Project</v-btn>
     </div>
 </template>
 
 <script>
+import WeekDays from './TimeSelectorWeekdays.vue'
+import { mapActions } from 'vuex';
 
 export default {
     name: "CreateProject",
+    components:{
+        WeekDays
+    },
     data(){
         return {
             showLocation:false,
@@ -160,6 +169,27 @@ export default {
 
             menu1: false,
             menu2: false,
+
+            days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+
+            today: new Date().toISOString().substr(0, 10),
+
+            events: [
+                {
+                    name: "Weekly Meeting",
+                    start: new Date().toISOString().substr(0, 10) + ' 09:00',
+                    end: new Date().toISOString().substr(0, 10) + ' 10:00'
+                },
+                {
+                    name: "Open",
+                    start: new Date().toISOString().substr(0, 10) + " 09:00",
+                    end: new Date().toISOString().substr(0, 10) + " 15:00"
+                },
+                {
+                    name: "Workday",
+                    start: new Date().toISOString().substr(0, 10),
+                }
+            ],
 
             form:{
                 projectName: "",
@@ -190,10 +220,30 @@ export default {
         }    
     },
 
+    methods: {
+        onSubmit: function(){
+            this.addProject(this.form);
+        },
+        updateTime: function(timeObj){
+            let timesArr = this.form.restrictions.times;
+            
+            let dayToReplace = timesArr.findIndex(day => day.day == timeObj.day);
+            if(dayToReplace >= 0){
+                timesArr[dayToReplace] = timeObj;
+            }
+            else {
+                timesArr.push(timeObj);
+            }
+        }
+    },
+
     computed: {
         validSelection: function(){
             return this.form.start_time < this.form.end_time ? true : false;
-        }
+        },
+        ...mapActions({
+            addProject: 'project/addProject'
+        })
     }
 }
 </script>
