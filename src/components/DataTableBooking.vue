@@ -1,7 +1,7 @@
 <template>
     <v-card>
         <v-card-title>
-            <h2> Bookings </h2>
+        Bookings
         <v-spacer></v-spacer>
         <v-text-field
             v-model="search"

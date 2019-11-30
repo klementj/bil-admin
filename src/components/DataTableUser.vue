@@ -35,15 +35,16 @@
       </v-card>
     </v-dialog>
         <v-card-title>
-            <h2> Brugere </h2>
-        <v-spacer></v-spacer>
-        <v-text-field
+          Brugere
+          <v-spacer></v-spacer>
+          <v-text-field
             v-model="search"
             label="Search"
             single-line
             hide-details
-        ></v-text-field>
+          ></v-text-field>
         </v-card-title>    
+        
         <v-data-table
         :headers="header"
         :items="users"

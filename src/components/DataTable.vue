@@ -8,9 +8,8 @@
       <template v-slot:top>
         <v-dialog v-model="dialog" max-width="500px">
           <v-card>
-          <v-card-title>
-            <span class="headline">Bike</span>
-          </v-card-title>
+          <v-card-title>Bike</v-card-title>
+
           <v-card-text>
               <v-container grid-list-md>
                 <v-row wrap>
@@ -42,7 +41,7 @@
         </v-dialog>
 
         <v-card-title>
-            <h2> Cykler </h2>
+          Bikes
           <v-spacer></v-spacer>
           <v-text-field
             v-model="search"

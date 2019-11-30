@@ -1,8 +1,6 @@
 <template>
     <v-card>
-        <v-toolbar flat>
-      <v-toolbar-title>Create new booking</v-toolbar-title>
-    </v-toolbar>
+    <v-card-title>Create new booking</v-card-title>
     <v-card-text>
         <v-form>
             <!-- Start date -->
