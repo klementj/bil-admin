@@ -8,40 +8,38 @@
       <template v-slot:top>
         <v-dialog v-model="dialog" max-width="500px">
           <v-card>
-          <v-card-title>Bike</v-card-title>
+          <v-card-title>Edit {{ editedItem.title }}</v-card-title>
 
           <v-card-text>
-              <v-container grid-list-md>
-                <v-row wrap>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.title" label="name"></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.description" label="desciption"></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model.number="editedItem.price" label="price" ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.discount" label="discount"></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.category" label="category"></v-text-field>
-                  </v-col>
-                </v-row>
-              </v-container>
+            <v-row wrap>
+              <v-col cols="12">
+                <v-text-field v-model="editedItem.title" label="Bike name"></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-textarea v-model="editedItem.description" label="Description"></v-textarea>
+              </v-col>
+              <v-col cols="6">
+                <v-text-field v-model.number="editedItem.price" label="Price (DKK)"></v-text-field>
+              </v-col>
+              <v-col cols="6">
+                <v-text-field v-model="editedItem.discount" label="Discount (%)"></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6" md="4">
+                <v-text-field v-model="editedItem.category" label="category"></v-text-field>
+              </v-col>
+            </v-row>
           </v-card-text>
 
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
-            <v-btn color="blue darken-1" text @click="save">Save</v-btn>
+            <v-btn text @click="close">Cancel</v-btn>
+            <v-btn color="primary" outlined @click="save">Save</v-btn>
           </v-card-actions>
           </v-card>
         </v-dialog>
 
         <v-card-title>
-          Bikes
+          All Bikes
           <v-spacer></v-spacer>
           <v-text-field
             v-model="search"
@@ -51,14 +49,29 @@
             ></v-text-field>
         </v-card-title>    
       </template>
+
+      <template v-slot:item.price="{ item }">
+        <span v-if="item.discount !== 0">
+          <del>{{ item.price / 100 }}</del> 
+          {{ (item.price - item.price * (item.discount / 100)) / 100 }}
+        </span>
+        <span v-else>
+          {{ item.price }} 
+        </span>
+      </template>
+
+      <!-- <template v-slot:item.discount="{ item }">
+        {{ item.discount }} <span v-if="item.discount !== 0">%</span>
+      </template> -->
+      
+      <template v-slot:item.categories="{ item }">
+          <v-chip outlined small v-for="category in item.categories" :key="category">
+            {{ humanCategoryName(category).title }}
+          </v-chip>
+      </template>
+
       <template v-slot:item.action="{ item }">
-        <v-icon
-          small 
-          class="mr-2"
-          @click="editItem(item)"
-        >
-        mdi-pencil
-        </v-icon>
+        <v-icon small @click="editItem(item)"> mdi-pencil </v-icon>
       </template>
 
       <template v-slot:no-results>
@@ -74,6 +87,7 @@
 // import MoneyComponent from '@/components/MoneyComponent'
 // import { mapActions } from 'vuex'
 // import { mapMutations, mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
     name: "DataTable",
@@ -91,17 +105,17 @@ export default {
         dialog: false,
 
         header:[ 
-          
           { text: 'Name', align: 'left', value: 'title' },
-          { text: 'Price', align: 'right' , value: 'price'},
-          { text: 'Discount', align: 'right', value: 'discount %'},
-          { text: 'Category', align: 'right', value: 'categories'},
+          { text: 'Categories', align: 'left', value: 'categories'},
+          { text: 'Discount (%)', align: 'right', value: 'discount'},
+          { text: 'Price (DKK)', align: 'right' , value: 'price'},
           { text: 'Edit', align: 'right', value: 'action', sortable: false}
         ],
+
         editedItem: {
           title: '',
           description: '',
-          price: 0,
+          price: undefined,
           categories: [],
           images: []
         },
@@ -141,8 +155,18 @@ export default {
       save() {
         // Using Vuex function dispatch to trigger action updateBike and putting the information from the editedItem into the parameters needed to update a specifik bike
         this.$store.dispatch('bike/updateBike', this.editedItem).then(this.close())
+      },
+
+      humanCategoryName(id){
+        return this.allCategories.find( category => category.id === id)    
       }
     },
+
+    computed: {
+      ...mapGetters({
+        allCategories: 'category/allCategories'
+      })
+    }
 }
 </script>
 
