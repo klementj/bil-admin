@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title >Add bike</v-card-title>
+    <v-card-title >Add new bike</v-card-title>
     <v-card-text>
       <v-form>
         <!-- Title -->
@@ -24,18 +24,27 @@
           multiple
           column
         > 
-        <v-chip v-for="category in allCategories" :key="category.id" @click="toggleCategory(category.id)" >
+          <v-chip filter outlined v-for="category in allCategories" :key="category.id" @click="toggleCategory(category.id)" >
             {{category.title}}
-        </v-chip>
+          </v-chip>
+          
+          <CreateCategory/>
         </v-chip-group>
         
-        <CreateCategory/>
               
         <!-- Price -->
         <v-text-field
           v-model="MoneyConversion"
-          name="title"
+          name="price"
           label="Price of bike"
+          type="text"
+        ></v-text-field>
+        
+        <!-- Discount -->
+        <v-text-field
+          v-model="form.discount"
+          name="discount"
+          label="Discount"
           type="text"
         ></v-text-field>
 
@@ -72,6 +81,7 @@ export default {
         description: '',
         categories: [],
         price: 0,
+        discount: 0,
         images: []
       },
       imageObjects: [],
