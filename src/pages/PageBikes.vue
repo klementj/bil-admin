@@ -1,6 +1,18 @@
 <template>
 <v-container>
   <v-row>
+    <v-col cols="12" md="4">
+      <v-card class="pa-2" outlined tile>Total number of bikes</v-card>
+    </v-col>
+    <v-col cols="12" md="4">
+      <v-card class="pa-2" outlined tile>Oldest bike</v-card>
+    </v-col>
+    <v-col cols="12" md="4">
+      <v-card class="pa-2" outlined tile>Youngest/newest bike</v-card>
+    </v-col>
+  </v-row>
+
+  <v-row>
     <v-col cols="12" md="8">
       <DataTable :bikes="Bikes" />
     </v-col>
