@@ -37,7 +37,7 @@ export default {
             search: '',
             header: [
                 { text: 'User', align: 'left' , value: 'user.firstName' },
-                { text: 'Bike', align: 'right' , value: 'bike.title' },
+                { text: 'Bike', align: 'left' , value: 'bike.title' },
                 { text: 'Start', align: 'right' , value:'startTime' },
                 { text: 'End', align: 'right' , value: 'endTime' }
             ]

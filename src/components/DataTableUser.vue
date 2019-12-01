@@ -29,8 +29,8 @@
 
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="blue darken-1" flat @click="close">Cancel</v-btn>
-        <v-btn color="blue darken-1" flat @click="save">Save</v-btn>
+        <v-btn flat @click="close">Cancel</v-btn>
+        <v-btn color="primary" flat @click="save">Save</v-btn>
       </v-card-actions>
       </v-card>
     </v-dialog>
@@ -51,19 +51,19 @@
         :search="search"
         >
           <template v-slot:item.action="{ item }" >
-                    <v-icon
-                    small
-                    class="mr-2"
-                    @click="editItem(item)"
-                    >
-                    mdi-pencil
-                    </v-icon>
+            <v-icon
+            small
+            class="mr-2"
+            @click="editItem(item)"
+            >
+            mdi-pencil
+            </v-icon>
           </template>
-            <template v-slot:no-results>
-                <v-alert :value="true" color="error" icon="warning">
-                Your search for "{{ search }}" found no results.
+          <template v-slot:no-results>
+            <v-alert :value="true" color="error" icon="warning">
+            Your search for "{{ search }}" found no results.
             </v-alert>
-            </template>
+          </template>
         </v-data-table>
     </v-card>
 </template>
@@ -83,12 +83,12 @@ export default {
             search: '',
             header: [
                 { text: 'First name', align: 'left' , value: 'firstName' },
-                { text: 'Last name', align: 'center' , value: 'lastName' },
-                { text: 'Email', align: 'center' , value:'email' },
-                { text: 'Bicycle booked', align: 'center' , value: 'bookings' },
-                { text: 'Phone number.', align: 'center' , value: 'phone' },
-                { text: 'User role', align: 'center' , value: 'role' },
-                { text: 'Edit', align: 'right', value: 'action', sortable: false }
+                { text: 'Last name', align: 'left' , value: 'lastName' },
+                { text: 'Email', align: 'left' , value:'email' },
+                { text: 'Bicycle booked', align: 'left' , value: 'bookings' },
+                { text: 'Phone number.', align: 'left' , value: 'phone' },
+                { text: 'User role', align: 'left' , value: 'role' },
+                { text: 'Edit', align: 'left', value: 'action', sortable: false }
             ],
             editedItem: {
               firstName: '',
