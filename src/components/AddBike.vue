@@ -3,54 +3,70 @@
     <v-card-title >Add new bike</v-card-title>
     <v-card-text>
       <v-form>
-        <!-- Title -->
-        <v-text-field
-          v-model="form.title"
-          name="title"
-          label="Name of bike"
-          type="text"
-        ></v-text-field>
+        <v-row>
 
-        <!-- Description -->
-        <v-textarea
-          v-model="form.description"
-          name="description"
-          label="Description of bike"
-          type="text"
-        ></v-textarea>
+          <!-- Title -->
+          <v-col cols="12">
+            <v-text-field
+              v-model="form.title"
+              name="title"
+              label="Name of bike"
+              type="text"
+            ></v-text-field>
+          </v-col>
 
-        <!-- Categories -->
-        <v-chip-group
-          multiple
-          column
-        > 
-          <v-chip filter outlined v-for="category in allCategories" :key="category.id" @click="toggleCategory(category.id)" >
-            {{category.title}}
-          </v-chip>
-          
-          <CreateCategory/>
-        </v-chip-group>
-        
+          <!-- Description -->
+          <v-col cols="12">
+            <v-textarea
+              v-model="form.description"
+              name="description"
+              label="Description of bike"
+              type="text"
+            ></v-textarea>
+          </v-col>
+
+
+          <!-- Categories -->
+          <v-col cols="12">
+            <v-chip-group
+              multiple
+              column
+            > 
+              <v-chip filter outlined v-for="category in allCategories" :key="category.id" @click="toggleCategory(category.id)" >
+                {{category.title}}
+              </v-chip>
               
-        <!-- Price -->
-        <v-text-field
-          v-model="MoneyConversion"
-          name="price"
-          label="Price of bike"
-          type="text"
-        ></v-text-field>
-        
-        <!-- Discount -->
-        <v-text-field
-          v-model="form.discount"
-          name="discount"
-          label="Discount"
-          type="text"
-        ></v-text-field>
+              <CreateCategory/>
+            </v-chip-group>
+          </v-col>
+          
+          <!-- Price -->
+          <v-col cols="10">
+            <v-text-field
+              v-model="MoneyConversion"
+              name="price"
+              label="Price of bike"
+              type="text"
+            ></v-text-field>
+          </v-col>
+          
+          <!-- Discount -->
+          <v-col cols="2">
+            <v-text-field
+              v-model="form.discount"
+              name="discount"
+              label="Discount"
+              type="text"
+              suffix="%"
+            ></v-text-field>
+          </v-col>
 
-        <!-- Image Gallery -->
-        <ImageGallery :images="imageObjects"/>
+          <!-- Image Gallery -->
+          <v-col cols="12">
+            <ImageGallery :images="imageObjects"/>
+          </v-col>
 
+        </v-row>
       </v-form>
     </v-card-text>
     <v-card-actions>
