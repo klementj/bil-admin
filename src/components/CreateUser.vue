@@ -1,67 +1,82 @@
 <template>
   <v-card>
-    <v-toolbar flat>
-      <v-toolbar-title>Create New User</v-toolbar-title>
-    </v-toolbar>
+    <v-card-title>New User</v-card-title>
     <v-card-text>
       <v-form ref="form">
-        <!-- Firstname -->
-        <v-text-field
-          v-model="form.first_name"
-          name="first_name"
-          label="First name"
-          :rules="first_nameRules"
-          type="text"
-        ></v-text-field>
+        <v-row>
 
-        <!-- Lastname -->
-        <v-text-field
-          v-model="form.last_name"
-          name="last_name"
-          label="Last name"
-          :rules="last_nameRules"
-          type="text"
-        ></v-text-field>
+          <!-- Firstname -->
+          <v-col cols="6">
+            <v-text-field
+              v-model="form.first_name"
+              name="first_name"
+              label="First name"
+              :rules="first_nameRules"
+              type="text"
+            ></v-text-field>
+          </v-col>
 
-        <!-- Password -->
-        <v-text-field
-          :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-          v-model="form.password"
-          name="password"
-          label="Password"
-          :rules="passwordRules"
+          <!-- Lastname -->
+          <v-col cols="6">
+            <v-text-field
+              v-model="form.last_name"
+              name="last_name"
+              label="Last name"
+              :rules="last_nameRules"
+              type="text"
+            ></v-text-field>
+          </v-col>
 
-          :type="show ? 'text' : 'password'"
-          @click:append="show = !show"
-        ></v-text-field>
+          <!-- Password -->
+          <v-col cols="12">
+            <v-text-field
+              :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+              v-model="form.password"
+              name="password"
+              label="Password"
+              :rules="passwordRules"
 
-        <!-- Phonenumber -->
-        <v-text-field
-          v-model="form.phone"
-          name="phonenumber"
-          label="Phone number"
-          :rules="phoneRules"
-          type="number"
-        ></v-text-field>
+              :type="show ? 'text' : 'password'"
+              @click:append="show = !show"
+            ></v-text-field>
+          </v-col>
 
-        <!-- Email -->
-        <v-text-field
-          v-model="form.email"
-          name="email"
-          label="Email"
-          :rules="emailRules"
-          type="text"
-        ></v-text-field>
+          <!-- Email -->
+          <v-col cols="12">
+            <v-text-field
+              v-model="form.email"
+              name="email"
+              label="Email"
+              :rules="emailRules"
+              type="text"
+            ></v-text-field>
+          </v-col>
+          
+          <!-- Phonenumber -->
+          <v-col cols="12">
+            <v-text-field
+              v-model="form.phone"
+              name="phonenumber"
+              label="Phone number"
+              :rules="phoneRules"
+              type="number"
+              hint="Optional"
+              persistent-hint
+            ></v-text-field>
+          </v-col>
 
-        <!-- Roles -->
-        <v-select
-          v-model="form.role"
-          :items="roles"
-          name="role"
-          label="Role"
-          type="text"
-        ></v-select>
-
+          <!-- Roles -->
+          <v-col cols="12">
+            <v-select
+              v-model="form.role"
+              :items="roles"
+              name="role"
+              label="Role"
+              type="text"
+            ></v-select>
+          </v-col>
+        
+        </v-row>
       </v-form>
     </v-card-text>
     <v-card-actions>
