@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title >Add new bike</v-card-title>
+    <v-card-title>New bike</v-card-title>
     <v-card-text>
       <v-form>
         <v-row>
@@ -10,7 +10,7 @@
             <v-text-field
               v-model="form.title"
               name="title"
-              label="Name of bike"
+              label="Name"
               type="text"
             ></v-text-field>
           </v-col>
@@ -20,7 +20,7 @@
             <v-textarea
               v-model="form.description"
               name="description"
-              label="Description of bike"
+              label="Description"
               type="text"
             ></v-textarea>
           </v-col>
@@ -45,7 +45,7 @@
             <v-text-field
               v-model="MoneyConversion"
               name="price"
-              label="Price of bike"
+              label="Price"
               type="text"
             ></v-text-field>
           </v-col>
@@ -71,7 +71,7 @@
     </v-card-text>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn color="primary" @click="onSubmit">Add bike</v-btn>
+      <v-btn color="primary" @click="onSubmit">Create bike</v-btn>
     </v-card-actions>
 
   </v-card>
