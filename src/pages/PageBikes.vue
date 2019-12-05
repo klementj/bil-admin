@@ -5,10 +5,10 @@
       <v-card class="pa-2" outlined tile>Total number of bikes</v-card>
     </v-col>
     <v-col cols="12" md="4">
-      <v-card class="pa-2" outlined tile>Oldest bike</v-card>
+      <v-card class="pa-2" outlined tile>Popular bike - Bike with most bookings in the last month</v-card>
     </v-col>
     <v-col cols="12" md="4">
-      <v-card class="pa-2" outlined tile>Youngest/newest bike</v-card>
+      <v-card class="pa-2" outlined tile>Popular category - Category with most bookings in last 6 months</v-card>
     </v-col>
   </v-row>
 

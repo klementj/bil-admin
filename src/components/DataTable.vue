@@ -18,11 +18,11 @@
               <v-col cols="12">
                 <v-textarea v-model="editedItem.description" label="Description"></v-textarea>
               </v-col>
-              <v-col cols="6">
-                <v-text-field v-model.number="editedItem.price" label="Price (DKK)"></v-text-field>
+              <v-col cols="10">
+                <v-text-field type="currency" v-model.number="editedItem.price" label="Price (DKK)"></v-text-field>
               </v-col>
-              <v-col cols="6">
-                <v-text-field v-model="editedItem.discount" label="Discount (%)"></v-text-field>
+              <v-col cols="2">
+                <v-text-field suffix="%" v-model="editedItem.discount" label="Discount"></v-text-field>
               </v-col>
               <v-col cols="12" sm="6" md="4">
                 <v-text-field v-model="editedItem.category" label="category"></v-text-field>
@@ -52,30 +52,30 @@
 
       <template v-slot:item.price="{ item }">
         <span v-if="item.discount !== 0">
-          <del>{{ item.price / 100 }}</del> 
-          {{ (item.price - item.price * (item.discount / 100)) / 100 }}
+          <del>{{ item.price }}</del> 
+          {{ item.price - item.price * (item.discount / 100)}}
         </span>
         <span v-else>
           {{ item.price }} 
         </span>
       </template>
 
-      <!-- <template v-slot:item.discount="{ item }">
+      <template v-slot:item.discount="{ item }">
         {{ item.discount }} <span v-if="item.discount !== 0">%</span>
-      </template> -->
+      </template>
       
       <template v-slot:item.categories="{ item }">
-          <v-chip outlined small v-for="category in item.categories" :key="category">
-            {{ humanCategoryName(category).title }}
-          </v-chip>
+        <v-chip outlined small v-for="category in item.categories" :key="category">
+          {{ humanCategoryName(category).title }}
+        </v-chip>
       </template>
 
       <template v-slot:item.action="{ item }">
-        <v-icon small @click="editItem(item)"> mdi-pencil </v-icon>
+        <v-icon small @click="editItem(item)" title="Edit bike"> mdi-pencil </v-icon>
       </template>
 
       <template v-slot:no-results>
-        <v-alert :value="true" color="error" icon="warning">
+        <v-alert :value="true">
             Din søgning efter "{{ search }}" gav intet resultat.
         </v-alert>
       </template>
@@ -157,8 +157,14 @@ export default {
         this.$store.dispatch('bike/updateBike', this.editedItem).then(this.close())
       },
 
-      humanCategoryName(id){
-        return this.allCategories.find( category => category.id === id)    
+     async humanCategoryName(id){
+        const humanCategory = await this.allCategories.find( category => category.id === id )       
+        if (humanCategory !== undefined) {
+          console.log(humanCategory);
+          
+          return humanCategory
+        }
+          return humanCategory
       }
     },
 
