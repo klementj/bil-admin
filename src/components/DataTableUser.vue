@@ -55,6 +55,7 @@
             small
             class="mr-2"
             @click="editItem(item)"
+            title="Edit user"
             >
             mdi-pencil
             </v-icon>
