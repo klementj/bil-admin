@@ -160,7 +160,7 @@ export default {
      async humanCategoryName(id){
         const humanCategory = await this.allCategories.find( category => category.id === id )       
         if (humanCategory !== undefined) {
-          console.log(humanCategory);
+          // console.log(humanCategory);
           
           return humanCategory
         }
