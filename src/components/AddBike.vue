@@ -98,7 +98,8 @@ export default {
         categories: [],
         price: 0,
         discount: 0,
-        images: []
+        images: [],
+        featuredImage: 0
       },
       imageObjects: [],
       show: true

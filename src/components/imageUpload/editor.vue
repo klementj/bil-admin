@@ -147,7 +147,7 @@ export default {
         autoCrop: true,
         background: true,
         dragMode: 'move',
-        aspectRatio: 16 / 9,
+        aspectRatio: 3 / 2,
 
         ready: () => {
           if (!this.croppedData) {
@@ -253,14 +253,12 @@ export default {
 
 <style>
 .editor {
-    /* height: 100%; */
+    height: 100%;
     overflow: hidden;
     margin-bottom: 1rem;
 }
 
 .toolbar {
-  /* background: lightgray; */
-  border: 1px solid lightgray;
   border-top: 0;
 }
 
@@ -513,6 +511,13 @@ export default {
 }
 .cropper-disabled .cropper-drag-box, .cropper-disabled .cropper-face, .cropper-disabled .cropper-line, .cropper-disabled .cropper-point {
   cursor: not-allowed;
+}
+
+.v-btn-toggle{
+  padding: inherit;
+}
+.theme--dark .v-btn-toggle{
+  border-color: #595959;
 }
 
 </style>

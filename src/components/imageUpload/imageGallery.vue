@@ -1,43 +1,25 @@
 <template>
-<div>
-  <v-container grid-list-sm fluid>
-    <v-layout row wrap>
+<div class="image-gallery">
 
-      <v-flex
-        v-for="image in images"
-        :key="image.id"
-        xs4
-        d-flex
-        :data-id="image.id"
-      >
-        <v-card text tile >
-          <v-img
-            :src="image.url"
-            :lazy-src="image.url"
-            aspect-ratio="1"
-            class="grey lighten-2"
-          >
-            <template v-slot:placeholder>
-              <v-row
-                fill-height
-                align-center
-                justify-center
-                ma-0
-              >
-                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-              </v-row>
-            </template>
-          </v-img>
-        </v-card>
-      </v-flex>
+  <!-- Gallery -->
+  <!-- 
+    Image coponent. 
+    Hvis ikke featured, så Toggle til featured ved klik.
+    This on click send ID med op
+    Put i probs: {featured: String}
+    Sorter images Array så den kommer først. 
 
-      <!-- Add image button -->
-      <v-flex xs4 d-flex class="add-btn">
-            <addButton :images="images"></addButton>
-      </v-flex>
+    Check data-id on div
+  -->
+  <div class="image" v-for="image in images" :key="image.id" :data-id="image.id">
+    <img :src="image.url">
+  </div>
 
-    </v-layout>
-  </v-container>
+  <!-- Add image button -->
+  <div class="featured">
+    <addButton :images="images"/>
+  </div>
+
 </div>
 </template>
 
@@ -52,15 +34,34 @@ export default {
   },
 
   props: {
-    images: Array
-  }
+    images: Array,
+    featuredImage: Number
+  },
+
 }
 </script>
 
 <style>
-.add-btn {
-  border: 1px dotted #eee;
-  height: 100%;
-  width: 100%;
+.image-gallery{
+  display:grid;
+  grid-template-rows: minmax(200px, 350px) minmax(0, auto);
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 5px;
 }
+
+.image{
+
+}
+
+.image > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.featured {
+  grid-column: 1 / 5;
+  grid-row: 1 / 2;
+}
+
 </style>

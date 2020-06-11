@@ -3,14 +3,10 @@
  
     <!-- Add button -->
     <template v-slot:activator="{ on }">
-      <div 
-        v-ripple 
-        class="text-xs-center pa-2 image-dialog--addButton"
-        v-on="on"
-      >
-        <v-icon>mdi-image-plus</v-icon>
-        <p>Add image</p>
-      </div>
+      <button v-ripple class="add-button" v-on="on" type="button">
+        <v-icon>mdi-image-plus</v-icon> 
+        Add image
+      </button>
     </template>
     
     <!-- Image dialog -->
@@ -50,8 +46,17 @@ export default {
 </script>
 
 <style>
-.image-dialog--addButton{
+.add-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   width: 100%;
+  min-height: 80px;
   height: 100%;
+  border: 1px dotted #e0e0e0;
+}
+.theme--dark .add-button{
+  border-color: #7b7b78;
 }
 </style>

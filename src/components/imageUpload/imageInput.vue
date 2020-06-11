@@ -89,8 +89,12 @@ export default {
   width: 100%;
 
   min-height: 400px;
-  background: white;
-  border: 1px dotted lightgray;
+  /* background: white; */
+  border: 1px dotted #e0e0e0;
+}
+
+.theme--dark .loader {
+  border-color: #7b7b78;
 }
 
 .loader > p {
