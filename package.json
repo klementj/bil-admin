@@ -11,7 +11,7 @@
     "@mdi/font": "^5.0.45",
     "axios": "^0.19.2",
     "compressorjs": "^1.0.5",
-    "core-js": "^3.6.4",
+    "core-js": "^3.6.5",
     "cropperjs": "^1.5.1",
     "moment": "^2.29.0",
     "roboto-fontface": "*",
